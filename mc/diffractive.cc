@@ -129,7 +129,7 @@ class MyZeroBiasData {
       double xi_cms_minus;
 };
 
-void diffractive(string const& mc = "pomwig", bool reggeon = true, bool side_minus = true, bool side_plus = true, bool reweigth = false, const Int_t nevt_max = -1){
+void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_minus = true, bool side_plus = true, bool reweigth = true, const Int_t nevt_max = -1){
   
   TString file_name, side;
   if (side_minus && !side_plus) side = "minus";
@@ -195,19 +195,19 @@ void diffractive(string const& mc = "pomwig", bool reggeon = true, bool side_min
   //beta fit - reweigth
   TF1* func_right = new TF1("func_right", beta_fit, 0., 1., 5);
   //<s>=0.10-test      
-  func_right->SetParameter(0, 2.07334);
-  func_right->SetParameter(1, -18.0963);
-  func_right->SetParameter(2, 93.1906);
-  func_right->SetParameter(3, -193.015);
-  func_right->SetParameter(4, 138.903);
+  func_right->SetParameter(0, 2.02798);
+  func_right->SetParameter(1, -16.7293);
+  func_right->SetParameter(2, 82.8748);
+  func_right->SetParameter(3, -164.542);
+  func_right->SetParameter(4, 114.142);
 
   TF1* func_left = new TF1("func_left", beta_fit, 0., 1., 5);
   //<s>=0.10-test      
-  func_left->SetParameter(0, 1.4252);
-  func_left->SetParameter(1, -8.06341);
-  func_left->SetParameter(2, 27.409);
-  func_left->SetParameter(3, -36.7921);
-  func_left->SetParameter(4, 17.2785);
+  func_left->SetParameter(0, 1.45284);
+  func_left->SetParameter(1, -9.0417);
+  func_left->SetParameter(2, 32.8926);
+  func_left->SetParameter(3, -46.2235);
+  func_left->SetParameter(4, 22.5018);
 
   //beta fit - reweigth - pythia8
   TF1* func_right_pythia = new TF1("func_right_pythia", beta_fit, 0., 1., 5);
@@ -530,23 +530,34 @@ void diffractive(string const& mc = "pomwig", bool reggeon = true, bool side_min
   RooUnfoldResponse response_beta_plus (50, 0, 0.9,"unfolded_beta_plus","unfolded_beta_plus");
   //histosTH2F["Response_beta"] = (TH2F*) response_beta.Hresponse();
   RooUnfoldResponse response_x_minus (bin2, -4, 0,"unfolded_x_minus","unfolded_x_minus");
+  histosTH2F["response_x_minus"] = (TH2F*) response_x_minus.Hresponse();
+
   RooUnfoldResponse response_x_minus_test (bin2, -4, 0,"unfolded_x_minus_test","unfolded_x_minus_test");
+  histosTH2F["response_x_minus_test"] = (TH2F*) response_x_minus_test.Hresponse();
+
   RooUnfoldResponse response_x_plus (bin2, -4, 0,"unfolded_x_plus","unfolded_x_plus");
-  //histosTH2F["response_xminus_jjp"] = (TH2F*) response_xminus.Hresponse();
-  RooUnfoldResponse response_t_minus (histosTH1F["t_rec_proton_minus_signal_kint_kinxi_cut_bin"],histosTH1F["t_gen_proton_minus_signal_kint_kinxi_cut_bin"],"unfolded_t_minus","unfolded_t_minus");
+  histosTH2F["response_x_plus"] = (TH2F*) response_x_plus.Hresponse();
+
+  RooUnfoldResponse response_t_minus (histosTH1F["t_rec_proton_minus_signal_kint_kinxi_cut_bin4"],histosTH1F["t_gen_proton_minus_signal_kint_kinxi_cut_bin4"],"unfolded_t_minus","unfolded_t_minus");
   histosTH2F["response_t_minus"] = (TH2F*) response_t_minus.Hresponse();
+
   RooUnfoldResponse response_t_minus_gauss (histosTH1F["t_rec_proton_minus_signal_kint_kinxi_cut_smear"],histosTH1F["t_gen_proton_minus_signal_kint_kinxi_cut_smear"],"unfolded_t_minus_gauss","unfolded_t_minus_gauss");
   histosTH2F["response_t_minus_gauss"] = (TH2F*) response_t_minus_gauss.Hresponse();
-  RooUnfoldResponse response_t_minus_test (histosTH1F["t_rec_proton_minus_signal_kint_kinxi_cut_bin"],histosTH1F["t_rec_proton_minus_signal_kint_kinxi_cut_bin"],"unfolded_t_minus_closuretest","unfolded_t_minus_closuertest");
+
+  RooUnfoldResponse response_t_minus_test (histosTH1F["t_rec_proton_minus_signal_kint_kinxi_cut_bin4"],histosTH1F["t_rec_proton_minus_signal_kint_kinxi_cut_bin4"],"unfolded_t_minus_closuretest","unfolded_t_minus_closuertest");
   histosTH2F["response_t_minus_test"] = (TH2F*) response_t_minus_test.Hresponse();
 
-  RooUnfoldResponse response_t_plus (histosTH1F["t_rec_proton_plus_signal_kint_kinxi_cut_bin"],histosTH1F["t_gen_proton_plus_signal_kint_kinxi_cut_bin"],"unfolded_t_plus","unfolded_t_plus");
-  //histosTH2F["response_t_plus"] = (TH2F*) response_t_plus.Hresponse();
-  histosTH2F["response_t_plus"] =  new TH2F("response_t_plus","response_t_plus",8, tbins_4, 8, tbins_4);
+  RooUnfoldResponse response_t_plus (histosTH1F["t_rec_proton_plus_signal_kint_kinxi_cut_bin4"],histosTH1F["t_gen_proton_plus_signal_kint_kinxi_cut_bin4"],"unfolded_t_plus","unfolded_t_plus");
+  histosTH2F["response_t_plus"] = (TH2F*) response_t_plus.Hresponse();
+
   RooUnfoldResponse response_xi_minus (histosTH1F["xi_rec_proton_minus_signal_kint_kinxi_cut_bin"],histosTH1F["xi_gen_proton_minus_signal_kint_kinxi_cut_bin"],"unfolded_xi_minus","unfolded_xi_minus");
+  histosTH2F["response_xi_minus"] = (TH2F*) response_xi_minus.Hresponse();
+
   RooUnfoldResponse response_xi_minus_test (histosTH1F["xi_rec_proton_minus_signal_kint_kinxi_cut_bin"],histosTH1F["xi_gen_proton_minus_signal_kint_kinxi_cut_bin"],"unfolded_xi_minus_test","unfolded_xi_minus_test");
+  histosTH2F["response_xi_minus_test"] = (TH2F*) response_xi_minus_test.Hresponse();
+
   RooUnfoldResponse response_xi_plus (histosTH1F["xi_rec_proton_plus_signal_kint_kinxi_cut_bin"],histosTH1F["xi_gen_proton_plus_signal_kint_kinxi_cut_bin"],"unfolded_xi_plus","unfolded_xi_plus");
-  //histosTH2F["response_xi"] = (TH2F*) response_xi.Hresponse();
+  histosTH2F["response_xi_plus"] = (TH2F*) response_xi_plus.Hresponse();
 
   TH1F* event_selection = new TH1F("event_selection", "event_selection", 9, 0, 9);
 
@@ -1489,14 +1500,25 @@ void diffractive(string const& mc = "pomwig", bool reggeon = true, bool side_min
           histosTH1F["log_x_parton_minus_gen_signal_kint_kinxi_cut"]->Fill( log10(x_minus_gen) , reweigth_beta_minus );
           histosTH1F["log_x_parton_minus_gen_signal_kint_kinxi_cut_slopeup"]->Fill( log10(x_minus_gen) , reweigth_beta_minus*reweight_t_slope_up );
           histosTH1F["log_x_parton_minus_gen_signal_kint_kinxi_cut_slopedw"]->Fill( log10(x_minus_gen) , reweigth_beta_minus*reweight_t_slope_dw );
+          if ( !xi_minus_proton_smear_rec && xi_minus_proton_gen ) response_xi_minus.Miss (xi_minus_proton_gen, reweigth_beta_minus);
+          if ( !xi_minus_proton_smear_rec && xi_minus_proton_gen ) response_xi_minus_test.Miss (xi_minus_proton_gen, reweigth_beta_minus);
+          if ( !fabs(t_minus_proton_smear_rec) && fabs(t_minus_proton_gen) ) response_t_minus.Miss (fabs(t_minus_proton_gen), reweigth_beta_minus);
+          if ( !proton_beta_minus_rec && proton_beta_minus_gen ) response_beta_minus.Miss (proton_beta_minus_gen, reweigth_beta_minus);
+          if ( !log10(x_minus_rec) && log10(x_minus_gen) ) response_x_minus.Miss (log10(x_minus_gen), reweigth_beta_minus);
+          if ( !log10(x_minus_rec) && log10(x_minus_gen) ) response_x_minus_test.Miss (log10(x_minus_gen), reweigth_beta_minus);
+          if ( !fabs(t_minus_proton_smear_rec) && fabs(t_minus_proton_gen) ) response_t_minus_test.Miss (fabs(t_minus_proton_gen), reweigth_beta_minus);
       }
+
       if (jet_gen && proton_kinec_accept_t_plus_gen && proton_kinec_accept_xi_plus_gen ){
-          gen_selection_plus = true;
           histosTH1F["t_gen_proton_plus_signal_kint_kinxi_cut_bin"]->Fill( fabs(t_plus_proton_gen), reweigth_beta_plus );
           histosTH1F["t_gen_proton_plus_signal_kint_kinxi_cut_bin4"]->Fill( fabs(t_plus_proton_gen), reweigth_beta_plus );
           histosTH1F["xi_gen_proton_plus_signal_kint_kinxi_cut_bin"]->Fill( xi_plus_proton_gen , reweigth_beta_plus );
           histosTH1F["beta_gen_proton_plus_signal_kint_kinxi_cut"]->Fill( proton_beta_plus_gen , reweigth_beta_plus );
           histosTH1F["log_x_parton_plus_gen_signal_kint_kinxi_cut"]->Fill( log10(x_plus_gen) , reweigth_beta_plus );
+          if ( !xi_plus_proton_smear_rec && xi_plus_proton_gen ) response_xi_plus.Miss (xi_plus_proton_gen, reweigth_beta_plus);
+          if ( !fabs(t_plus_proton_smear_rec) && fabs(t_plus_proton_gen) ) response_t_plus.Miss (fabs(t_plus_proton_gen), reweigth_beta_plus);
+          if ( !proton_beta_plus_rec && proton_beta_plus_gen ) response_beta_plus.Miss (proton_beta_plus_gen, reweigth_beta_plus);
+          if ( !log10(x_plus_rec) && log10(x_plus_gen) ) response_x_plus.Miss (log10(x_plus_gen), reweigth_beta_plus);
       } 
       if (proton_kinec_accept_t_minus_gen && proton_kinec_accept_xi_minus_gen ){
           histosTH1F["t_gen_proton_kint_kinxi_bin_nojet"]->Fill( fabs(t_minus_proton_gen), reweigth_beta_minus );
@@ -1526,17 +1548,13 @@ void diffractive(string const& mc = "pomwig", bool reggeon = true, bool side_min
       }
 
 
-      bool rec_selection_minus_smear = false;
-      bool gen_selection_minus_smear = false;
       if (jet_gen && xi_minus_proton_gen<=0.1 && fabs(t_minus_proton_gen_gauss)>=0.03 && fabs(t_minus_proton_gen_gauss)<=1. ){
-         gen_selection_minus_smear = true;
          histosTH1F["t_gen_proton_minus_signal_kint_kinxi_cut_smear"]->Fill( fabs(t_minus_proton_gen_gauss) , 1.);//reweigth_beta_minus);
          histosTH1F["t_gen_proton_minus_signal_kint_kinxi_cut_bin_smear"]->Fill( fabs(t_minus_proton_gen_gauss) , reweigth_beta_minus);
          if ( !fabs(t_minus_proton_rec_gauss) && fabs(t_minus_proton_gen_gauss) ) response_t_minus_gauss.Miss (fabs(t_minus_proton_gen_gauss), 1.);//reweigth_beta_minus);
       } 
 
       if (rp_minus_sel && jet_rec && select_Vertex && xi_minus_proton_rec_gauss<=0.1 && fabs(t_minus_proton_rec_gauss)>=0.03 && fabs(t_minus_proton_rec_gauss)<=1. && xi_minus_cms-xi_minus_proton_rec_gauss<=0){
-         rec_selection_minus_smear = true;
          histosTH1F["xi_rec_proton_minus_signal_kint_kinxi_cut_bin_smear"]->Fill( xi_minus_proton_rec_gauss , event_weight_rec_minus );
          histosTH1F["log_x_parton_minus_rec_signal_kint_kinxi_cut_smear"]->Fill( log10(x_minus_rec) , event_weight_rec_minus );
          histosTH1F["t_rec_proton_minus_signal_kint_kinxi_cut_bin_smear"]->Fill( fabs(t_minus_proton_rec_gauss) , event_weight_rec_minus );
@@ -1664,15 +1682,22 @@ void diffractive(string const& mc = "pomwig", bool reggeon = true, bool side_min
               histosTH2F["log_x_parton_resol"]->Fill( log10(x_minus_rec), log10(x_minus_rec)-log10(x_minus_gen), 1.);
               histosTH1F["thx_proton_kint_kinxi_cut"]->Fill( thx_minus_proton, event_weight_rec_minus );
               histosTH1F["thy_proton_kint_kinxi_cut"]->Fill( thy_minus_proton, event_weight_rec_minus );
+              if ( xi_minus_proton_smear_rec && !xi_minus_proton_gen ) response_xi_minus.Fake (xi_minus_proton_smear_rec, event_weight_rec_minus);
+              if ( xi_minus_proton_smear_rec && !xi_minus_proton_gen ) response_xi_minus_test.Fake (xi_minus_proton_smear_rec, event_weight_rec_minus);
+              if ( fabs(t_minus_proton_smear_rec) && !fabs(t_minus_proton_gen) ) response_t_minus.Fake (fabs(t_minus_proton_smear_rec), event_weight_rec_minus);
+              if ( proton_beta_minus_rec && !proton_beta_minus_gen ) response_beta_minus.Fake (proton_beta_minus_rec, event_weight_rec_minus);
+              if ( log10(x_minus_rec) && !log10(x_minus_gen) ) response_x_minus.Fake (log10(x_minus_rec), event_weight_rec_minus);
+              if ( log10(x_minus_rec) && !log10(x_minus_gen) ) response_x_minus_test.Fake (log10(x_minus_rec), event_weight_rec_minus);
+              if ( fabs(t_minus_proton_smear_rec) && !fabs(t_minus_proton_gen) ) response_t_minus_test.Fake (fabs(t_minus_proton_smear_rec), event_weight_rec_minus);
 
               //gen
               if (jet_gen && proton_kinec_accept_t_minus_gen && proton_kinec_accept_xi_minus_gen ){
-                 response_xi_minus.Fill ( xi_minus_proton_smear_rec, xi_minus_proton_gen, event_weight_rec_minus);
-                 response_xi_minus_test.Fill ( xi_minus_proton_smear_rec, xi_minus_proton_gen, event_weight_rec_minus);
-                 response_t_minus.Fill ( fabs(t_minus_proton_smear_rec), fabs(t_minus_proton_gen), event_weight_rec_minus);
-                 response_beta_minus.Fill (proton_beta_minus_rec, proton_beta_minus_gen, event_weight_rec_minus);
-                 response_x_minus.Fill (log10(x_minus_rec), log10(x_minus_gen), event_weight_rec_minus);
-                 response_x_minus_test.Fill (log10(x_minus_rec), log10(x_minus_gen), event_weight);
+                 response_xi_minus.Fill ( xi_minus_proton_smear_rec, xi_minus_proton_gen, reweigth_beta_minus);
+                 response_xi_minus_test.Fill ( xi_minus_proton_smear_rec, xi_minus_proton_gen, reweigth_beta_minus);
+                 response_t_minus.Fill ( fabs(t_minus_proton_smear_rec), fabs(t_minus_proton_gen), reweigth_beta_minus);
+                 response_beta_minus.Fill (proton_beta_minus_rec, proton_beta_minus_gen, reweigth_beta_minus);
+                 response_x_minus.Fill (log10(x_minus_rec), log10(x_minus_gen), reweigth_beta_minus);
+                 response_x_minus_test.Fill (log10(x_minus_rec), log10(x_minus_gen), reweigth_beta_minus);
                  response_t_minus_test.Fill ( fabs(t_minus_proton_smear_rec), fabs(t_minus_proton_gen), reweigth_beta_minus );
                  histosTH1F["xi_gen_proton_signal_kint_kinxi_cut_recsel"]->Fill( xi_minus_proton_gen , event_weight_rec_minus );
                  histosTH1F["t_gen_proton_signal_kint_kinxi_cut_recsel"]->Fill( fabs(t_minus_proton_gen) , event_weight_rec_minus );
@@ -1695,43 +1720,21 @@ void diffractive(string const& mc = "pomwig", bool reggeon = true, bool side_min
               histosTH1F["t_rec_gen_plus"]->Fill( fabs(t_plus_proton_smear_rec)-fabs(t_plus_proton_gen) , event_weight_rec_plus );
               histosTH1F["xi_rec_gen_plus"]->Fill( xi_plus_proton_smear_rec-xi_plus_proton_gen , event_weight_rec_plus );
               histosTH1F["log_x_parton_plus_rec_gen"]->Fill( log10(x_plus_rec)-log10(x_plus_gen) , event_weight_rec_plus );
+              if ( xi_plus_proton_smear_rec && !xi_plus_proton_gen ) response_xi_plus.Fake (xi_plus_proton_smear_rec, event_weight_rec_plus);
+              if ( fabs(t_plus_proton_smear_rec) && !fabs(t_plus_proton_gen) ) response_t_plus.Fake (fabs(t_plus_proton_smear_rec), event_weight_rec_plus);
+              if ( proton_beta_plus_rec && !proton_beta_plus_gen ) response_beta_plus.Fake (proton_beta_plus_rec, event_weight_rec_plus);
+              if ( log10(x_plus_rec) && !log10(x_plus_gen) ) response_x_plus.Fake (log10(x_plus_rec), event_weight_rec_plus);
 
               if (jet_gen && proton_kinec_accept_t_plus_gen && proton_kinec_accept_xi_plus_gen ){
-                 response_xi_plus.Fill ( xi_plus_proton_smear_rec, xi_plus_proton_gen, event_weight_rec_plus);
-                 //response_t_plus.Fill ( fabs(t_plus_proton_smear_rec), fabs(t_plus_proton_gen), 1.);
-                 histosTH2F["response_t_plus"]->Fill(fabs(t_plus_proton_smear_rec),fabs(t_plus_proton_gen), 1.);             
-                 response_beta_plus.Fill (proton_beta_plus_rec, proton_beta_plus_gen, event_weight_rec_plus);
-                 response_x_plus.Fill (log10(x_plus_rec), log10(x_plus_gen), event_weight_rec_plus);
+                 response_xi_plus.Fill ( xi_plus_proton_smear_rec, xi_plus_proton_gen, reweigth_beta_plus);
+                 response_t_plus.Fill ( fabs(t_plus_proton_smear_rec), fabs(t_plus_proton_gen), reweigth_beta_plus);
+                 response_beta_plus.Fill (proton_beta_plus_rec, proton_beta_plus_gen, reweigth_beta_plus);
+                 response_x_plus.Fill (log10(x_plus_rec), log10(x_plus_gen), reweigth_beta_plus);
               }
           }
       }
 
-/*
-      //response matrix
-      if ( rec_selection_minus && !gen_selection_minus ) response_xi_minus.Fake (xi_minus_proton_smear_rec, event_weight_rec_minus);
-      if ( !rec_selection_minus && gen_selection_minus ) response_xi_minus.Miss (xi_minus_proton_gen, reweigth_beta_minus);
-      if ( rec_selection_minus && !gen_selection_minus ) response_xi_minus_test.Fake (xi_minus_proton_smear_rec, event_weight_rec_minus);
-      if ( !rec_selection_minus && gen_selection_minus ) response_xi_minus_test.Miss (xi_minus_proton_gen, reweigth_beta_minus);
-      if ( rec_selection_minus && !gen_selection_minus ) response_t_minus.Fake (fabs(t_minus_proton_smear_rec), event_weight_rec_minus);
-      if ( !rec_selection_minus && gen_selection_minus ) response_t_minus.Miss (fabs(t_minus_proton_gen), reweigth_beta_minus);
-      if ( !rec_selection_minus && gen_selection_minus ) response_beta_minus.Miss (proton_beta_minus_gen, reweigth_beta_minus);
-      if ( rec_selection_minus && !gen_selection_minus ) response_beta_minus.Fake (proton_beta_minus_rec, event_weight_rec_minus);
-      if ( !rec_selection_minus && gen_selection_minus ) response_x_minus.Miss (log10(x_minus_gen), reweigth_beta_minus);
-      if ( rec_selection_minus && !gen_selection_minus ) response_x_minus.Fake (log10(x_minus_rec), event_weight_rec_minus);
-      if ( !rec_selection_minus && gen_selection_minus ) response_x_minus_test.Miss (log10(x_minus_gen), reweigth_beta_minus);
-      if ( rec_selection_minus && !gen_selection_minus ) response_x_minus_test.Fake (log10(x_minus_rec), event_weight_rec_minus);
-      if ( rec_selection_minus && !gen_selection_minus ) response_t_minus_test.Fake (fabs(t_minus_proton_smear_rec), event_weight_rec_minus);
-      if ( !rec_selection_minus && gen_selection_minus ) response_t_minus_test.Miss (fabs(t_minus_proton_gen), reweigth_beta_minus);
 
-      if ( rec_selection_plus && !gen_selection_plus ) response_xi_plus.Fake (xi_plus_proton_smear_rec, event_weight_rec_plus);
-      if ( !rec_selection_plus && gen_selection_plus ) response_xi_plus.Miss (xi_plus_proton_gen, reweigth_beta_plus);
-      if ( rec_selection_plus && !gen_selection_plus ) response_t_plus.Fake (fabs(t_plus_proton_smear_rec), event_weight_rec_plus);
-      if ( !rec_selection_plus && gen_selection_plus ) response_t_plus.Miss (fabs(t_plus_proton_gen), reweigth_beta_plus);
-      if ( !rec_selection_plus && gen_selection_plus ) response_beta_plus.Miss (proton_beta_plus_gen, reweigth_beta_plus);
-      if ( rec_selection_plus && !gen_selection_plus ) response_beta_plus.Fake (proton_beta_plus_rec, event_weight_rec_plus);
-      if ( !rec_selection_plus && gen_selection_plus ) response_x_plus.Miss (log10(x_plus_gen), reweigth_beta_plus);
-      if ( rec_selection_plus && !gen_selection_plus ) response_x_plus.Fake (log10(x_plus_rec), event_weight_rec_plus);
-*/
     }//end loop for events
    // cout <<"After the jet selection " << nevents_jets << " events  "<< endl;
    // cout <<"After GenPart selection " << nevents_gen << " events "<< endl;
