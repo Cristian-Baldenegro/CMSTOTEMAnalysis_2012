@@ -129,7 +129,7 @@ class MyZeroBiasData {
       double xi_cms_minus;
 };
 
-void diffractive(string const& mc = "pomwig", bool reggeon = true, bool side_minus = true, bool side_plus = true, bool reweigth = true, const Int_t nevt_max = -1){
+void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_minus = true, bool side_plus = true, bool reweigth = true, const Int_t nevt_max = -1){
   
   TString file_name, side;
   if (side_minus && !side_plus) side = "minus";
@@ -530,23 +530,34 @@ void diffractive(string const& mc = "pomwig", bool reggeon = true, bool side_min
   RooUnfoldResponse response_beta_plus (50, 0, 0.9,"unfolded_beta_plus","unfolded_beta_plus");
   //histosTH2F["Response_beta"] = (TH2F*) response_beta.Hresponse();
   RooUnfoldResponse response_x_minus (bin2, -4, 0,"unfolded_x_minus","unfolded_x_minus");
+  histosTH2F["response_x_minus"] = (TH2F*) response_x_minus.Hresponse();
+
   RooUnfoldResponse response_x_minus_test (bin2, -4, 0,"unfolded_x_minus_test","unfolded_x_minus_test");
+  histosTH2F["response_x_minus_test"] = (TH2F*) response_x_minus_test.Hresponse();
+
   RooUnfoldResponse response_x_plus (bin2, -4, 0,"unfolded_x_plus","unfolded_x_plus");
-  //histosTH2F["response_xminus_jjp"] = (TH2F*) response_xminus.Hresponse();
-  RooUnfoldResponse response_t_minus (histosTH1F["t_rec_proton_minus_signal_kint_kinxi_cut_bin"],histosTH1F["t_gen_proton_minus_signal_kint_kinxi_cut_bin"],"unfolded_t_minus","unfolded_t_minus");
+  histosTH2F["response_x_plus"] = (TH2F*) response_x_plus.Hresponse();
+
+  RooUnfoldResponse response_t_minus (histosTH1F["t_rec_proton_minus_signal_kint_kinxi_cut_bin4"],histosTH1F["t_gen_proton_minus_signal_kint_kinxi_cut_bin4"],"unfolded_t_minus","unfolded_t_minus");
   histosTH2F["response_t_minus"] = (TH2F*) response_t_minus.Hresponse();
+
   RooUnfoldResponse response_t_minus_gauss (histosTH1F["t_rec_proton_minus_signal_kint_kinxi_cut_smear"],histosTH1F["t_gen_proton_minus_signal_kint_kinxi_cut_smear"],"unfolded_t_minus_gauss","unfolded_t_minus_gauss");
   histosTH2F["response_t_minus_gauss"] = (TH2F*) response_t_minus_gauss.Hresponse();
-  RooUnfoldResponse response_t_minus_test (histosTH1F["t_rec_proton_minus_signal_kint_kinxi_cut_bin"],histosTH1F["t_rec_proton_minus_signal_kint_kinxi_cut_bin"],"unfolded_t_minus_closuretest","unfolded_t_minus_closuertest");
+
+  RooUnfoldResponse response_t_minus_test (histosTH1F["t_rec_proton_minus_signal_kint_kinxi_cut_bin4"],histosTH1F["t_rec_proton_minus_signal_kint_kinxi_cut_bin4"],"unfolded_t_minus_closuretest","unfolded_t_minus_closuertest");
   histosTH2F["response_t_minus_test"] = (TH2F*) response_t_minus_test.Hresponse();
 
-  RooUnfoldResponse response_t_plus (histosTH1F["t_rec_proton_plus_signal_kint_kinxi_cut_bin"],histosTH1F["t_gen_proton_plus_signal_kint_kinxi_cut_bin"],"unfolded_t_plus","unfolded_t_plus");
-  //histosTH2F["response_t_plus"] = (TH2F*) response_t_plus.Hresponse();
-  histosTH2F["response_t_plus"] =  new TH2F("response_t_plus","response_t_plus",8, tbins_4, 8, tbins_4);
+  RooUnfoldResponse response_t_plus (histosTH1F["t_rec_proton_plus_signal_kint_kinxi_cut_bin4"],histosTH1F["t_gen_proton_plus_signal_kint_kinxi_cut_bin4"],"unfolded_t_plus","unfolded_t_plus");
+  histosTH2F["response_t_plus"] = (TH2F*) response_t_plus.Hresponse();
+
   RooUnfoldResponse response_xi_minus (histosTH1F["xi_rec_proton_minus_signal_kint_kinxi_cut_bin"],histosTH1F["xi_gen_proton_minus_signal_kint_kinxi_cut_bin"],"unfolded_xi_minus","unfolded_xi_minus");
+  histosTH2F["response_xi_minus"] = (TH2F*) response_xi_minus.Hresponse();
+
   RooUnfoldResponse response_xi_minus_test (histosTH1F["xi_rec_proton_minus_signal_kint_kinxi_cut_bin"],histosTH1F["xi_gen_proton_minus_signal_kint_kinxi_cut_bin"],"unfolded_xi_minus_test","unfolded_xi_minus_test");
+  histosTH2F["response_xi_minus_test"] = (TH2F*) response_xi_minus_test.Hresponse();
+
   RooUnfoldResponse response_xi_plus (histosTH1F["xi_rec_proton_plus_signal_kint_kinxi_cut_bin"],histosTH1F["xi_gen_proton_plus_signal_kint_kinxi_cut_bin"],"unfolded_xi_plus","unfolded_xi_plus");
-  //histosTH2F["response_xi"] = (TH2F*) response_xi.Hresponse();
+  histosTH2F["response_xi_plus"] = (TH2F*) response_xi_plus.Hresponse();
 
   TH1F* event_selection = new TH1F("event_selection", "event_selection", 9, 0, 9);
 
