@@ -129,7 +129,7 @@ class MyZeroBiasData {
       double xi_cms_minus;
 };
 
-void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_minus = true, bool side_plus = true, bool reweigth = true, const Int_t nevt_max = -1){
+void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_minus = true, bool side_plus = false, bool reweigth = false, const Int_t nevt_max = -1){
   
   TString file_name, side;
   if (side_minus && !side_plus) side = "minus";
@@ -1043,7 +1043,7 @@ void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_mi
          //if( ( (fabs(eta) >= 2.866) && (fabs(eta) < 3.152) ) || (fabs(eta) >= 4.730) ) continue;
 
          // Apply thresholds
-         if( !pflowThreshold(*it_pfcand,thresholdsPFlow) ) pf = true;
+         if( !pflowThreshold(*it_pfcand,thresholdsPFlow) ) continue;
 
          soma1 += (energy + pz);
          soma2 += (energy - pz);
@@ -1076,7 +1076,7 @@ void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_mi
        if(!PF_eta_min) continue;
        weight_total_PF_selected += event_weight;
 
-      if(pf) ++nevents_pf;
+       ++nevents_pf;
       // if(PF_eta_max || PF_eta_min) ++nevents_pf;
 
        double xi_plus_Reco = soma1/cm;
@@ -1288,7 +1288,7 @@ void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_mi
          }
       }
  
-    double t_minus_proton_gen_gauss;
+      double t_minus_proton_gen_gauss;
       if( proton_pz_minus < 0.){
          //beam smearing
          beam_smearing(proton_px_minus, proton_py_minus, proton_pz_minus, proton_energy_minus, proton_px_minus_smear, proton_py_minus_smear, proton_pz_minus_smear, proton_energy_minus_smear);
@@ -1692,13 +1692,13 @@ void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_mi
 
               //gen
               if (jet_gen && proton_kinec_accept_t_minus_gen && proton_kinec_accept_xi_minus_gen ){
-                 response_xi_minus.Fill ( xi_minus_proton_smear_rec, xi_minus_proton_gen, reweigth_beta_minus);
-                 response_xi_minus_test.Fill ( xi_minus_proton_smear_rec, xi_minus_proton_gen, reweigth_beta_minus);
-                 response_t_minus.Fill ( fabs(t_minus_proton_smear_rec), fabs(t_minus_proton_gen), reweigth_beta_minus);
-                 response_beta_minus.Fill (proton_beta_minus_rec, proton_beta_minus_gen, reweigth_beta_minus);
-                 response_x_minus.Fill (log10(x_minus_rec), log10(x_minus_gen), reweigth_beta_minus);
-                 response_x_minus_test.Fill (log10(x_minus_rec), log10(x_minus_gen), reweigth_beta_minus);
-                 response_t_minus_test.Fill ( fabs(t_minus_proton_smear_rec), fabs(t_minus_proton_gen), reweigth_beta_minus );
+                 response_xi_minus.Fill ( xi_minus_proton_smear_rec, xi_minus_proton_gen, 1.);
+                 response_xi_minus_test.Fill ( xi_minus_proton_smear_rec, xi_minus_proton_gen, 1.);
+                 response_t_minus.Fill ( fabs(t_minus_proton_smear_rec), fabs(t_minus_proton_gen), 1.);
+                 response_beta_minus.Fill (proton_beta_minus_rec, proton_beta_minus_gen, 1.);
+                 response_x_minus.Fill (log10(x_minus_rec), log10(x_minus_gen), 1.);
+                 response_x_minus_test.Fill (log10(x_minus_rec), log10(x_minus_gen), 1.);
+                 response_t_minus_test.Fill ( fabs(t_minus_proton_smear_rec), fabs(t_minus_proton_gen), 1. );
                  histosTH1F["xi_gen_proton_signal_kint_kinxi_cut_recsel"]->Fill( xi_minus_proton_gen , event_weight_rec_minus );
                  histosTH1F["t_gen_proton_signal_kint_kinxi_cut_recsel"]->Fill( fabs(t_minus_proton_gen) , event_weight_rec_minus );
                  histosTH1F["beta_gen_proton_signal_kint_kinxi_cut_recsel"]->Fill( proton_beta_minus_gen , event_weight_rec_minus );
@@ -1726,10 +1726,10 @@ void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_mi
               if ( log10(x_plus_rec) && !log10(x_plus_gen) ) response_x_plus.Fake (log10(x_plus_rec), event_weight_rec_plus);
 
               if (jet_gen && proton_kinec_accept_t_plus_gen && proton_kinec_accept_xi_plus_gen ){
-                 response_xi_plus.Fill ( xi_plus_proton_smear_rec, xi_plus_proton_gen, reweigth_beta_plus);
-                 response_t_plus.Fill ( fabs(t_plus_proton_smear_rec), fabs(t_plus_proton_gen), reweigth_beta_plus);
-                 response_beta_plus.Fill (proton_beta_plus_rec, proton_beta_plus_gen, reweigth_beta_plus);
-                 response_x_plus.Fill (log10(x_plus_rec), log10(x_plus_gen), reweigth_beta_plus);
+                 response_xi_plus.Fill ( xi_plus_proton_smear_rec, xi_plus_proton_gen, 1.);
+                 response_t_plus.Fill ( fabs(t_plus_proton_smear_rec), fabs(t_plus_proton_gen), 1.);
+                 response_beta_plus.Fill (proton_beta_plus_rec, proton_beta_plus_gen, 1.);
+                 response_x_plus.Fill (log10(x_plus_rec), log10(x_plus_gen), 1.);
               }
           }
       }
