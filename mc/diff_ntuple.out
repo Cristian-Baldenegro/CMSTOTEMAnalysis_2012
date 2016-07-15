@@ -1,0 +1,405 @@
+  *******************************************
+  *                                         *
+  *        W E L C O M E  to  R O O T       *
+  *                                         *
+  *   Version  5.27/06b   5 November 2010   *
+  *                                         *
+  *  You are welcome to visit our Web site  *
+  *          http://root.cern.ch            *
+  *                                         *
+  *******************************************
+
+ROOT 5.27/06b (branches/v5-27-06-patches@36515, Nov 05 2010, 15:46:56 on linuxx8664gcc)
+
+CINT/ROOT C/C++ Interpreter version 5.18.00, July 2, 2010
+Type ? for help. Commands must be C++ statements.
+Enclose multiple statements between { }.
+Loading rootlogon.C
+
+Processing diffractive_ntuple.cc+...
+/storage/lhuertas/uerj-1/CMSTOTEM/mc/Workspace/root_files/pomwig_minus_ntuple.root
+Using the following PF thresholds:
+  0: (-1,-1)  (-1,-1)  (-1,-1)  (-1,-1)
+  1: (-1,-1)  (-1,-1)  (-1,-1)  (-1,-1)
+  2: (-1,-1)  (-1,-1)  (-1,-1)  (-1,-1)
+  3: (-1,-1)  (-1,-1)  (-1,-1)  (-1,-1)
+  4: (-1,0.9)  (-1,2.5)  (-1,2.5)  (-1,-1)
+  5: (-1,1.4)  (-1,2.7)  (-1,3.8)  (-1,-1)
+  6: (-1,-1)  (-1,-1)  (-1,4)  (-1,4)
+  7: (-1,-1)  (-1,-1)  (-1,3.5)  (-1,3.5)
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_10_1_Jw3.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_11_1_KEe.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_17_1_rRR.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_12_1_FwS.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_18_1_46s.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_13_1_Pcb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_19_1_OPS.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_14_1_Tto.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_1_1_v8f.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_15_1_qbk.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_16_1_95O.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_20_1_i0Z.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_21_1_TIs.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_22_1_6zy.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_23_1_U7H.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_24_1_7Mz.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_25_1_Lzs.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_26_1_t6C.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_27_1_QTN.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_28_1_bPK.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_29_1_yLS.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_2_1_xa0.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_30_1_mmU.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_31_1_qnR.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_32_1_TDr.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_33_1_Tr4.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_34_1_deT.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_35_1_enS.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_36_1_Zwm.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_37_1_ur2.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_38_1_WlN.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_39_1_9AJ.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_3_1_adO.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_40_1_KuL.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_41_1_K2B.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_42_1_gMl.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_43_1_t8G.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_44_1_qmT.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_45_1_Ncr.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_46_1_HD9.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_47_1_wZY.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_48_1_bxF.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_49_1_06u.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_4_1_CVx.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_50_1_GZF.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_51_1_UzF.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_52_1_Rwm.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_53_1_HT6.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_54_1_8IA.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_55_1_KUr.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_56_1_1a7.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_57_1_B4d.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_58_1_l5O.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_59_1_6DZ.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_5_1_kVH.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_60_1_pC1.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_61_1_HeM.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_62_1_zmu.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_63_1_bhV.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_64_1_82g.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_65_1_szx.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_66_1_MkG.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_67_1_60Q.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_68_1_jLA.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_69_1_oi4.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_6_1_CMt.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_70_1_Uli.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_71_1_wRX.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_72_1_m1c.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_73_1_qyL.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_74_1_9lj.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_75_1_FTB.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_76_1_TPs.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_77_1_Irm.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_78_1_YCb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_79_1_EzJ.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_7_1_JYJ.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_80_1_kl3.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_81_1_nPm.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_82_1_abd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_83_1_2FJ.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_84_1_7VR.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_85_1_SFd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_86_1_hYq.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_87_1_QVt.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_88_1_Nny.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_89_1_Pzz.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_8_1_66o.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_90_1_hVT.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_91_1_EvF.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_92_1_h9t.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_93_1_Cwb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_94_1_Gtr.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_9_1_gBl.root
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_10_1_Jw3.root
+10k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_11_1_KEe.root
+20k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_17_1_rRR.root
+30k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_12_1_FwS.root
+40k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_18_1_46s.root
+50k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_13_1_Pcb.root
+60k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_19_1_OPS.root
+70k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_14_1_Tto.root
+80k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_1_1_v8f.root
+90k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_15_1_qbk.root
+100k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_16_1_95O.root
+110k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_20_1_i0Z.root
+120k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_21_1_TIs.root
+130k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_22_1_6zy.root
+140k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_23_1_U7H.root
+150k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_24_1_7Mz.root
+160k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_25_1_Lzs.root
+170k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_26_1_t6C.root
+180k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_27_1_QTN.root
+190k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_28_1_bPK.root
+200k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_29_1_yLS.root
+210k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_2_1_xa0.root
+220k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_30_1_mmU.root
+230k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_31_1_qnR.root
+240k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_32_1_TDr.root
+250k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_33_1_Tr4.root
+260k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_34_1_deT.root
+270k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_35_1_enS.root
+280k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_36_1_Zwm.root
+290k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_37_1_ur2.root
+300k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_38_1_WlN.root
+310k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_39_1_9AJ.root
+320k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_3_1_adO.root
+330k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_40_1_KuL.root
+340k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_41_1_K2B.root
+350k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_42_1_gMl.root
+360k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_43_1_t8G.root
+370k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_44_1_qmT.root
+380k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_45_1_Ncr.root
+390k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_46_1_HD9.root
+400k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_47_1_wZY.root
+410k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_48_1_bxF.root
+420k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_49_1_06u.root
+430k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_4_1_CVx.root
+440k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_50_1_GZF.root
+450k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_51_1_UzF.root
+460k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_52_1_Rwm.root
+470k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_53_1_HT6.root
+480k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_54_1_8IA.root
+490k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_55_1_KUr.root
+500k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_56_1_1a7.root
+510k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_57_1_B4d.root
+520k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_58_1_l5O.root
+530k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_59_1_6DZ.root
+540k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_5_1_kVH.root
+550k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_60_1_pC1.root
+560k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_61_1_HeM.root
+570k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_62_1_zmu.root
+580k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_63_1_bhV.root
+590k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_64_1_82g.root
+600k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_65_1_szx.root
+610k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_66_1_MkG.root
+620k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_67_1_60Q.root
+630k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_68_1_jLA.root
+640k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_69_1_oi4.root
+650k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_6_1_CMt.root
+660k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_70_1_Uli.root
+670k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_71_1_wRX.root
+680k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_72_1_m1c.root
+690k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_73_1_qyL.root
+700k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_74_1_9lj.root
+710k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_75_1_FTB.root
+720k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_76_1_TPs.root
+730k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_77_1_Irm.root
+740k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_78_1_YCb.root
+750k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_79_1_EzJ.root
+760k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_7_1_JYJ.root
+770k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_80_1_kl3.root
+780k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_81_1_nPm.root
+790k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_82_1_abd.root
+800k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_83_1_2FJ.root
+810k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_84_1_7VR.root
+820k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_85_1_SFd.root
+830k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_86_1_hYq.root
+840k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_87_1_QVt.root
+850k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_88_1_Nny.root
+860k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_89_1_Pzz.root
+870k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_8_1_66o.root
+880k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_90_1_hVT.root
+890k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_91_1_EvF.root
+900k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_92_1_h9t.root
+910k done
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_93_1_Cwb.root
+920k done
+The current file has 2125 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_94_1_Gtr.root
+The current file has 10000 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV/UABaseTree_Pomwig_SDMinus_8TeV_9_1_gBl.root
+930k done
+eventos  932125   pesos 1.97999e+10   cross section: 2.1189e+07  scale 1.11737

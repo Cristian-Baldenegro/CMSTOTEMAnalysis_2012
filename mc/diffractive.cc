@@ -74,9 +74,7 @@ using namespace std;
 Double_t beta_fit(Double_t *x, Double_t *par ){
   Double_t result = 0;
   //result = par[0]+par[1]*x[0]+ par[2]*x[0]*x[0];
-  //result = par[0]+par[1]*x[0]+ par[2]*pow(x[0],2) + par[3]*pow(x[0],3);
   result = par[0]+par[1]*x[0]+ par[2]*pow(x[0],2) + par[3]*pow(x[0],3) +par[4]*pow(x[0],4);
-  //result = par[0]+par[1]*x[0]+ par[2]*pow(x[0],2) + par[3]*pow(x[0],3) +par[4]*pow(x[0],4) +par[5]*pow(x[0],5) +par[6]*pow(x[0],6);
   return result;
 }
 Double_t fFermiLike(Double_t *x, Double_t *par) {
@@ -129,7 +127,7 @@ class MyZeroBiasData {
       double xi_cms_minus;
 };
 
-void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_minus = true, bool side_plus = false, bool reweigth = false, const Int_t nevt_max = -1){
+void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_minus = true, bool side_plus = false, bool reweigth = true, const Int_t nevt_max = 500000){
   
   TString file_name, side;
   if (side_minus && !side_plus) side = "minus";
@@ -195,19 +193,19 @@ void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_mi
   //beta fit - reweigth
   TF1* func_right = new TF1("func_right", beta_fit, 0., 1., 5);
   //<s>=0.10-test      
-  func_right->SetParameter(0, 2.02798);
-  func_right->SetParameter(1, -16.7293);
-  func_right->SetParameter(2, 82.8748);
-  func_right->SetParameter(3, -164.542);
-  func_right->SetParameter(4, 114.142);
+  func_right->SetParameter(0, 1.85666);
+  func_right->SetParameter(1, -15.1006);
+  func_right->SetParameter(2, 70.8921);
+  func_right->SetParameter(3, -132.714);
+  func_right->SetParameter(4, 86.051);
 
   TF1* func_left = new TF1("func_left", beta_fit, 0., 1., 5);
   //<s>=0.10-test      
-  func_left->SetParameter(0, 1.45284);
-  func_left->SetParameter(1, -9.0417);
-  func_left->SetParameter(2, 32.8926);
-  func_left->SetParameter(3, -46.2235);
-  func_left->SetParameter(4, 22.5018);
+  func_left->SetParameter(0, 1.4953);
+  func_left->SetParameter(1, -9.34815);
+  func_left->SetParameter(2, 34.4411);
+  func_left->SetParameter(3, -51.4374);
+  func_left->SetParameter(4, 26.4607);
 
   //beta fit - reweigth - pythia8
   TF1* func_right_pythia = new TF1("func_right_pythia", beta_fit, 0., 1., 5);
@@ -267,10 +265,20 @@ void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_mi
   histosTH1F["leadingJet_pt_rec_signal_kint_kinxi_cut_triggereff"] = new TH1F("leadingJet_pt_rec_signal_kint_kinxi_cut_triggereff", "p_{T}(jet)" , bin2 , 0. , 200.);
   histosTH1F["leadingJet_pt_rec_signal_kint_kinxi_cut_protoneff"] = new TH1F("leadingJet_pt_rec_signal_kint_kinxi_cut_protoneff", "p_{T}(jet)" , bin2 , 0. , 200.);
   histosTH1F["leadingJet_pt_rec_signal_kint_kinxi_cut_zvtx"] = new TH1F("leadingJet_pt_rec_signal_kint_kinxi_cut_zvtx", "p_{T}(jet)" , bin2 , 0. , 200.);
-  histosTH1F["leadingJet_eta_rec_signal_kint_kinxi_cut"] = new TH1F("leadingJet_eta_rec_signal_kint_kinxi_cut", "eta(jet)" , bin2 , -5.2 , 5.2);
+  histosTH1F["leadingJet_eta_rec_signal_kint_kinxi_cut"] = new TH1F("leadingJet_eta_rec_signal_kint_kinxi_cut", "eta(jet)" , 20 , -5.2 , 5.2);
   histosTH1F["leadingJet_pt_gen_signal_kint_kinxi_cut_recsel"] = new TH1F("leadingJet_pt_gen_signal_kint_kinxi_cut_recsel", "p_{T}(jet)" , bin2 , 0. , 200.);
   histosTH1F["leadingJet_pt_gen_signal_kint_kinxi_cut"] = new TH1F("leadingJet_pt_gen_signal_kint_kinxi_cut", "p_{T}(jet)" , bin2 , 0. , 200.);
-  histosTH1F["leadingJet_eta_gen_signal_kint_kinxi_cut"] = new TH1F("leadingJet_eta_gen_signal_kint_kinxi_cut", "eta(jet)" , bin2 , -5.2 , 5.2);
+  histosTH1F["leadingJet_eta_gen_signal_kint_kinxi_cut"] = new TH1F("leadingJet_eta_gen_signal_kint_kinxi_cut", "eta(jet)" , 20 , -5.2 , 5.2);
+  histosTH1F["leadingJet_eta_minus_rec_protontag"] = new TH1F("leadingJet_eta_minus_rec_protontag", "eta(jet)" , 20 , -5.2 , 5.2);
+  histosTH1F["leadingJet_eta_minus_rec_protonkin"] = new TH1F("leadingJet_eta_minus_rec_protonkin", "eta(jet)" , 20 , -5.2 , 5.2);
+  histosTH1F["leadingJet_pt_minus_rec_protontag"] = new TH1F("leadingJet_pt_minus_rec_protontag", "p_{T}(jet)" , bin2 , 0. , 200.);
+  histosTH1F["leadingJet_pt_minus_rec_protonkin"] = new TH1F("leadingJet_pt_minus_rec_protonkin", "p_{T}(jet)" , bin2 , 0. , 200.);
+  histosTH1F["leadingJet_eta_plus_rec_signal_kint_kinxi_cut"] = new TH1F("leadingJet_eta_plus_rec_signal_kint_kinxi_cut", "eta(jet)" , 20 , -5.2 , 5.2);
+  histosTH1F["leadingJet_eta_plus_rec_protontag"] = new TH1F("leadingJet_eta_plus_rec_protontag", "eta(jet)" , 20 , -5.2 , 5.2);
+  histosTH1F["leadingJet_eta_plus_rec_protonkin"] = new TH1F("leadingJet_eta_plus_rec_protonkin", "eta(jet)" , 20 , -5.2 , 5.2);
+  histosTH1F["leadingJet_pt_plus_rec_signal_kint_kinxi_cut"] = new TH1F("leadingJet_pt_plus_rec_signal_kint_kinxi_cut", "p_{T}(jet)" , bin2 , 0. , 200.);
+  histosTH1F["leadingJet_pt_plus_rec_protontag"] = new TH1F("leadingJet_pt_plus_rec_protontag", "p_{T}(jet)" , bin2 , 0. , 200.);
+  histosTH1F["leadingJet_pt_plus_rec_protonkin"] = new TH1F("leadingJet_pt_plus_rec_protonkin", "p_{T}(jet)" , bin2 , 0. , 200.);
 
   histosTH1F["secondJet_eta_rec_signal_kin_cut"] = new TH1F("secondJet_eta_rec_signal_kin_cut", "#eta(jet)" , 20 , -5.2 , 5.2);
   histosTH1F["secondJet_eta_gen_signal_kin_cut_recsel"] = new TH1F("secondJet_eta_gen_signal_kin_cut_recsel", "#eta(jet)" , 20 , -5.2 , 5.2);
@@ -283,10 +291,20 @@ void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_mi
   histosTH1F["secondJet_pt_rec_signal_kint_kinxi_cut_triggereff"] = new TH1F("secondJet_pt_rec_signal_kint_kinxi_cut_triggereff", "p_{T}(jet)" , bin2 , 0. , 200.);
   histosTH1F["secondJet_pt_rec_signal_kint_kinxi_cut_protoneff"] = new TH1F("secondJet_pt_rec_signal_kint_kinxi_cut_protoneff", "p_{T}(jet)" , bin2 , 0. , 200.);
   histosTH1F["secondJet_pt_rec_signal_kint_kinxi_cut_zvtx"] = new TH1F("secondJet_pt_rec_signal_kint_kinxi_cut_zvtx", "p_{T}(jet)" , bin2 , 0. , 200.);
-  histosTH1F["secondJet_eta_rec_signal_kint_kinxi_cut"] = new TH1F("secondJet_eta_rec_signal_kint_kinxi_cut", "eta(jet)" , bin2 , -5.2 , 5.2);
+  histosTH1F["secondJet_eta_rec_signal_kint_kinxi_cut"] = new TH1F("secondJet_eta_rec_signal_kint_kinxi_cut", "eta(jet)" , 20 , -5.2 , 5.2);
   histosTH1F["secondJet_pt_gen_signal_kint_kinxi_cut_recsel"] = new TH1F("secondJet_pt_gen_signal_kint_kinxi_cut_recsel", "p_{T}(jet)" , bin2 , 0. , 200.);
   histosTH1F["secondJet_pt_gen_signal_kint_kinxi_cut"] = new TH1F("secondJet_pt_gen_signal_kint_kinxi_cut", "p_{T}(jet)" , bin2 , 0. , 200.);
-  histosTH1F["secondJet_eta_gen_signal_kint_kinxi_cut"] = new TH1F("secondJet_eta_gen_signal_kint_kinxi_cut", "eta(jet)" , bin2 , -5.2 , 5.2);
+  histosTH1F["secondJet_eta_gen_signal_kint_kinxi_cut"] = new TH1F("secondJet_eta_gen_signal_kint_kinxi_cut", "eta(jet)" , 20 , -5.2 , 5.2);
+  histosTH1F["secondJet_pt_minus_rec_protonkin"] = new TH1F("secondJet_pt_minus_rec_protonkin", "p_{T}(jet)" , bin2 , 0. , 200.);
+  histosTH1F["secondJet_pt_minus_rec_protontag"] = new TH1F("secondJet_pt_minus_rec_protontag", "p_{T}(jet)" , bin2 , 0. , 200.);
+  histosTH1F["secondJet_eta_minus_rec_protontag"] = new TH1F("secondJet_eta_minus_rec_protontag", "eta(jet)" , 20 , -5.2 , 5.2);
+  histosTH1F["secondJet_eta_minus_rec_protonkin"] = new TH1F("secondJet_eta_minus_rec_protonkin", "eta(jet)" , 20 , -5.2 , 5.2);
+  histosTH1F["secondJet_pt_plus_rec_signal_kint_kinxi_cut"] = new TH1F("secondJet_pt_plus_rec_signal_kint_kinxi_cut", "p_{T}(jet)" , bin2 , 0. , 200.);
+  histosTH1F["secondJet_pt_plus_rec_protonkin"] = new TH1F("secondJet_pt_plus_rec_protonkin", "p_{T}(jet)" , bin2 , 0. , 200.);
+  histosTH1F["secondJet_pt_plus_rec_protontag"] = new TH1F("secondJet_pt_plus_rec_protontag", "p_{T}(jet)" , bin2 , 0. , 200.);
+  histosTH1F["secondJet_eta_plus_rec_signal_kint_kinxi_cut"] = new TH1F("secondJet_eta_plus_rec_signal_kint_kinxi_cut", "eta(jet)" , 20 , -5.2 , 5.2);
+  histosTH1F["secondJet_eta_plus_rec_protontag"] = new TH1F("secondJet_eta_plus_rec_protontag", "eta(jet)" , 20 , -5.2 , 5.2);
+  histosTH1F["secondJet_eta_plus_rec_protonkin"] = new TH1F("secondJet_eta_plus_rec_protonkin", "eta(jet)" , 20 , -5.2 , 5.2);
 
   histosTH1F["DeltaPtJet_rec_signal_kin_cut"] = new TH1F("Delta_pt_Jet_rec_signal_kin_cut", "#Delta p_{T}(jet)" , 20 , 0. , 150.);
   histosTH1F["DeltaEtaJet_rec_signal_kin_cut"] = new TH1F("Delta_eta_Jet_rec_signal_kin_cut", "#Delta#eta(jet)" , 20 , 0 , 5.2);
@@ -329,16 +347,19 @@ void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_mi
   Float_t tbins[12] = { 0.03, 0.06, 0.09, 0.12, 0.16, 0.20, 0.25, 0.32, 0.42, 0.52, 0.65, 1.};
   Float_t tbins_2[11] = {0.03, 0.07, 0.11, 0.15, 0.20, 0.25, 0.32, 0.42, 0.52, 0.65, 1.};
   Float_t tbins_3[10] = {0.03, 0.07, 0.11, 0.18, 0.24, 0.32,  0.43, 0.53, 0.65, 1.};
-  Float_t tbins_4[9] = {0.03, 0.08, 0.13, 0.21, 0.31, 0.41,  0.55, 0.75, 1.};
-  float xi_bins[10] = {-0.05, 0, 0.015, 0.030, 0.047, 0.064, 0.08, 0.1, 0.12, 0.2};
-  float xi_bins_2[8] = {-0.05, 0, 0.028, 0.048, 0.065, 0.08, 0.1, 0.2};
+  float_t tbins_4[9] = {0.03, 0.08, 0.13, 0.21, 0.31, 0.41,  0.55, 0.75, 1.};
+  Float_t tbins_matrix[11] = {0, 0.03, 0.08, 0.13, 0.21, 0.31, 0.41,  0.55, 0.75, 1.,1.5};
+  float_t xi_bins[10] = {-0.05, 0, 0.015, 0.030, 0.047, 0.064, 0.08, 0.1, 0.12, 0.2};
+  float_t xi_bins_2[12] = {-0.05, 0, 0.028, 0.048, 0.065, 0.08, 0.1, 0.12, 0.14, 0.16, 0.18, 0.2};
   //float bin_sasha[4] = {0.0003, 0.002, 0.0045, 0.01};
-  float bin_sasha[9] ={0.0003, 0.002, 0.0045, 0.01, 0.02, 0.04, 0.06, 0.08, 0.1};
+  float_t bin_sasha[9] ={0.0003, 0.002, 0.0045, 0.01, 0.02, 0.04, 0.06, 0.08, 0.1};
   histosTH1F["xi_rec_proton_signal"] = new TH1F("xi_rec_proton_signal", "xi_proton" , xbins, -0.05, 0.2);
   histosTH1F["xi_gen_proton_signal_recsel"] = new TH1F("xi_gen_proton_signal_recsel", "xi_proton" , xbins, -0.05, 0.2);
   histosTH1F["xi_rec_proton_signal_kint"] = new TH1F("xi_rec_proton_signal_kint", "xi_proton" , xbins, -0.05, 0.2);
   histosTH1F["xi_rec_proton_signal_kinxi_kint"] = new TH1F("xi_rec_proton_signal_kinxi_kint", "xi_proton" , 25, -0.05, 0.2);
+  histosTH1F["xi_rec_proton_plus_signal_kinxi_kint"] = new TH1F("xi_rec_proton_plus_signal_kinxi_kint", "xi_proton" , 25, -0.05, 0.2);
   histosTH1F["xi_cms_rec_proton_signal_kint"] = new TH1F("xi_cms_rec_proton_signal_kint", "xi_proton" , xbins, -0.05, 0.2);
+  histosTH1F["xi_cms_rec_proton_plus_signal_kint"] = new TH1F("xi_cms_rec_proton_plus_signal_kint", "xi_proton" , xbins, -0.05, 0.2);
   histosTH1F["xi_cms_rec_proton_signal_kint_cut"] = new TH1F("xi_cms_rec_proton_signal_kint_cut", "xi_proton" , xbins, -0.05, 0.2);
   histosTH1F["xi_rec_proton_signal_kint_bin25"] = new TH1F("xi_rec_proton_signal_kint_bin25", "xi_proton" , 25, -0.05, 0.2);
   histosTH1F["xi_gen_proton_signal_kint_recsel"] = new TH1F("xi_gen_proton_signal_kint_recsel", "xi_proton" , xbins, -0.05, 0.2);
@@ -346,23 +367,30 @@ void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_mi
   histosTH1F["xi_gen_proton_signal_kint_cut_recsel"] = new TH1F("xi_gen_proton_signal_kint_cut_recsel", "xi_proton" , 9, xi_bins);
   histosTH1F["xi_rec_proton_signal_kint_kinxi_cut"] = new TH1F("xi_rec_proton_signal_kint_kinxi_cut", "xi_proton" , 9, xi_bins);
   histosTH1F["xi_rec_proton_signal_kint_kinxi_cut_bin15"] = new TH1F("xi_rec_proton_signal_kint_kinxi_cut_bin15", "xi_proton" , 15, -0.05, 0.2);
-  histosTH1F["xi_rec_proton_minus_signal_kint_kinxi_cut_bin"] = new TH1F("xi_rec_proton_minus_signal_kint_kinxi_cut_bin", "xi_proton" , 7, xi_bins_2);
-  histosTH1F["xi_rec_proton_minus_signal_kint_kinxi_cut_bin_triggereff"] = new TH1F("xi_rec_proton_minus_signal_kint_kinxi_cut_bin_triggereff", "xi_proton" , 7, xi_bins_2);
-  histosTH1F["xi_rec_proton_minus_signal_kint_kinxi_cut_bin_protoneff"] = new TH1F("xi_rec_proton_minus_signal_kint_kinxi_cut_bin_protoneff", "xi_proton" , 7, xi_bins_2);
-  histosTH1F["xi_rec_proton_minus_signal_kint_kinxi_cut_bin_zvtx"] = new TH1F("xi_rec_proton_minus_signal_kint_kinxi_cut_bin_zvtx", "xi_proton" , 7, xi_bins_2);
-  histosTH1F["xi_rec_proton_minus_signal_kint_kinxi_cut_bin_smear"] = new TH1F("xi_rec_proton_minus_signal_kint_kinxi_cut_bin_smear", "xi_proton" , 7, xi_bins_2);
-  histosTH1F["xi_rec_proton_minus_signal_kint_kinxi_cut_bin_fidcut"] = new TH1F("xi_rec_proton_minus_signal_kint_kinxi_cut_bin_fidcut", "xi_proton" , 7, xi_bins_2);
-  histosTH1F["xi_rec_proton_minus_signal_kint_kinxi_cut_bin_slopeup"] = new TH1F("xi_rec_proton_minus_signal_kint_kinxi_cut_bin_slopeup", "xi_proton" , 7, xi_bins_2);
-  histosTH1F["xi_rec_proton_minus_signal_kint_kinxi_cut_bin_slopedw"] = new TH1F("xi_rec_proton_minus_signal_kint_kinxi_cut_bin_slopedw", "xi_proton" , 7, xi_bins_2);
-  histosTH1F["xi_gen_proton_minus_signal_kint_kinxi_cut_bin_slopeup"] = new TH1F("xi_gen_proton_minus_signal_kint_kinxi_cut_bin_slopeup", "xi_proton" , 7, xi_bins_2);
-  histosTH1F["xi_gen_proton_minus_signal_kint_kinxi_cut_bin_slopedw"] = new TH1F("xi_gen_proton_minus_signal_kint_kinxi_cut_bin_slopedw", "xi_proton" , 7, xi_bins_2);
-  histosTH1F["xi_rec_proton_plus_signal_kint_kinxi_cut_bin"] = new TH1F("xi_rec_proton_plus_signal_kint_kinxi_cut_bin", "xi_proton" , 7, xi_bins_2);
+  histosTH1F["xi_rec_proton_minus_signal_kint_kinxi_cut_bin"] = new TH1F("xi_rec_proton_minus_signal_kint_kinxi_cut_bin", "xi_proton" , 11, xi_bins_2);
+  histosTH1F["xi_rec_proton_minus_protontag"] = new TH1F("xi_rec_proton_minus_protontag", "xi_proton" , 11, xi_bins_2);
+  histosTH1F["xi_rec_proton_minus_protonkin"] = new TH1F("xi_rec_proton_minus_protonkin", "xi_proton" , 11, xi_bins_2);
+  histosTH1F["xi_rec_proton_minus_signal_kint_kinxi_cut_bin_triggereff"] = new TH1F("xi_rec_proton_minus_signal_kint_kinxi_cut_bin_triggereff", "xi_proton" , 11, xi_bins_2);
+  histosTH1F["xi_rec_proton_minus_signal_kint_kinxi_cut_bin_protoneff"] = new TH1F("xi_rec_proton_minus_signal_kint_kinxi_cut_bin_protoneff", "xi_proton" , 11, xi_bins_2);
+  histosTH1F["xi_rec_proton_minus_signal_kint_kinxi_cut_bin_zvtx"] = new TH1F("xi_rec_proton_minus_signal_kint_kinxi_cut_bin_zvtx", "xi_proton" , 11, xi_bins_2);
+  histosTH1F["xi_rec_proton_minus_signal_kint_kinxi_cut_bin_smear"] = new TH1F("xi_rec_proton_minus_signal_kint_kinxi_cut_bin_smear", "xi_proton" , 11, xi_bins_2);
+  histosTH1F["xi_rec_proton_minus_signal_kint_kinxi_cut_bin_fidcut"] = new TH1F("xi_rec_proton_minus_signal_kint_kinxi_cut_bin_fidcut", "xi_proton" , 11, xi_bins_2);
+  histosTH1F["xi_rec_proton_minus_signal_kint_kinxi_cut_bin_slopeup"] = new TH1F("xi_rec_proton_minus_signal_kint_kinxi_cut_bin_slopeup", "xi_proton" , 11, xi_bins_2);
+  histosTH1F["xi_rec_proton_minus_signal_kint_kinxi_cut_bin_slopedw"] = new TH1F("xi_rec_proton_minus_signal_kint_kinxi_cut_bin_slopedw", "xi_proton" , 11, xi_bins_2);
+  histosTH1F["xi_gen_proton_minus_signal_kint_kinxi_cut_bin_slopeup"] = new TH1F("xi_gen_proton_minus_signal_kint_kinxi_cut_bin_slopeup", "xi_proton" , 11, xi_bins_2);
+  histosTH1F["xi_gen_proton_minus_signal_kint_kinxi_cut_bin_slopedw"] = new TH1F("xi_gen_proton_minus_signal_kint_kinxi_cut_bin_slopedw", "xi_proton" , 11, xi_bins_2);
+  histosTH1F["xi_rec_proton_plus_signal_kint_kinxi_cut_bin"] = new TH1F("xi_rec_proton_plus_signal_kint_kinxi_cut_bin", "xi_proton" , 11, xi_bins_2);
+  histosTH1F["xi_rec_proton_plus_protontag"] = new TH1F("xi_rec_proton_plus_protontag", "xi_proton" , 11, xi_bins_2);
+  histosTH1F["xi_rec_proton_plus_protonkin"] = new TH1F("xi_rec_proton_plus_protonkin", "xi_proton" , 11, xi_bins_2);
   histosTH1F["xi_gen_proton_signal_kint_kinxi_cut_recsel"] = new TH1F("xi_gen_proton_signal_kint_kinxi_cut_recsel", "xi_proton" , 9, xi_bins);
   histosTH1F["xi_gen_proton_signal_kint_kinxi_cut"] = new TH1F("xi_gen_proton_signal_kint_kinxi_cut", "xi_proton" , 9, xi_bins);
-  histosTH1F["xi_gen_proton_minus_signal_kint_kinxi_cut_bin"] = new TH1F("xi_gen_proton_minus_signal_kint_kinxi_cut_bin", "xi_proton" , 7, xi_bins_2);
-  histosTH1F["xi_gen_proton_plus_signal_kint_kinxi_cut_bin"] = new TH1F("xi_gen_proton_plus_signal_kint_kinxi_cut_bin", "xi_proton" , 7, xi_bins_2);
-  histosTH1F["xi_rec_proton_kint_kinxi_bin_nojet"] = new TH1F("xi_rec_proton_kint_kinxi_bin_nojet", "xi_proton" , 7, xi_bins_2);
-  histosTH1F["xi_gen_proton_kint_kinxi_bin_nojet"] = new TH1F("xi_gen_proton_kint_kinxi_bin_nojet", "xi_proton" , 7, xi_bins_2);
+  histosTH1F["xi_gen_proton_minus_signal_kint_kinxi_cut_bin"] = new TH1F("xi_gen_proton_minus_signal_kint_kinxi_cut_bin", "xi_proton" , 11, xi_bins_2);
+  histosTH1F["xi_gen_proton_plus_signal_kint_kinxi_cut_bin"] = new TH1F("xi_gen_proton_plus_signal_kint_kinxi_cut_bin", "xi_proton" , 11, xi_bins_2);
+  histosTH1F["xi_rec_proton_kint_kinxi_bin_nojet"] = new TH1F("xi_rec_proton_kint_kinxi_bin_nojet", "xi_proton" , 11, xi_bins_2);
+  histosTH1F["xi_rec_proton_bin_nojet"] = new TH1F("xi_rec_proton_bin_nojet", "xi_proton" , 11, xi_bins_2);
+  histosTH1F["xi_rec_proton_plus_kint_kinxi_bin_nojet"] = new TH1F("xi_rec_proton_plus_kint_kinxi_bin_nojet", "xi_proton" , 11, xi_bins_2);
+  histosTH1F["xi_rec_proton_plus_bin_nojet"] = new TH1F("xi_rec_proton_plus_bin_nojet", "xi_proton" , 11, xi_bins_2);
+  histosTH1F["xi_gen_proton_kint_kinxi_bin_nojet"] = new TH1F("xi_gen_proton_kint_kinxi_bin_nojet", "xi_proton" , 11, xi_bins_2);
   histosTH1F["xi_cms_rec_pt20"] = new TH1F("xi_cms_rec_pt20", "xi_proton" , 8, bin_sasha);
   histosTH1F["xi_cms_gen_pt20"] = new TH1F("xi_cms_gen_pt20", "xi_proton" , 8, bin_sasha);
   histosTH1F["xi_gen_pt20_proton_signal_kinxi_cut"] = new TH1F("xi_gen_pt20_proton_signal_kinxi_cut", "xi_proton" , 9, xi_bins);
@@ -370,8 +398,8 @@ void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_mi
   histosTH1F["xi_rec_proton_signal_kin_cut"] = new TH1F("xi_rec_proton_signal_kin_cut", "xi_proton" , 9, xi_bins);
   histosTH1F["xi_gen_proton_signal_kin_cut_recsel"] = new TH1F("xi_gen_proton_signal_kin_cut_recsel", "xi_proton" , 9, xi_bins);
   histosTH1F["xi_gen_proton_signal_kin_cut"] = new TH1F("xi_gen_proton_signal_kin_cut", "xi_proton" , 9, xi_bins);
-  histosTH1F["xi_cms_rec"] = new TH1F("xi_cms_rec", "xi_proton" , 7, xi_bins_2);
-  histosTH1F["xi_cms_gen"] = new TH1F("xi_cms_gen", "xi_proton" , 7, xi_bins_2);
+  histosTH1F["xi_cms_rec"] = new TH1F("xi_cms_rec", "xi_proton" , 11, xi_bins_2);
+  histosTH1F["xi_cms_gen"] = new TH1F("xi_cms_gen", "xi_proton" , 11, xi_bins_2);
   histosTH1F["xi_cms_rec_bin"] = new TH1F("xi_cms_rec_bin", "xi_proton" , 8, bin_sasha);
   histosTH1F["xi_cms_rec_gap_bin"] = new TH1F("xi_cms_rec_gap_bin", "xi_proton" , 8, bin_sasha);
   histosTH1F["xi_rec_proton_minus_binsasha"] = new TH1F("xi_rec_proton_minus_binsasha", "xi_proton" , 8, bin_sasha);
@@ -381,6 +409,14 @@ void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_mi
   histosTH1F["xi_rec_proton_signal_kinxi_cut"] = new TH1F("xi_rec_proton_signal_kinxi_cut", "xi_proton" , 8, bin_sasha);
   histosTH1F["xi_rec_proton_signal_kinxi"] = new TH1F("xi_rec_proton_signal_kinxi", "xi_proton" , 8, bin_sasha);
   histosTH1F["xi_gen_proton_signal_kinxi"] = new TH1F("xi_gen_proton_signal_kinxi", "xi_proton" , 8, bin_sasha);
+  histosTH1F["xi_rec_proton_minus_kint_kinxi_rp_top"] = new TH1F("xi_rec_proton_minus_kint_kinxi_rp_top", "xi_proton" , 11, xi_bins_2);
+  histosTH1F["xi_rec_proton_minus_kint_kinxi_cut_rp_top"] = new TH1F("xi_rec_proton_minus_kint_kinxi_cut_rp_top", "xi_proton" , 11, xi_bins_2);
+  histosTH1F["xi_rec_proton_minus_kint_kinxi_rp_bottom"] = new TH1F("xi_rec_proton_minus_kint_kinxi_rp_bottom", "xi_proton" , 11, xi_bins_2);
+  histosTH1F["xi_rec_proton_minus_kint_kinxi_cut_rp_bottom"] = new TH1F("xi_rec_proton_minus_kint_kinxi_cut_rp_bottom", "xi_proton" , 11, xi_bins_2);
+  histosTH1F["xi_rec_proton_plus_kint_kinxi_rp_top"] = new TH1F("xi_rec_proton_plus_kint_kinxi_rp_top", "xi_proton" , 11, xi_bins_2);
+  histosTH1F["xi_rec_proton_plus_kint_kinxi_cut_rp_top"] = new TH1F("xi_rec_proton_plus_kint_kinxi_cut_rp_top", "xi_proton" , 11, xi_bins_2);
+  histosTH1F["xi_rec_proton_plus_kint_kinxi_rp_bottom"] = new TH1F("xi_rec_proton_plus_kint_kinxi_rp_bottom", "xi_proton" , 11, xi_bins_2);
+  histosTH1F["xi_rec_proton_plus_kint_kinxi_cut_rp_bottom"] = new TH1F("xi_rec_proton_plus_kint_kinxi_cut_rp_bottom", "xi_proton" , 11, xi_bins_2);
 
   histosTH1F["mass_gen_proton_signal"] = new TH1F("mass_gen_proton_signal","mass", 50, -0.00001, 0.00001);
   histosTH1F["energy_gen_proton_signal"] = new TH1F("energy_gen_proton_signal","energy", 50, 2000,5000);
@@ -405,6 +441,16 @@ void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_mi
   histosTH1F["t_rec_proton_minus_signal_kint_kinxi_cut_bin_zvtx"] = new TH1F("t_rec_proton_minus_signal_kint_kinxi_cut_bin_zvtx", "t_proton" , 10, tbins_2);
   histosTH1F["t_rec_proton_minus_signal_kint_kinxi_cut_bin3"] = new TH1F("t_rec_proton_minus_signal_kint_kinxi_cut_bin3", "t_proton" , 9, tbins_3);
   histosTH1F["t_rec_proton_minus_signal_kint_kinxi_cut_bin4"] = new TH1F("t_rec_proton_minus_signal_kint_kinxi_cut_bin4", "t_proton" , 8, tbins_4);
+  histosTH1F["t_rec_proton_minus_kint_kinxi_rp_top"] = new TH1F("t_rec_proton_minus_kint_kinxi_rp_top", "t_proton" , 8, tbins_4);
+  histosTH1F["t_rec_proton_minus_kint_kinxi_cut_rp_top"] = new TH1F("t_rec_proton_minus_kint_kinxi_cut_rp_top", "t_proton" , 8, tbins_4);
+  histosTH1F["t_rec_proton_minus_kint_kinxi_rp_bottom"] = new TH1F("t_rec_proton_minus_kint_kinxi_rp_bottom", "t_proton" , 8, tbins_4);
+  histosTH1F["t_rec_proton_minus_kint_kinxi_cut_rp_bottom"] = new TH1F("t_rec_proton_minus_kint_kinxi_cut_rp_bottom", "t_proton" , 8, tbins_4);
+  histosTH1F["t_rec_proton_plus_kint_kinxi_rp_top"] = new TH1F("t_rec_proton_plus_kint_kinxi_rp_top", "t_proton" , 8, tbins_4);
+  histosTH1F["t_rec_proton_plus_kint_kinxi_cut_rp_top"] = new TH1F("t_rec_proton_plus_kint_kinxi_cut_rp_top", "t_proton" , 8, tbins_4);
+  histosTH1F["t_rec_proton_plus_kint_kinxi_rp_bottom"] = new TH1F("t_rec_proton_plus_kint_kinxi_rp_bottom", "t_proton" , 8, tbins_4);
+  histosTH1F["t_rec_proton_plus_kint_kinxi_cut_rp_bottom"] = new TH1F("t_rec_proton_plus_kint_kinxi_cut_rp_bottom", "t_proton" , 8, tbins_4);
+  histosTH1F["t_rec_proton_minus_protontag"] = new TH1F("t_rec_proton_minus_protontag", "t_proton" , 8, tbins_4);
+  histosTH1F["t_rec_proton_minus_protonkin"] = new TH1F("t_rec_proton_minus_protonkin", "t_proton" , 8, tbins_4);
   histosTH1F["t_rec_proton_minus_signal_kint_kinxi_cut_smear"] = new TH1F("t_rec_proton_minus_signal_kint_kinxi_cut_smear", "t_proton" , 11, tbins);
   histosTH1F["t_rec_proton_minus_signal_kint_kinxi_cut_bin_smear"] = new TH1F("t_rec_proton_minus_signal_kint_kinxi_cut_bin_smear", "t_proton" , 10, tbins_2);
   histosTH1F["t_gen_proton_minus_signal_kint_kinxi_cut_smear"] = new TH1F("t_gen_proton_minus_signal_kint_kinxi_cut_smear", "t_proton" , 11, tbins);
@@ -412,10 +458,15 @@ void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_mi
   histosTH1F["t_rec_proton_minus_signal_kint_kinxi_cut_bin_fidcut"] = new TH1F("t_rec_proton_minus_signal_kint_kinxi_cut_bin_fidcut", "t_proton" , 10, tbins_2);
   histosTH1F["t_rec_proton_plus_signal_kint_kinxi_cut_bin"] = new TH1F("t_rec_proton_plus_signal_kint_kinxi_cut_bin", "t_proton" , 10, tbins_2);
   histosTH1F["t_rec_proton_plus_signal_kint_kinxi_cut_bin4"] = new TH1F("t_rec_proton_plus_signal_kint_kinxi_cut_bin4", "t_proton" , 8, tbins_4);
+  histosTH1F["t_rec_proton_plus_protontag"] = new TH1F("t_rec_proton_plus_protontag", "t_proton" , 8, tbins_4);
+  histosTH1F["t_rec_proton_plus_protonkin"] = new TH1F("t_rec_proton_plus_protonkin", "t_proton" , 8, tbins_4);
   histosTH1F["t_gen_proton_signal_kint_kinxi_cut_recsel"] = new TH1F("t_gen_proton_signal_kint_kinxi_cut_recsel", "t_proton" , 11, tbins);
   histosTH1F["t_gen_proton_signal_kint_kinxi_cut"] = new TH1F("t_gen_proton_signal_kint_kinxi_cut", "t_proton" , 11, tbins);
-  histosTH1F["t_gen_proton_kint_kinxi_bin_nojet"] = new TH1F("t_gen_proton_kint_kinxi_bin_nojet", "t_proton" , 10, tbins_2);
-  histosTH1F["t_rec_proton_kint_kinxi_bin_nojet"] = new TH1F("t_rec_proton_kint_kinxi_bin_nojet", "t_proton" , 10, tbins_2);
+  histosTH1F["t_gen_proton_kint_kinxi_bin_nojet"] = new TH1F("t_gen_proton_kint_kinxi_bin_nojet", "t_proton" , 8, tbins_4);
+  histosTH1F["t_rec_proton_kint_kinxi_bin_nojet"] = new TH1F("t_rec_proton_kint_kinxi_bin_nojet", "t_proton" , 8, tbins_4);
+  histosTH1F["t_rec_proton_bin_nojet"] = new TH1F("t_rec_proton_bin_nojet", "t_proton" , 8, tbins_4);
+  histosTH1F["t_rec_proton_plus_kint_kinxi_bin_nojet"] = new TH1F("t_rec_proton_plus_kint_kinxi_bin_nojet", "t_proton" , 8, tbins_4);
+  histosTH1F["t_rec_proton_plus_bin_nojet"] = new TH1F("t_rec_proton_plus_bin_nojet", "t_proton" , 8, tbins_4);
   histosTH1F["t_gen_proton_minus_signal_kint_kinxi_cut_bin"] = new TH1F("t_gen_proton_minus_signal_kint_kinxi_cut_bin", "t_proton" , 10, tbins_2);
   histosTH1F["t_gen_proton_minus_signal_kint_kinxi_cut_bin3"] = new TH1F("t_gen_proton_minus_signal_kint_kinxi_cut_bin3", "t_proton" , 9, tbins_3);
   histosTH1F["t_gen_proton_minus_signal_kint_kinxi_cut_bin4"] = new TH1F("t_gen_proton_minus_signal_kint_kinxi_cut_bin4", "t_proton" , 8, tbins_4);
@@ -424,6 +475,7 @@ void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_mi
   histosTH1F["t_gen_proton_signal_kint_kinxi_cut_bin_recsel"] = new TH1F("t_gen_proton_signal_kint_kinxi_cut_bin_recsel", "t_proton" , xbins, 0, 1);
   histosTH1F["t_rec_proton_signal_acep_kint_kinxi"] = new TH1F("t_rec_proton_signal_acep_kint_kinxi", "t_proton" , 11, tbins);
   histosTH1F["t_rec_proton_signal_acep_kint_kinxi_bin"] = new TH1F("t_rec_proton_signal_acep_kint_kinxi_bin", "t_proton" , xbins, 0, 1);
+  histosTH1F["t_bins_matrix"] = new TH1F("t_bins_matrix", "t_proton" , 10, tbins_matrix);
 
   histosTH1F["thx_proton_kint_kinxi_cut"] = new TH1F("thx_proton_kint_kinxi_cut", "thx_proton" , 20, -5e-4, 5e-4);
   histosTH1F["thy_proton_kint_kinxi_cut"] = new TH1F("thy_proton_kint_kinxi_cut", "thy_proton" , 20, -5e-4, 5e-4);
@@ -474,6 +526,7 @@ void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_mi
   histosTH1F["xi_cms_totem_rec_signal_kin"] = new TH1F("xi_cms_totem_rec_signal_kin", "xi_cms_totem" , xbins, -0.4, 0.4);
   histosTH1F["xi_cms_totem_rec_signal_kin_bin"] = new TH1F("xi_cms_totem_rec_signal_kin_bin", "xi_cms_totem" , 50, -0.4, 0.4);
   histosTH1F["xi_cms_totem_rec_signal_kinxi_kint"] = new TH1F("xi_cms_totem_rec_signal_kinxi_kint", "xi_cms_totem" , 15, bin);
+  histosTH1F["xi_cms_totem_left_rec_signal_kinxi_kint"] = new TH1F("xi_cms_totem_left_rec_signal_kinxi_kint", "xi_cms_totem" , 15, bin);
 
   histosTH1F["thx_proton"] = new TH1F("thx_proton", "p_proton_smear", 50, -5e-4, 5e-4);
   histosTH1F["thx_proton_smear"] = new TH1F("thx_proton_smear", "p_proton_smear", 50, -5e-4, 5e-4);
@@ -526,6 +579,12 @@ void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_mi
   histosTH2F["beta_rec_gen"] = new TH2F("beta_rec_gen", "beta_rec_gen", bin2, 0, 0.9, bin2, 0, 0.9);
   histosTH2F["xi_totem_rec_gen"] = new TH2F("xi_totem_rec_gen", "xi_proton" , xbins, -0.05, 0.2, xbins, -0.05, 0.2);
 
+  float_t xi_bins_const[17] = {-0.05, -0.035, -0.02, -0.005, 0.001, 0.035, 0.05, 0.065, 0.08, 0.095, 0.11, 0.125, 0.14, 0.155, 0.17, 0.185, 0.2};
+  histosTH2F["t_xi_gen_minus"] = new TH2F("t_xi_gen_minus", "t_xi" , 8, tbins_4, 16, xi_bins_const);
+  histosTH2F["t_xi_gen_minus_bin"] = new TH2F("t_xi_gen_minus_bin", "t_xi" , 8, tbins_4, 11, xi_bins_2);
+  histosTH2F["t_xi_rec_minus"] = new TH2F("t_xi_rec_minus", "t_xi" , 8, tbins_4, 16, xi_bins_const);
+  histosTH2F["t_xi_rec_minus_bin"] = new TH2F("t_xi_rec_minus_bin", "t_xi" , 8, tbins_4, 11, xi_bins_2);
+
   RooUnfoldResponse response_beta_minus (50, 0, 0.9,"unfolded_beta_minus","unfolded_beta_minus");
   RooUnfoldResponse response_beta_plus (50, 0, 0.9,"unfolded_beta_plus","unfolded_beta_plus");
   //histosTH2F["Response_beta"] = (TH2F*) response_beta.Hresponse();
@@ -544,7 +603,7 @@ void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_mi
   RooUnfoldResponse response_t_minus_gauss (histosTH1F["t_rec_proton_minus_signal_kint_kinxi_cut_smear"],histosTH1F["t_gen_proton_minus_signal_kint_kinxi_cut_smear"],"unfolded_t_minus_gauss","unfolded_t_minus_gauss");
   histosTH2F["response_t_minus_gauss"] = (TH2F*) response_t_minus_gauss.Hresponse();
 
-  RooUnfoldResponse response_t_minus_test (histosTH1F["t_rec_proton_minus_signal_kint_kinxi_cut_bin4"],histosTH1F["t_rec_proton_minus_signal_kint_kinxi_cut_bin4"],"unfolded_t_minus_closuretest","unfolded_t_minus_closuertest");
+  RooUnfoldResponse response_t_minus_test (histosTH1F["t_bins_matrix"],histosTH1F["t_bins_matrix"],"unfolded_t_minus_closuretest","unfolded_t_minus_closuertest");
   histosTH2F["response_t_minus_test"] = (TH2F*) response_t_minus_test.Hresponse();
 
   RooUnfoldResponse response_t_plus (histosTH1F["t_rec_proton_plus_signal_kint_kinxi_cut_bin4"],histosTH1F["t_gen_proton_plus_signal_kint_kinxi_cut_bin4"],"unfolded_t_plus","unfolded_t_plus");
@@ -960,6 +1019,8 @@ void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_mi
       double x_minus_rec = ((Jet1_energy_rec-Jet1_pz_rec)+(Jet2_energy_rec-Jet2_pz_rec))/8000; 
       double x_plus_rec = ((Jet1_energy_rec+Jet1_pz_rec)+(Jet2_energy_rec+Jet2_pz_rec))/8000; 
 
+
+
       ///Fit 
       TF1* func_trigger = new TF1("func_trigger", fFermiLike, 0., 20., 2);
       func_trigger->SetParameter(0,5.525);
@@ -1032,6 +1093,7 @@ void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_mi
       double eta_min=999.;
       double cm = 8000;
       bool pf = false;
+      bool pf_thresholds = false;
 
       for(vector<MyPFCand>::iterator it_pfcand = pFlow_coll->begin(); it_pfcand != pFlow_coll->end(); ++it_pfcand){
          int partType = it_pfcand->particleId;
@@ -1043,7 +1105,8 @@ void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_mi
          //if( ( (fabs(eta) >= 2.866) && (fabs(eta) < 3.152) ) || (fabs(eta) >= 4.730) ) continue;
 
          // Apply thresholds
-         if( !pflowThreshold(*it_pfcand,thresholdsPFlow) ) continue;
+         if ( !pflowThreshold(*it_pfcand,thresholdsPFlow) ) continue;
+         if ( pflowThreshold(*it_pfcand,thresholdsPFlow) ) pf_thresholds = true;
 
          soma1 += (energy + pz);
          soma2 += (energy - pz);
@@ -1394,8 +1457,12 @@ void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_mi
 
 
       //rp_accept
-      bool proton_minus_rp_accept_mc = ( proton_minus_rp_accept_120 && proton_minus_rp_accept_124 && fiducial_cut_rp_124 ) || ( proton_minus_rp_accept_121 && proton_minus_rp_accept_125 && fiducial_cut_rp_125);// || ( proton_minus_rp_accept_122 && proton_minus_rp_accept_123 );
-      bool proton_plus_rp_accept_mc = ( proton_plus_rp_accept_020 && proton_plus_rp_accept_024 && fiducial_cut_rp_024 ) || ( proton_plus_rp_accept_021 && proton_plus_rp_accept_025 && fiducial_cut_rp_025 );// || ( proton_plus_rp_accept_022 && proton_plus_rp_accept_023 );
+      bool rp_minus_top = ( proton_minus_rp_accept_120 && proton_minus_rp_accept_124 && fiducial_cut_rp_124 );
+      bool rp_minus_bottom = proton_minus_rp_accept_121 && proton_minus_rp_accept_125 && fiducial_cut_rp_125;
+      bool proton_minus_rp_accept_mc = rp_minus_top || rp_minus_bottom; 
+      bool rp_plus_top =  proton_plus_rp_accept_020 && proton_plus_rp_accept_024 && fiducial_cut_rp_024;
+      bool rp_plus_bottom = proton_plus_rp_accept_021 && proton_plus_rp_accept_025 && fiducial_cut_rp_025 ;
+      bool proton_plus_rp_accept_mc = rp_plus_top || rp_plus_bottom;
       bool proton_minus_rp_accept_mc_smear = ( proton_minus_rp_accept_120 && proton_minus_rp_accept_124 && fiducial_cut_rp_124_smear ) || ( proton_minus_rp_accept_121 && proton_minus_rp_accept_125 && fiducial_cut_rp_125_smear);// || ( proton_minus_rp_accept_122 && proton_minus_rp_accept_123 );
 
       bool rp_minus_sel =  !proton_plus_rp_accept_mc && proton_minus_rp_accept_mc;
@@ -1442,10 +1509,6 @@ void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_mi
       double eff_proton = 0.94;//proton efficiency
       double event_weight_rec_minus = event_weight*reweigth_beta_minus*eff_trigger*eff_proton;
       double event_weight_rec_plus = event_weight*reweigth_beta_plus*eff_trigger*eff_proton;
-      bool rec_selection_minus = false;
-      bool gen_selection_minus = false;
-      bool rec_selection_plus = false;
-      bool gen_selection_plus = false;
 
       //reweight t-slope
       double t_slope_up = 4.50509+0.221904;
@@ -1463,7 +1526,7 @@ void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_mi
           if (proton_eta_minus>-3) histosTH1F["xi_cms_gen_gap_bin"]->Fill( xi_minus_gen, 1.);
       }
 
-      if (jet_rec && select_Vertex) {
+      if (jet_rec && select_Vertex && pf_thresholds) {
          ++nevents_jet_rec;
          histosTH1F["log_x_parton_minus_rec"]->Fill( log10(x_minus_rec), event_weight_rec_minus  );
          histosTH1F["log_x_parton_plus_rec"]->Fill( log10(x_plus_rec), event_weight_rec_plus  );
@@ -1476,7 +1539,6 @@ void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_mi
       
       if (jet_gen && proton_kinec_accept_t_minus_gen && proton_kinec_accept_xi_minus_gen ){
           ++nevents_proton_gen;
-          gen_selection_minus = true;
           //histosTH1F["t_gen_proton_signal_right_kint_kinxi_cut_slopetplus"]->Fill( t_random_slopeplus, reweigth_beta );
           //histosTH1F["t_gen_proton_signal_right_kint_kinxi_cut_slopetminus"]->Fill( t_random_slopeminus, reweigth_beta );
           histosTH1F["t_gen_proton_signal_kint_kinxi_cut"]->Fill( fabs(t_minus_proton_gen), reweigth_beta_minus );
@@ -1500,6 +1562,8 @@ void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_mi
           histosTH1F["log_x_parton_minus_gen_signal_kint_kinxi_cut"]->Fill( log10(x_minus_gen) , reweigth_beta_minus );
           histosTH1F["log_x_parton_minus_gen_signal_kint_kinxi_cut_slopeup"]->Fill( log10(x_minus_gen) , reweigth_beta_minus*reweight_t_slope_up );
           histosTH1F["log_x_parton_minus_gen_signal_kint_kinxi_cut_slopedw"]->Fill( log10(x_minus_gen) , reweigth_beta_minus*reweight_t_slope_dw );
+          histosTH2F["t_xi_gen_minus"]->Fill( fabs(t_minus_proton_gen), xi_minus_proton_gen, reweigth_beta_minus );
+          histosTH2F["t_xi_gen_minus_bin"]->Fill( fabs(t_minus_proton_gen), xi_minus_proton_gen, reweigth_beta_minus );
           if ( !xi_minus_proton_smear_rec && xi_minus_proton_gen ) response_xi_minus.Miss (xi_minus_proton_gen, reweigth_beta_minus);
           if ( !xi_minus_proton_smear_rec && xi_minus_proton_gen ) response_xi_minus_test.Miss (xi_minus_proton_gen, reweigth_beta_minus);
           if ( !fabs(t_minus_proton_smear_rec) && fabs(t_minus_proton_gen) ) response_t_minus.Miss (fabs(t_minus_proton_gen), reweigth_beta_minus);
@@ -1529,19 +1593,23 @@ void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_mi
           histosTH1F["xi_gen_pt20_proton_signal_kinxi_cut"]->Fill( xi_minus_proton_gen , 1. );
           histosTH1F["xi_gen_pt20_proton_signal_kinxi_cut_bin"]->Fill( xi_minus_proton_gen , 1. );
       }
-      if (jet_pt20_rec && select_Vertex )histosTH1F["xi_cms_rec_pt20"]->Fill( xi_minus_Reco , event_weight_rec_minus );
+      if (jet_pt20_rec && select_Vertex && pf_thresholds ) histosTH1F["xi_cms_rec_pt20"]->Fill( xi_minus_Reco , event_weight_rec_minus );
       
       
-      if (jet_rec && select_Vertex && proton_kinec_accept_t_minus_rec && proton_kinec_accept_xi_minus_rec)++nevents_jetrec_protkintkinxi;
-      if (jet_rec && select_Vertex && proton_kinec_accept_t_minus_rec && proton_kinec_accept_xi_minus_rec && rp_minus_sel)++nevents_jetrec_protkintkinxi_rp;
-      if (jet_rec && select_Vertex && proton_kinec_accept_t_minus_rec && proton_kinec_accept_xi_minus_rec && rp_minus_sel && xi_cms_totem_minus_cut)++nevents_jetrec_protkintkinxi_rp_cut;
+      if (jet_rec && select_Vertex && pf_thresholds && proton_kinec_accept_t_minus_rec && proton_kinec_accept_xi_minus_rec)++nevents_jetrec_protkintkinxi;
+      if (jet_rec && select_Vertex && pf_thresholds && proton_kinec_accept_t_minus_rec && proton_kinec_accept_xi_minus_rec && rp_minus_sel)++nevents_jetrec_protkintkinxi_rp;
+      if (jet_rec && select_Vertex && pf_thresholds && proton_kinec_accept_t_minus_rec && proton_kinec_accept_xi_minus_rec && rp_minus_sel && xi_cms_totem_minus_cut)++nevents_jetrec_protkintkinxi_rp_cut;
 
-      if (rp_minus_sel && proton_kinec_accept_t_minus_rec && proton_kinec_accept_xi_minus_rec){
+      if (rp_minus_sel && jet_gen && proton_kinec_accept_t_minus_gen && proton_kinec_accept_xi_minus_gen){
+          histosTH1F["t_rec_proton_bin_nojet"]->Fill( fabs(t_minus_proton_smear_rec), event_weight*reweigth_beta_minus*eff_proton );
+          histosTH1F["xi_rec_proton_bin_nojet"]->Fill( xi_minus_proton_smear_rec , event_weight*reweigth_beta_minus*eff_proton );
+      }
+      if (rp_minus_sel && proton_kinec_accept_t_minus_rec && proton_kinec_accept_xi_minus_rec && jet_gen && proton_kinec_accept_t_minus_gen && proton_kinec_accept_xi_minus_gen){
           histosTH1F["t_rec_proton_kint_kinxi_bin_nojet"]->Fill( fabs(t_minus_proton_smear_rec), event_weight*reweigth_beta_minus*eff_proton );
           histosTH1F["xi_rec_proton_kint_kinxi_bin_nojet"]->Fill( xi_minus_proton_smear_rec , event_weight*reweigth_beta_minus*eff_proton );
       }
 
-      if (!proton_plus_rp_accept_mc && proton_minus_rp_accept_mc_smear && jet_rec && select_Vertex && proton_kinec_accept_t_minus_rec && proton_kinec_accept_xi_minus_rec && xi_cms_totem_minus_cut){
+      if (!proton_plus_rp_accept_mc && proton_minus_rp_accept_mc_smear && jet_rec && select_Vertex && pf_thresholds && proton_kinec_accept_t_minus_rec && proton_kinec_accept_xi_minus_rec && xi_cms_totem_minus_cut){
           histosTH1F["xi_rec_proton_minus_signal_kint_kinxi_cut_bin_fidcut"]->Fill( xi_minus_proton_smear_rec , event_weight_rec_minus );
           histosTH1F["t_rec_proton_minus_signal_kint_kinxi_cut_bin_fidcut"]->Fill( fabs(t_minus_proton_smear_rec) , event_weight_rec_minus );
           histosTH1F["log_x_parton_minus_rec_signal_kint_kinxi_cut_fidcut"]->Fill( log10(x_minus_rec) , event_weight_rec_minus );
@@ -1554,7 +1622,7 @@ void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_mi
          if ( !fabs(t_minus_proton_rec_gauss) && fabs(t_minus_proton_gen_gauss) ) response_t_minus_gauss.Miss (fabs(t_minus_proton_gen_gauss), 1.);//reweigth_beta_minus);
       } 
 
-      if (rp_minus_sel && jet_rec && select_Vertex && xi_minus_proton_rec_gauss<=0.1 && fabs(t_minus_proton_rec_gauss)>=0.03 && fabs(t_minus_proton_rec_gauss)<=1. && xi_minus_cms-xi_minus_proton_rec_gauss<=0){
+      if (rp_minus_sel && jet_rec && select_Vertex && pf_thresholds && xi_minus_proton_rec_gauss<=0.1 && fabs(t_minus_proton_rec_gauss)>=0.03 && fabs(t_minus_proton_rec_gauss)<=1. && xi_minus_cms-xi_minus_proton_rec_gauss<=0){
          histosTH1F["xi_rec_proton_minus_signal_kint_kinxi_cut_bin_smear"]->Fill( xi_minus_proton_rec_gauss , event_weight_rec_minus );
          histosTH1F["log_x_parton_minus_rec_signal_kint_kinxi_cut_smear"]->Fill( log10(x_minus_rec) , event_weight_rec_minus );
          histosTH1F["t_rec_proton_minus_signal_kint_kinxi_cut_bin_smear"]->Fill( fabs(t_minus_proton_rec_gauss) , event_weight_rec_minus );
@@ -1565,10 +1633,28 @@ void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_mi
       }
 
 
+      if (jet_rec && select_Vertex && pf_thresholds && proton_kinec_accept_t_minus_rec && proton_kinec_accept_xi_minus_rec){
+         if (rp_minus_top){
+             histosTH1F["xi_rec_proton_minus_kint_kinxi_rp_top"]->Fill( xi_minus_proton_smear_rec , event_weight_rec_minus );
+             histosTH1F["t_rec_proton_minus_kint_kinxi_rp_top"]->Fill( fabs(t_minus_proton_smear_rec) , event_weight_rec_minus );
+             if (xi_cms_totem_minus_cut){
+                histosTH1F["xi_rec_proton_minus_kint_kinxi_cut_rp_top"]->Fill( xi_minus_proton_smear_rec , event_weight_rec_minus );
+                histosTH1F["t_rec_proton_minus_kint_kinxi_cut_rp_top"]->Fill( fabs(t_minus_proton_smear_rec) , event_weight_rec_minus );
+             } 
+         }
+         if (rp_minus_bottom){
+             histosTH1F["xi_rec_proton_minus_kint_kinxi_rp_bottom"]->Fill( xi_minus_proton_smear_rec , event_weight_rec_minus );
+             histosTH1F["t_rec_proton_minus_kint_kinxi_rp_bottom"]->Fill( fabs(t_minus_proton_smear_rec) , event_weight_rec_minus );
+             if (xi_cms_totem_minus_cut){
+                histosTH1F["xi_rec_proton_minus_kint_kinxi_cut_rp_bottom"]->Fill( xi_minus_proton_smear_rec , event_weight_rec_minus );
+                histosTH1F["t_rec_proton_minus_kint_kinxi_cut_rp_bottom"]->Fill( fabs(t_minus_proton_smear_rec) , event_weight_rec_minus );
+             } 
+         }
+      }
 
  
        // reconstructed proton from MC in the RP acceptance
-      if (rp_minus_sel && jet_rec && select_Vertex){
+      if (rp_minus_sel && jet_rec && select_Vertex && pf_thresholds){
           histosTH2F["beta_rec_gen"]->Fill( proton_beta_minus_rec, proton_beta_minus_gen, event_weight_rec_minus );
           histosTH2F["log_x_parton_rec_gen"]->Fill( log10(x_minus_rec), log10(x_minus_gen) , event_weight_rec_minus );
           histosTH2F["xi_totem_rec_gen"]->Fill( xi_minus_proton_smear_rec, xi_minus_proton_gen , event_weight_rec_minus );
@@ -1579,6 +1665,12 @@ void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_mi
           histosTH1F["t_gen_proton_signal_recsel"]->Fill( fabs(t_minus_proton_gen) , event_weight_rec_minus );
           histosTH1F["beta_gen_proton_signal_recsel"]->Fill( proton_beta_minus_gen , event_weight_rec_minus );
           histosTH1F["xi_gen_proton_signal_recsel"]->Fill( xi_minus_proton_gen , event_weight_rec_minus );
+          histosTH1F["t_rec_proton_minus_protontag"]->Fill( fabs(t_minus_proton_smear_rec) , event_weight_rec_minus );
+          histosTH1F["xi_rec_proton_minus_protontag"]->Fill( xi_minus_proton_smear_rec , event_weight_rec_minus );
+          histosTH1F["leadingJet_pt_minus_rec_protontag"]->Fill( Jet1_pt_rec, event_weight_rec_minus  );
+          histosTH1F["secondJet_pt_minus_rec_protontag"]->Fill( Jet2_pt_rec, event_weight_rec_minus  );
+          histosTH1F["leadingJet_eta_minus_rec_protontag"]->Fill( Jet1_eta_rec, event_weight_rec_minus  );
+          histosTH1F["secondJet_eta_minus_rec_protontag"]->Fill( Jet2_eta_rec, event_weight_rec_minus  );
           ///kinematic region
           if (proton_kinec_accept_t_minus_rec){
               histosTH1F["xi_rec_proton_signal_kint"]->Fill( xi_minus_proton_smear_rec , event_weight_rec_minus );
@@ -1627,9 +1719,17 @@ void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_mi
           }
           histosTH1F["xi_rec_proton_signal_kinxi"]->Fill( xi_minus_proton_smear_rec, event_weight);
           if (xi_cms_totem_minus_cut) histosTH1F["xi_rec_proton_signal_kinxi_cut"]->Fill( xi_minus_proton_smear_rec, event_weight_rec_minus);
+          if (proton_kinec_accept_t_minus_rec && proton_kinec_accept_xi_minus_rec){
+              histosTH1F["t_rec_proton_minus_protonkin"]->Fill( fabs(t_minus_proton_smear_rec) , event_weight_rec_minus );
+              histosTH1F["xi_rec_proton_minus_protonkin"]->Fill( xi_minus_proton_smear_rec , event_weight_rec_minus );
+              histosTH1F["leadingJet_pt_minus_rec_protonkin"]->Fill( Jet1_pt_rec, event_weight_rec_minus  );
+              histosTH1F["secondJet_pt_minus_rec_protonkin"]->Fill( Jet2_pt_rec, event_weight_rec_minus  );
+              histosTH1F["leadingJet_eta_minus_rec_protonkin"]->Fill( Jet1_eta_rec, event_weight_rec_minus  );
+              histosTH1F["secondJet_eta_minus_rec_protonkin"]->Fill( Jet2_eta_rec, event_weight_rec_minus  );
+          }
+
           if (proton_kinec_accept_t_minus_rec && proton_kinec_accept_xi_minus_rec && xi_cms_totem_minus_cut){
               ++nevents_proton_rec;
-              rec_selection_minus = true;
          histosTH1F["t_proton"]->Fill(fabs(t_minus_proton_gen), event_weight);
          histosTH1F["t_proton_smear"]->Fill(fabs(t_minus_proton_smear_gen), event_weight);
               histosTH1F["xi_cms_rec_proton_signal_kint_cut"]->Fill( xi_minus_cms , event_weight_rec_minus );
@@ -1677,6 +1777,8 @@ void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_mi
               histosTH1F["massJet_rec_signal_kint_kinxi_cut"]->Fill( mass_jets_rec, event_weight_rec_minus  );
               histosTH1F["mass_x_rec_signal_kint_kinxi_cut"]->Fill( mass_x_minus_rec, reweigth_beta_minus );
               histosTH1F["t_rec_gen_minus"]->Fill( fabs(t_minus_proton_smear_rec)-fabs(t_minus_proton_gen) , event_weight_rec_minus );
+              histosTH2F["t_xi_rec_minus"]->Fill( fabs(t_minus_proton_smear_rec), xi_minus_proton_smear_rec, event_weight_rec_minus );
+              histosTH2F["t_xi_rec_minus_bin"]->Fill( fabs(t_minus_proton_smear_rec), xi_minus_proton_smear_rec, event_weight_rec_minus );
               histosTH1F["xi_rec_gen_minus"]->Fill( xi_minus_proton_smear_rec-xi_minus_proton_gen , event_weight_rec_minus );
               histosTH1F["log_x_parton_minus_rec_gen"]->Fill( log10(x_minus_rec)-log10(x_minus_gen), event_weight_rec_minus);
               histosTH2F["log_x_parton_resol"]->Fill( log10(x_minus_rec), log10(x_minus_rec)-log10(x_minus_gen), 1.);
@@ -1692,9 +1794,9 @@ void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_mi
 
               //gen
               if (jet_gen && proton_kinec_accept_t_minus_gen && proton_kinec_accept_xi_minus_gen ){
-                 response_xi_minus.Fill ( xi_minus_proton_smear_rec, xi_minus_proton_gen, 1.);
+                 response_xi_minus.Fill ( xi_minus_proton_smear_rec, xi_minus_proton_gen, reweigth_beta_minus);
                  response_xi_minus_test.Fill ( xi_minus_proton_smear_rec, xi_minus_proton_gen, 1.);
-                 response_t_minus.Fill ( fabs(t_minus_proton_smear_rec), fabs(t_minus_proton_gen), 1.);
+                 response_t_minus.Fill ( fabs(t_minus_proton_smear_rec), fabs(t_minus_proton_gen), event_weight_rec_minus);
                  response_beta_minus.Fill (proton_beta_minus_rec, proton_beta_minus_gen, 1.);
                  response_x_minus.Fill (log10(x_minus_rec), log10(x_minus_gen), 1.);
                  response_x_minus_test.Fill (log10(x_minus_rec), log10(x_minus_gen), 1.);
@@ -1709,14 +1811,66 @@ void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_mi
               }
           }
       }
-      if (rp_plus_sel && jet_rec && select_Vertex){
+
+      if (rp_plus_sel && jet_gen && proton_kinec_accept_t_plus_gen && proton_kinec_accept_xi_plus_gen){
+          histosTH1F["t_rec_proton_plus_bin_nojet"]->Fill( fabs(t_plus_proton_smear_rec), event_weight*reweigth_beta_plus*eff_proton );
+          histosTH1F["xi_rec_proton_plus_bin_nojet"]->Fill( xi_plus_proton_smear_rec , event_weight*reweigth_beta_plus*eff_proton );
+      }
+      if (rp_plus_sel && proton_kinec_accept_t_plus_rec && proton_kinec_accept_xi_plus_rec && jet_gen && proton_kinec_accept_t_plus_gen && proton_kinec_accept_xi_plus_gen){
+          histosTH1F["t_rec_proton_plus_kint_kinxi_bin_nojet"]->Fill( fabs(t_plus_proton_smear_rec), event_weight*reweigth_beta_plus*eff_proton );
+          histosTH1F["xi_rec_proton_plus_kint_kinxi_bin_nojet"]->Fill( xi_plus_proton_smear_rec , event_weight*reweigth_beta_plus*eff_proton );
+      }
+
+      if (jet_rec && select_Vertex && pf_thresholds && proton_kinec_accept_t_plus_rec && proton_kinec_accept_xi_plus_rec){
+         if (rp_plus_top){
+             histosTH1F["xi_rec_proton_plus_kint_kinxi_rp_top"]->Fill( xi_plus_proton_smear_rec , event_weight_rec_plus );
+             histosTH1F["t_rec_proton_plus_kint_kinxi_rp_top"]->Fill( fabs(t_plus_proton_smear_rec) , event_weight_rec_plus );
+             if (xi_cms_totem_plus_cut){
+                histosTH1F["xi_rec_proton_plus_kint_kinxi_cut_rp_top"]->Fill( xi_plus_proton_smear_rec , event_weight_rec_plus );
+                histosTH1F["t_rec_proton_plus_kint_kinxi_cut_rp_top"]->Fill( fabs(t_plus_proton_smear_rec) , event_weight_rec_plus );
+             } 
+         }
+         if (rp_plus_bottom){
+             histosTH1F["xi_rec_proton_plus_kint_kinxi_rp_bottom"]->Fill( xi_plus_proton_smear_rec , event_weight_rec_plus );
+             histosTH1F["t_rec_proton_plus_kint_kinxi_rp_bottom"]->Fill( fabs(t_plus_proton_smear_rec) , event_weight_rec_plus );
+             if (xi_cms_totem_plus_cut){
+               histosTH1F["xi_rec_proton_plus_kint_kinxi_cut_rp_bottom"]->Fill( xi_plus_proton_smear_rec , event_weight_rec_plus );
+                histosTH1F["t_rec_proton_plus_kint_kinxi_cut_rp_bottom"]->Fill( fabs(t_plus_proton_smear_rec) , event_weight_rec_plus );
+             } 
+         }
+      }
+
+      if (rp_plus_sel && jet_rec && select_Vertex && pf_thresholds){
+          histosTH1F["t_rec_proton_plus_protontag"]->Fill( fabs(t_plus_proton_smear_rec) , event_weight_rec_plus );
+          histosTH1F["xi_rec_proton_plus_protontag"]->Fill( xi_plus_proton_smear_rec , event_weight_rec_plus );
+          histosTH1F["leadingJet_pt_plus_rec_protontag"]->Fill( Jet1_pt_rec, event_weight_rec_plus  );
+          histosTH1F["secondJet_pt_plus_rec_protontag"]->Fill( Jet2_pt_rec, event_weight_rec_plus  );
+          histosTH1F["leadingJet_eta_plus_rec_protontag"]->Fill( Jet1_eta_rec, event_weight_rec_plus  );
+          histosTH1F["secondJet_eta_plus_rec_protontag"]->Fill( Jet2_eta_rec, event_weight_rec_plus  );
+          
+
+          if (proton_kinec_accept_t_plus_rec && proton_kinec_accept_xi_plus_rec){
+              histosTH1F["t_rec_proton_plus_protonkin"]->Fill( fabs(t_plus_proton_smear_rec) , event_weight_rec_plus );
+              histosTH1F["xi_rec_proton_plus_protonkin"]->Fill( xi_plus_proton_smear_rec , event_weight_rec_plus );
+              histosTH1F["leadingJet_pt_plus_rec_protonkin"]->Fill( Jet1_pt_rec, event_weight_rec_plus  );
+              histosTH1F["secondJet_pt_plus_rec_protonkin"]->Fill( Jet2_pt_rec, event_weight_rec_plus  );
+              histosTH1F["leadingJet_eta_plus_rec_protonkin"]->Fill( Jet1_eta_rec, event_weight_rec_plus  );
+              histosTH1F["secondJet_eta_plus_rec_protonkin"]->Fill( Jet2_eta_rec, event_weight_rec_plus  );
+              histosTH1F["xi_cms_totem_left_rec_signal_kinxi_kint"]->Fill( xi_plus_cms-xi_plus_proton_smear_rec , event_weight_rec_plus );
+              histosTH1F["xi_rec_proton_plus_signal_kinxi_kint"]->Fill( xi_plus_proton_smear_rec , event_weight_rec_plus );
+              histosTH1F["xi_cms_rec_proton_plus_signal_kint"]->Fill( xi_plus_cms , event_weight_rec_plus );
+          }
+
           if (proton_kinec_accept_t_plus_rec && proton_kinec_accept_xi_plus_rec && xi_cms_totem_plus_cut){
-              rec_selection_plus = true;
               histosTH1F["xi_rec_proton_plus_signal_kint_kinxi_cut_bin"]->Fill( xi_plus_proton_smear_rec , event_weight_rec_plus );
               histosTH1F["t_rec_proton_plus_signal_kint_kinxi_cut_bin"]->Fill( fabs(t_plus_proton_smear_rec) , event_weight_rec_plus );
               histosTH1F["t_rec_proton_plus_signal_kint_kinxi_cut_bin4"]->Fill( fabs(t_plus_proton_smear_rec) , event_weight_rec_plus );
               histosTH1F["beta_rec_proton_plus_signal_kint_kinxi_cut"]->Fill( proton_beta_plus_rec , event_weight_rec_plus );
               histosTH1F["log_x_parton_plus_rec_signal_kint_kinxi_cut"]->Fill( log10(x_plus_rec) , event_weight_rec_plus );
+              histosTH1F["leadingJet_pt_plus_rec_signal_kint_kinxi_cut"]->Fill( Jet1_pt_rec, event_weight_rec_plus  );
+              histosTH1F["secondJet_pt_plus_rec_signal_kint_kinxi_cut"]->Fill( Jet2_pt_rec, event_weight_rec_plus  );
+              histosTH1F["leadingJet_eta_plus_rec_signal_kint_kinxi_cut"]->Fill( Jet1_eta_rec, event_weight_rec_plus  );
+              histosTH1F["secondJet_eta_plus_rec_signal_kint_kinxi_cut"]->Fill( Jet2_eta_rec, event_weight_rec_plus  );
               histosTH1F["t_rec_gen_plus"]->Fill( fabs(t_plus_proton_smear_rec)-fabs(t_plus_proton_gen) , event_weight_rec_plus );
               histosTH1F["xi_rec_gen_plus"]->Fill( xi_plus_proton_smear_rec-xi_plus_proton_gen , event_weight_rec_plus );
               histosTH1F["log_x_parton_plus_rec_gen"]->Fill( log10(x_plus_rec)-log10(x_plus_gen) , event_weight_rec_plus );
@@ -1776,9 +1930,13 @@ void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_mi
   TH1F* log_x_left_proton_kint_kinxi_data = (TH1F*)data->Get("log_x_plus_kint_kinxi");
   TH1F* xi_right_proton_kint_kinxi_data = (TH1F*)data->Get("proton_right_xi_signal_kint_kinxi_bin");
   TH1F* xi_left_proton_kint_kinxi_data = (TH1F*)data->Get("proton_left_xi_signal_kint_kinxi_bin");
-  TH1F* t_right_proton_kint_kinxi_data = (TH1F*)data->Get("proton_right_t_signal_kint_kinxi_bin");
+  TH1F* t_right_proton_kint_kinxi_data = (TH1F*)data->Get("proton_right_t_signal_kint_kinxi_bin4");
   TH1F* t_left_proton_kint_kinxi_data = (TH1F*)data->Get("proton_left_t_signal_kint_kinxi_bin");
 
+
+     RooUnfoldBayes t_jjp_minus_unfold_bayes (&response_t_minus, t_right_proton_kint_kinxi_data, 4);
+     TH1F* t_jjp_minus_data_unfolded_bayes = (TH1F*) t_jjp_minus_unfold_bayes.Hreco();
+     t_jjp_minus_data_unfolded_bayes->Write();
 
   //if (side_minus){
 //     RooUnfoldBayes x_jjp_minus_unfold_bayes (&response_x_minus, log_x_right_proton_kint_kinxi_data, 4);
@@ -1832,10 +1990,6 @@ void diffractive(string const& mc = "pomwig", bool reggeon = false, bool side_mi
   for(map<string,TH2F*>::iterator it_histo = histosTH2F.begin(); it_histo != histosTH2F.end(); ++it_histo)
      (*it_histo).second->Write();
 
-
-//     RooUnfoldBayes t_jjp_minus_unfold_bayes (&response_t_minus_gauss, histosTH1F["t_rec_proton_minus_signal_kint_kinxi_cut_smear"], 4);
-//     TH1F* t_jjp_minus_data_unfolded_bayes = (TH1F*) t_jjp_minus_unfold_bayes.Hreco();
-//     t_jjp_minus_data_unfolded_bayes->Write();
 
   /*   RooUnfoldBayes t_jjp_minus_unfold_test (&response_t_minus_test, histosTH1F["t_rec_proton_minus_signal_kint_kinxi_cut_bin"], 4);
      TH1F* t_jjp_minus_data_unfolded_test = (TH1F*) t_jjp_minus_unfold_test.Hreco();
