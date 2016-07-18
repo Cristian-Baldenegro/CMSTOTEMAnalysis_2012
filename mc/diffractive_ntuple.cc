@@ -85,7 +85,7 @@ bool sortByPt(MyBaseJet const& jet1, MyBaseJet const& jet2){
 //JetCorrectorParameters *L2Relative, *L3Absolute, *L2L3Residual;
 //vector<JetCorrectorParameters> vecL2Relative, vecL3Absolute, vecL2L3Residual;
 
-void diffractive_ntuple(string const& mc = "pomwig", bool reggeon = false, bool side_minus = true, bool side_plus = false, bool unfold = false, const Int_t nevt_max = -1){
+void diffractive_ntuple(string const& mc = "pomwig", bool reggeon = true, bool side_minus = true, bool side_plus = false, bool unfold = false, const Int_t nevt_max = -1){
   
   TString file_name, side;
   if (side_minus && !side_plus) side = "minus";
@@ -144,6 +144,7 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon = false, bool 
   cout << oss.str();
 
   TH1F* p = new TH1F("","",100,2000,4000); 
+  TH1F* theta = new TH1F("","",100,-0.001, 0.001);
   const Int_t nevt_max_corr = (nevt_max >= 0) ? nevt_max : 99999999;
 
   bool rp_right, rp_left, rp_right_accep_top, rp_right_accep_bottom, rp_left_accep_top, rp_left_accep_bottom;
@@ -632,6 +633,7 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon = false, bool 
 	        if (pz_gen > proton_pz_plus) {
                    //if (mc == "pythia8_diff" && !sd_plus_pythia) continue;
                     proton_pz_plus = pz_gen; 
+                    //proton_pz_plus = sqrt(4000*4000-M_P*M_P); 
                     proton_px_plus = px_gen; proton_py_plus = py_gen; proton_phi_plus = phi_gen;     
                     proton_mass_plus = mass_gen; 
                     proton_energy_plus = sqrt(proton_px_plus*proton_px_plus + proton_py_plus*proton_py_plus + proton_pz_plus*proton_pz_plus + M_P*M_P);//energy_gen;
@@ -640,6 +642,7 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon = false, bool 
                 if (pz_gen < proton_pz_minus) {
                    //if (mc == "pythia8_diff" && !sd_minus_pythia) continue;
                    proton_pz_minus = pz_gen; 
+                   //proton_pz_minus = -sqrt(4000*4000-M_P*M_P); 
                    proton_px_minus = px_gen; proton_py_minus = py_gen;
                    proton_pt_minus = pt_gen; proton_mass_minus = mass_gen;
                    proton_eta_minus = eta_gen; proton_phi_minus = phi_gen; 
@@ -741,23 +744,23 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon = false, bool 
          xi_plus_proton_gen =  ( 1 - (proton_pz_plus/proton_pi) );
          //thx_plus_proton = atan(-proton_px_plus/proton_pi);//p_beam_plus.Mag2());
          //thy_plus_proton = atan(proton_py_plus/proton_pi);//p_beam_plus.Mag2());
-         double theta_plus = acos(proton_pz_plus/p_scatt_plus.Mag());
-         double phi_plus = acos(proton_px_plus/sqrt(proton_px_plus*proton_px_plus+proton_py_plus*proton_py_plus));
+         double theta_plus = p_scatt_plus.Theta();//acos(proton_pz_plus/p_scatt_plus.Mag());
+         double phi_plus = p_scatt_plus.Phi();//acos(proton_px_plus/sqrt(proton_px_plus*proton_px_plus+proton_py_plus*proton_py_plus));
          thx_plus_proton = theta_plus*cos(phi_plus);
          thy_plus_proton = theta_plus*sin(phi_plus);
-         
          xi_plus_proton_smear_gen_gauss =  ( 1 - (proton_pz_plus_smear/proton_pi) );
          TLorentzVector p_beam_scatt_plus_smear (proton_px_plus_smear, proton_py_plus_smear, proton_pz_plus_smear, proton_energy_plus_smear);
          TLorentzVector t_vec_plus_smear = (p_beam_plus - p_beam_scatt_plus_smear);
          t_plus_proton_smear_gen_gauss = t_vec_plus_smear.Mag2();
-
+         theta->Fill(theta_plus,1); 
          double delta_thx_plus = thx_plus_proton_smear-thx_plus_proton;
+
          xi_plus_proton_smear_gen = (400*delta_thx_plus) + xi_plus_proton_gen; 
-         thx_plus_proton_smear = atan(-proton_px_plus_smear/p_beam_plus.Mag2()) + gRandom->Gaus(0,25.10e-6);
-         thy_plus_proton_smear = atan(proton_py_plus_smear/p_beam_plus.Mag2()) + gRandom->Gaus(0,2.42e-6);
+         thx_plus_proton_smear = thx_plus_proton + gRandom->Gaus(0,25.10e-6);
+         thy_plus_proton_smear = thy_plus_proton + gRandom->Gaus(0,2.42e-6);
          //t_plus_proton_smear_gen = -p_plus_proton_smear_gen*p_plus_proton_smear_gen*((thx_plus_proton_smear*thx_plus_proton_smear)+(thy_plus_proton_smear*thy_plus_proton_smear)); 
-         double proton_px_plus_from_theta = -p_beam_scatt_plus.Mag2()*tan(thx_plus_proton_smear); 
-         double proton_py_plus_from_theta = p_beam_scatt_plus.Mag2()*tan(thy_plus_proton_smear); 
+         double proton_px_plus_from_theta = -p_scatt_plus.Mag()*tan(thx_plus_proton_smear); 
+         double proton_py_plus_from_theta = p_scatt_plus.Mag()*tan(thy_plus_proton_smear); 
          TLorentzVector p_beam_scatt_plus_smear_from_theta (proton_px_plus_from_theta, proton_py_plus_from_theta, proton_pz_plus_smear, proton_energy_plus_smear);
          TLorentzVector t_vec_plus_rec = (p_beam_plus - p_beam_scatt_plus_smear_from_theta);
          t_plus_proton_rec = t_vec_plus_rec.Mag2();
@@ -810,31 +813,30 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon = false, bool 
          //beam smearing
          beam_smearing(proton_px_minus, proton_py_minus, proton_pz_minus, proton_energy_minus, proton_px_minus_smear, proton_py_minus_smear, proton_pz_minus_smear, proton_energy_minus_smear);
      
-         TLorentzVector p_beam_minus (0, 0, -proton_pi, proton_pi);
+         TLorentzVector p_beam_minus (0, 0, -sqrt(proton_pi*proton_pi - M_P*M_P), proton_pi);
          TLorentzVector p_beam_scatt_minus (proton_px_minus, proton_py_minus, proton_pz_minus, proton_energy_minus);
-         TVector3 p_scatt_minus (proton_px_minus, proton_py_minus, proton_pz_minus);
          TLorentzVector t_vec_minus = (p_beam_minus - p_beam_scatt_minus);
          t_minus_proton_gen = t_vec_minus.Mag2();
          xi_minus_proton_gen = (proton_pz_minus < 0.) ? ( 1 + (proton_pz_minus/proton_pi) ) : -1.;
          //thx_minus_proton = atan(-proton_px_minus/proton_pi);//p_beam_minus.Mag2());
          //thy_minus_proton = atan(proton_py_minus/proton_pi);//p_beam_minus.Mag2());
-         double theta_minus = acos(proton_pz_minus/p_scatt_minus.Mag());
-         double phi_minus = acos(proton_px_minus/sqrt(proton_px_minus*proton_px_minus+proton_py_minus*proton_py_minus));
+         TVector3 p_scatt_minus (proton_px_minus, proton_py_minus, -proton_pz_minus);
+         double theta_minus = p_scatt_minus.Theta();
+         double phi_minus = p_scatt_minus.Phi();
          thx_minus_proton = theta_minus*cos(phi_minus);
          thy_minus_proton = theta_minus*sin(phi_minus);
-
          xi_minus_proton_smear_gen_gauss = (proton_pz_minus_smear < 0.) ? ( 1 + (proton_pz_minus_smear/proton_pi) ) : -1.;
          TLorentzVector p_beam_scatt_minus_smear (proton_px_minus_smear, proton_py_minus_smear, proton_pz_minus_smear, proton_energy_minus_smear);
          TLorentzVector t_vec_minus_smear = (p_beam_minus - p_beam_scatt_minus_smear);
          t_minus_proton_smear_gen_gauss = t_vec_minus_smear.Mag2();
-
+        //cout<<theta_minus<<" "<<phi_minus<<endl; 
          double delta_thx_minus = thx_minus_proton_smear-thx_minus_proton;
          xi_minus_proton_smear_gen = (400*delta_thx_minus) + xi_minus_proton_gen;
-         thx_minus_proton_smear = atan(-proton_px_minus_smear/p_beam_minus.Mag2()) + gRandom->Gaus(0,25.10e-6);
-         thy_minus_proton_smear = atan(proton_py_minus_smear/p_beam_minus.Mag2()) + gRandom->Gaus(0,2.42e-6);
+         thx_minus_proton_smear = thx_minus_proton + gRandom->Gaus(0,25.10e-6);
+         thy_minus_proton_smear = thy_minus_proton + gRandom->Gaus(0,2.42e-6);
          //t_minus_proton_smear_gen = -p_minus_proton_smear_gen*p_minus_proton_smear_gen*((thx_minus_proton_smear*thx_minus_proton_smear)+(thy_minus_proton_smear*thy_minus_proton_smear)); 
-         double proton_px_minus_from_theta = -p_beam_scatt_minus.Mag2()*tan(thx_minus_proton_smear);
-         double proton_py_minus_from_theta = p_beam_scatt_minus.Mag2()*tan(thy_minus_proton_smear);
+         double proton_px_minus_from_theta = -p_scatt_minus.Mag()*tan(thx_minus_proton_smear);
+         double proton_py_minus_from_theta = p_scatt_minus.Mag()*tan(thy_minus_proton_smear);
          TLorentzVector p_beam_scatt_minus_smear_from_theta (proton_px_minus_from_theta, proton_py_minus_from_theta, proton_pz_minus_smear, proton_energy_minus_smear);
          TLorentzVector t_vec_minus_rec = (p_beam_minus - p_beam_scatt_minus_smear_from_theta);
          t_minus_proton_rec = t_vec_minus_rec.Mag2();
@@ -1026,7 +1028,7 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon = false, bool 
   cout<<"eventos  "<<nevents_total<<"   pesos "<<nweight_total<<"   cross section: "<<cross_section<< "  scale "<< scale<< endl; 
 
   small_tree->Write();
-
+  theta->Write();
   for(map<string,TH2F*>::iterator it_histo = histosTH2F.begin(); it_histo != histosTH2F.end(); ++it_histo)
      (*it_histo).second->Write();
 
