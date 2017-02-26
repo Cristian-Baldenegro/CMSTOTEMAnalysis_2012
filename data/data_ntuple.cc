@@ -720,22 +720,29 @@ TH1F* test = new TH1F("test","",50,0,0.2);
 
       if( selectZeroHitsT2Minus && (n_t2_tracks_selected_zminus > 0) ) continue;
 
+      ++n_events_bef;
+
       bool proton_right_valid = rec_proton_right->valid;
       bool proton_left_valid = rec_proton_left->valid;
-      if( selectSingleArmRecProton && (proton_right_valid && proton_left_valid) ) continue;
-      ++n_events_SingleArm;
+      //if( (proton_right_valid && !proton_left_valid) || (!proton_right_valid && proton_left_valid) ) ++n_events_SingleArm;
 
-      if( selectDoubleArmRecProton && !(proton_right_valid && proton_left_valid) ) continue;
-      ++n_events_DoubleArm;
+      if( proton_right_valid && proton_left_valid ) ++n_events_DoubleArm;
 
       bool tag_elastic_top45_bot56 = elastic_top45_bot56(rp_track_info);      
       bool tag_elastic_bot45_top56 = elastic_bot45_top56(rp_track_info);      
+      //if( tag_elastic_top45_bot56 || tag_elastic_bot45_top56  )  ++n_events_Elastic;
+
+      // Select single-arm events (inclusive)
+      if( selectSingleArmRecProton && !(proton_right_valid || proton_left_valid) ) continue;
+      // Counter single-arm
+       ++n_events_SingleArm;
+
+      if( selectDoubleArmRecProton && !(proton_right_valid && proton_left_valid) ) continue;
       if( selectElastic && !(tag_elastic_top45_bot56 || tag_elastic_bot45_top56) ) continue;
-      ++n_events_Elastic;
-
+      // Veto elastic-tagged events
       if( selectNonElastic && (tag_elastic_top45_bot56 || tag_elastic_bot45_top56) ) continue;
-      ++n_events_Elastic_tag;
-
+      // Counter elastic veto
+      ++n_events_Elastic; 
  
 
       //fiducial cuts
@@ -785,13 +792,12 @@ TH1F* test = new TH1F("test","",50,0,0.2);
       int rp_hits_124 = rp_track_info[124]->entries;
       int rp_hits_125 = rp_track_info[125]->entries;
 
-      bool rp_track_right_top = rp_track_valid_120 && rp_track_valid_124 && cut_rp_124;
-      bool rp_track_right_bottom = rp_track_valid_121 && rp_track_valid_125 && cut_rp_125;
+      bool rp_track_right_top = rp_track_valid_120 && rp_track_valid_124;// && cut_rp_124;
+      bool rp_track_right_bottom = rp_track_valid_121 && rp_track_valid_125;// && cut_rp_125;
       bool rp_track_accept_right = rp_track_right_top || rp_track_right_bottom;// || ( rp_track_valid_122 && rp_track_valid_123 );
-      bool rp_track_left_top = rp_track_valid_020 && rp_track_valid_024 && cut_rp_024;
-      bool rp_track_left_bottom = rp_track_valid_021 && rp_track_valid_025 && cut_rp_025;
+      bool rp_track_left_top = rp_track_valid_020 && rp_track_valid_024;// && cut_rp_024;
+      bool rp_track_left_bottom = rp_track_valid_021 && rp_track_valid_025;// && cut_rp_025;
       bool rp_track_accept_left = rp_track_left_top  || rp_track_left_bottom;// || ( rp_track_valid_022 && rp_track_valid_023 );
-
       
 
       // RP protons
@@ -814,8 +820,6 @@ TH1F* test = new TH1F("test","",50,0,0.2);
       double xi_cms_totem_minus_cut = xi_minus_Reco+xi_proton_right<0; 
       double xi_cms_totem_plus_cut = xi_plus_Reco+xi_proton_left<0; 
     
-      test->Fill(-xi_proton_right); 
-
       xi_cms_minus = xi_minus_Reco;
       xi_cms_plus = xi_plus_Reco;
       jet1_pt = Jet1_pt;
