@@ -60,6 +60,10 @@
 
 #include "analysis_tools.h"
 
+#include "../../CMSSW_5_3_32/src/CondFormats/JetMETObjects/interface/JetCorrectorParameters.h"
+#include "../../CMSSW_5_3_32/src/CondFormats/JetMETObjects/interface/JetCorrectionUncertainty.h"
+#include "../../CMSSW_5_3_32/src/CondFormats/JetMETObjects/interface/FactorizedJetCorrector.h"
+
 //STANDARD C++ INCLUDES
 #include <iostream>
 //#include <fstream>
@@ -78,8 +82,14 @@ Double_t fFermiLike(Double_t *x, Double_t *par) {
   return result;
 }
 
+bool sortByPt(MyBaseJet const& jet1, MyBaseJet const& jet2){
+   return ( jet1.Pt() > jet2.Pt() );
+}
 
-void data_ntuple(string const& outputFileName = "/storage/lhuertas/uerj-1/CMSTOTEM/data/root_files/data_ntuple.root", const Int_t nevt_max = -1){
+JetCorrectorParameters *L2Relative, *L3Absolute, *L2L3Residual;
+vector<JetCorrectorParameters> vecL2Relative, vecL3Absolute, vecL2L3Residual;
+
+void data_ntuple(string const& outputFileName = "/afs/cern.ch/user/l/lhuertas/data_ntuple.root", const Int_t nevt_max = -1){
   
   bool verbose = false;
   string treeName = "cms_totem";
@@ -186,6 +196,7 @@ void data_ntuple(string const& outputFileName = "/storage/lhuertas/uerj-1/CMSTOT
   double eff_trigger, jet1_pt, jet1_eta, jet1_phi, jet2_pt, jet2_eta, jet2_phi;
   bool  valid_proton_right, valid_proton_left, rp_right_top, rp_right_bottom, rp_left_top, rp_left_bottom;
   double vtx_x, vtx_y, vtx_z, x_pos_024, x_pos_124, x_pos_025, x_pos_125, y_pos_025, y_pos_125, y_pos_024, y_pos_124, x_pos_020, x_pos_021, y_pos_020, y_pos_021, x_pos_120, y_pos_120, x_pos_121, y_pos_121;
+  double mjj2;
   TTree* small_tree = new TTree("small_tree","");
   small_tree->Branch("xi_cms_minus",&xi_cms_minus,"xi_cms_minus/D");
   small_tree->Branch("xi_cms_plus",&xi_cms_plus,"xi_cms_plus/D");
@@ -239,6 +250,7 @@ void data_ntuple(string const& outputFileName = "/storage/lhuertas/uerj-1/CMSTOT
   small_tree->Branch("y_pos_124",&y_pos_124,"y_pos_124/D");
   small_tree->Branch("y_pos_025",&y_pos_025,"y_pos_025/D");
   small_tree->Branch("y_pos_125",&y_pos_125,"y_pos_125/D");
+  small_tree->Branch("mjj2",&mjj2,"mjj2/D");
 
   small_tree->SetDirectory(0);
 
@@ -258,10 +270,10 @@ TH1F* test = new TH1F("test","",50,0,0.2);
    const char *ext=".root";
  
    vector<TString>* vdirs = new vector<TString>; 
-   vdirs->push_back("/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/");
-   vdirs->push_back("/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/");
-   vdirs->push_back("/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/");
-   vdirs->push_back("/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/");
+   vdirs->push_back("root://eoscms.cern.ch//store/group/phys_diffraction/CMSTOTEM_2012/MergedNtuples/HighBeta/reReco/198902-8369_8371-V00-02-00_new/Jets1/");
+   vdirs->push_back("root://eoscms.cern.ch//store/group/phys_diffraction/CMSTOTEM_2012/MergedNtuples/HighBeta/reReco/198902-8369_8371-V00-02-00_new/Jets2/");
+   vdirs->push_back("root://eoscms.cern.ch//store/group/phys_diffraction/CMSTOTEM_2012/MergedNtuples/HighBeta/reReco/198903-8372-V00-02-00_new/Jets1/");
+   vdirs->push_back("root://eoscms.cern.ch//store/group/phys_diffraction/CMSTOTEM_2012/MergedNtuples/HighBeta/reReco/198903-8372-V00-02-00_new/Jets2/");
    
    vector<TString>* vfiles = new vector<TString>;
    for(vector<TString>::iterator itdirs = vdirs->begin(); itdirs != vdirs->end(); ++itdirs){
@@ -321,8 +333,21 @@ TH1F* test = new TH1F("test","",50,0,0.2);
   int n_evt_proton_right_cut = 0; 
   int n_evt_proton_left = 0; 
   int n_evt_proton_left_cut = 0; 
+  int n_events_SingleArm = 0; 
+  int n_events_DoubleArm = 0; 
+  int n_events_Elastic = 0; 
+  int n_events_Elastic_tag = 0; 
 
-
+ // Jet energy corrections
+  L2Relative = new JetCorrectorParameters("Winter14_V8/Winter14_V8_DATA_L2Relative_AK5PF.txt");
+  L3Absolute = new JetCorrectorParameters("Winter14_V8/Winter14_V8_DATA_L3Absolute_AK5PF.txt");
+  L2L3Residual = new JetCorrectorParameters("Winter14_V8/Winter14_V8_DATA_L2L3Residual_AK5PF.txt");
+  vecL2Relative.push_back(*L2Relative);
+  vecL3Absolute.push_back(*L3Absolute);
+  vecL2L3Residual.push_back(*L2L3Residual);
+  FactorizedJetCorrector *jecL2Relative   = new FactorizedJetCorrector(vecL2Relative);
+  FactorizedJetCorrector *jecL3Absolute   = new FactorizedJetCorrector(vecL3Absolute);
+  FactorizedJetCorrector *jecL2L3Residual   = new FactorizedJetCorrector(vecL2L3Residual);
 
   //starting Loop over files, stops at end of list of files or when reached nevt_max
   for(vector<TString>::iterator itfiles = vfiles->begin(); itfiles != vfiles->end() && i_tot < nevt_max_corr; ++itfiles){
@@ -493,7 +518,7 @@ TH1F* test = new TH1F("test","",50,0,0.2);
       Double_t Jet1_eta; 
       Double_t Jet2_eta; 
       Double_t Jet1_phi; 
-      Double_t Jet2_phi;
+      Double_t Jet2_phi, Jet1_mass, Jet2_mass;
       //Double_t eff; 
       //Double_t averagept_eff; 
 
@@ -502,16 +527,54 @@ TH1F* test = new TH1F("test","",50,0,0.2);
      // func->SetParameter(0,5.525);
       //func->SetParameter(1,0.529);      
 
-       
-      for(vector<MyPFJet>::iterator it_jet = pfJet_coll->begin() ; it_jet != pfJet_coll->end() ; ++it_jet){
+      vector<MyBaseJet> JetVectorCorrected;
+      JetVectorCorrected.resize( pfJet_coll->size() );
+      size_t idx_jet = 0;
+ 
+      for(vector<MyPFJet>::iterator it_jet = pfJet_coll->begin() ; it_jet != pfJet_coll->end() ; ++it_jet,++idx_jet){
          map<string,MyBaseJet>::iterator it_map = it_jet->mapjet.begin();
          for(; it_map != it_jet->mapjet.end(); ++it_map)
             if(verbose) cout << it_map->first << endl;
 
          MyBaseJet const& basejet = it_jet->mapjet[jetCorrName];
+       
+         TLorentzVector oldJet;
+         oldJet.SetPxPyPzE(basejet.Px(), basejet.Py(), basejet.Pz(), basejet.E());
+         TLorentzVector UnCorrectedJet = oldJet*(1/basejet.jec);
+         //cout<<Jet1_px<<"  "<<UnCorrectedJet1.Px()<<endl;   
+         // ---- Evaluating the L2Relative correction factor ---- //
+         jecL2Relative->setJetPt(UnCorrectedJet.Pt());
+         jecL2Relative->setJetEta(UnCorrectedJet.Eta());
+         double corFactorL2Relative = jecL2Relative->getCorrection();
+               //cout<<"L2Relative Cor Factor"<<corFactorL2Relative<<endl;
+         TLorentzVector JetL2Relative = UnCorrectedJet*corFactorL2Relative;
+
+         // ---- Evaluating the L3Absolute correction factor ---- //
+         jecL3Absolute->setJetPt(JetL2Relative.Pt());
+         jecL3Absolute->setJetEta(JetL2Relative.Eta());
+         double corFactorL3Absolute = jecL3Absolute->getCorrection();
+         TLorentzVector JetL2RelativeL3Absolute = JetL2Relative*corFactorL3Absolute;
+
+         // ---- Evaluating the L2L3Residual correction factor ---- //
+         jecL2L3Residual->setJetPt(JetL2RelativeL3Absolute.Pt());
+         jecL2L3Residual->setJetEta(JetL2RelativeL3Absolute.Eta());
+         double corFactorL2L3Residual = jecL2L3Residual->getCorrection();
+         TLorentzVector JetL2RelativeL3AbsoluteL2L3Residual = JetL2RelativeL3Absolute*corFactorL2L3Residual;
+
+         double CoorFactor = JetL2RelativeL3AbsoluteL2L3Residual.Pt()/UnCorrectedJet.Pt();
+
+         JetVectorCorrected[idx_jet].SetPxPyPzE( JetL2RelativeL3AbsoluteL2L3Residual.Px(),
+                                                 JetL2RelativeL3AbsoluteL2L3Residual.Py(),
+                                                 JetL2RelativeL3AbsoluteL2L3Residual.Pz(),
+                                                 JetL2RelativeL3AbsoluteL2L3Residual.E() );
+         JetVectorCorrected[idx_jet].jec = CoorFactor;
       }
+
+      std::stable_sort(JetVectorCorrected.begin(),JetVectorCorrected.end(),sortByPt);
+
       if( pfJet_coll->size() > 0 ){
-	 MyBaseJet const& leadingJet = ( pfJet_coll->at(0) ).mapjet[jetCorrName];
+//	 MyBaseJet const& leadingJet = ( pfJet_coll->at(0) ).mapjet[jetCorrName];
+         MyBaseJet const& leadingJet = ( JetVectorCorrected.at(0) );
 	 Jet1_E = leadingJet.E(); 
 	 Jet1_px = leadingJet.Px(); 
 	 Jet1_py = leadingJet.Py(); 
@@ -519,6 +582,7 @@ TH1F* test = new TH1F("test","",50,0,0.2);
 	 Jet1_pt = leadingJet.Pt(); 
 	 Jet1_eta = leadingJet.Eta(); 
 	 Jet1_phi = leadingJet.Phi(); 
+         Jet1_mass = leadingJet.M();
 	 
 	 if(Jet1_pt > 30. && Jet1_eta<4.4 ) jet1_selected = true;
 	 
@@ -526,7 +590,8 @@ TH1F* test = new TH1F("test","",50,0,0.2);
       //if(!jet1_selected) continue;
       
       if( pfJet_coll->size() > 1 ){
-	 MyBaseJet const& secondJet = ( pfJet_coll->at(1) ).mapjet[jetCorrName];
+//	 MyBaseJet const& secondJet = ( pfJet_coll->at(1) ).mapjet[jetCorrName];
+         MyBaseJet const& secondJet = ( JetVectorCorrected.at(1) );
          Jet2_E = secondJet.E(); 
          Jet2_px = secondJet.Px(); 
          Jet2_py = secondJet.Py(); 
@@ -534,6 +599,7 @@ TH1F* test = new TH1F("test","",50,0,0.2);
          Jet2_pt = secondJet.Pt(); 
 	 Jet2_eta = secondJet.Eta(); 
 	 Jet2_phi = secondJet.Phi(); 
+         Jet2_mass = secondJet.M();
 
 	 if(Jet2_pt > 30. && Jet2_eta<4.4 )  jet2_selected = true;
 	 
@@ -547,6 +613,7 @@ TH1F* test = new TH1F("test","",50,0,0.2);
       double x_minus_sel = (x_minus<x_plus) ? x_minus : x_plus;
       double x_plus_sel = (x_minus>x_plus) ? x_plus : x_minus;
       double mass_jets= sqrt(pow(Jet1_E+Jet2_E,2)-pow(Jet1_px+Jet2_px,2)-pow(Jet1_py+Jet2_py,2)-pow(Jet1_pz+Jet2_pz,2));
+      mjj2 = Jet1_mass*Jet1_mass + Jet2_mass*Jet2_mass + 2*(Jet1_E*Jet2_E - Jet1_px* Jet2_px - Jet1_py*Jet2_py - Jet1_pz*Jet2_pz);
 
  
       // Particle-flow
@@ -656,14 +723,18 @@ TH1F* test = new TH1F("test","",50,0,0.2);
       bool proton_right_valid = rec_proton_right->valid;
       bool proton_left_valid = rec_proton_left->valid;
       if( selectSingleArmRecProton && (proton_right_valid && proton_left_valid) ) continue;
+      ++n_events_SingleArm;
 
       if( selectDoubleArmRecProton && !(proton_right_valid && proton_left_valid) ) continue;
+      ++n_events_DoubleArm;
 
       bool tag_elastic_top45_bot56 = elastic_top45_bot56(rp_track_info);      
       bool tag_elastic_bot45_top56 = elastic_bot45_top56(rp_track_info);      
       if( selectElastic && !(tag_elastic_top45_bot56 || tag_elastic_bot45_top56) ) continue;
+      ++n_events_Elastic;
 
       if( selectNonElastic && (tag_elastic_top45_bot56 || tag_elastic_bot45_top56) ) continue;
+      ++n_events_Elastic_tag;
 
  
 
@@ -810,6 +881,11 @@ TH1F* test = new TH1F("test","",50,0,0.2);
 //ofs.close();
   
   }//end of loop over files
+
+  cout<<"SingleArm: "<<n_events_SingleArm<<endl;
+  cout<<"DoubleArm: "<<n_events_DoubleArm<<endl;
+  cout<<"Elastic: "<<n_events_Elastic<<endl;
+  cout<<"Elastic_tag: "<<n_events_Elastic_tag<<endl;
 
   //output file
   TFile* output = new TFile(outputFileName.c_str(),"RECREATE");
