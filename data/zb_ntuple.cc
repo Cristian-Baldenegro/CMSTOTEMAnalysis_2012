@@ -74,7 +74,8 @@ using namespace std;
 
 
 
-void zb_ntuple(string const& outputFileName = "/storage/lhuertas/uerj-1/CMSTOTEM/data/root_files/zb_ntuple.root", const Int_t nevt_max = -1){
+//void zb_ntuple(string const& outputFileName = "/storage/lhuertas/uerj-1/CMSTOTEM/data/root_files/zb_ntuple.root", const Int_t nevt_max = -1){
+void zb_ntuple(string const& outputFileName = "/afs/cern.ch/user/l/lhuertas/zb_ntuple.root", const Int_t nevt_max = -1){
   
   bool verbose = false;
   string treeName = "cms_totem";
@@ -178,6 +179,8 @@ void zb_ntuple(string const& outputFileName = "/storage/lhuertas/uerj-1/CMSTOTEM
   double xi_cms_minus_st, xi_cms_plus, x_right, x_left, beta_proton_right, beta_proton_left, jet1_pt, jet1_eta, jet1_phi, jet2_pt, jet2_eta, jet2_phi;
   double xi_totem_right_st, xi_totem_left, t_totem_right, t_totem_left, xi_cms_minus_totem, xi_cms_plus_totem, xi_totem_xicmscut_right, xi_totem_xicmscut_left;
   bool  valid_proton_right, valid_proton_left, rp_right, rp_left, valid_vtx;
+  bool rp_right_top_near, rp_right_top_far, rp_right_bottom_near, rp_right_bottom_far, rp_left_top_near, rp_left_top_far, rp_left_bottom_near, rp_left_bottom_far;
+  double rp_x_020, rp_y_020, rp_x_120, rp_y_120, rp_x_021, rp_y_021, rp_x_024, rp_y_024, rp_x_025, rp_y_025, rp_x_121, rp_y_121, rp_x_124, rp_y_124, rp_x_125, rp_y_125;
   TTree* small_tree = new TTree("small_tree","");
   small_tree->Branch("xi_cms_minus",&xi_cms_minus_st,"xi_cms_minus/D");
   small_tree->Branch("xi_cms_plus",&xi_cms_plus,"xi_cms_plus/D");
@@ -191,8 +194,16 @@ void zb_ntuple(string const& outputFileName = "/storage/lhuertas/uerj-1/CMSTOTEM
   small_tree->Branch("xi_totem_xicmscut_left",&xi_totem_xicmscut_left,"xi_totem_xicmscut_left/D");
   small_tree->Branch("valid_proton_right",&valid_proton_right,"valid_proton_right/O");
   small_tree->Branch("valid_proton_left",&valid_proton_left,"valid_proton_left/O");
-  small_tree->Branch("rp_right",&rp_right,"rp_right/O");
-  small_tree->Branch("rp_left",&rp_left,"rp_left/O");
+  //small_tree->Branch("rp_right",&rp_right,"rp_right/O");
+  small_tree->Branch("rp_right_top_near",&rp_right_top_near,"rp_right_top_near/O");
+  small_tree->Branch("rp_right_top_far",&rp_right_top_far,"rp_right_top_far/O");
+  small_tree->Branch("rp_right_bottom_near",&rp_right_bottom_near,"rp_right_bottom_near/O");
+  small_tree->Branch("rp_right_bottom_far",&rp_right_bottom_far,"rp_right_bottom_far/O");
+  //small_tree->Branch("rp_left",&rp_left,"rp_left/O");
+  small_tree->Branch("rp_left_top_near",&rp_left_top_near,"rp_left_top_near/O");
+  small_tree->Branch("rp_left_top_far",&rp_left_top_far,"rp_left_top_far/O");
+  small_tree->Branch("rp_left_bottom_near",&rp_left_bottom_near,"rp_left_bottom_near/O");
+  small_tree->Branch("rp_left_bottom_far",&rp_left_bottom_far,"rp_left_bottom_far/O");
   small_tree->Branch("valid_vtx",&valid_vtx,"valid_vtx/O");
   small_tree->Branch("x_right",&x_right,"x_right/D");
   small_tree->Branch("x_left",&x_left,"x_left/D");
@@ -204,7 +215,23 @@ void zb_ntuple(string const& outputFileName = "/storage/lhuertas/uerj-1/CMSTOTEM
   small_tree->Branch("jet2_eta",&jet2_eta,"jet2_eta/D");
   small_tree->Branch("jet1_phi",&jet1_phi,"jet1_phi/D");
   small_tree->Branch("jet2_phi",&jet2_phi,"jet2_phi/D");
-
+  small_tree->Branch("rp_x_020",&rp_x_020,"rp_x_020/D");
+  small_tree->Branch("rp_y_020",&rp_y_020,"rp_y_020/D");
+  small_tree->Branch("rp_x_021",&rp_x_021,"rp_x_021/D");
+  small_tree->Branch("rp_y_021",&rp_y_021,"rp_y_021/D");
+  small_tree->Branch("rp_x_024",&rp_x_024,"rp_x_024/D");
+  small_tree->Branch("rp_y_024",&rp_y_024,"rp_y_024/D");
+  small_tree->Branch("rp_x_025",&rp_x_025,"rp_x_025/D");
+  small_tree->Branch("rp_y_025",&rp_y_025,"rp_y_025/D");
+  /*small_tree->Branch("rp_x_120",&rp_x_120,"rp_x_120/D");
+  small_tree->Branch("rp_y_120",&rp_y_120,"rp_y_120/D");
+  small_tree->Branch("rp_x_121",&rp_x_121,"rp_x_121/D");
+  small_tree->Branch("rp_y_121",&rp_y_121,"rp_y_121/D");
+  small_tree->Branch("rp_x_124",&rp_x_124,"rp_x_124/D");
+  small_tree->Branch("rp_y_124",&rp_y_124,"rp_y_124/D");
+  small_tree->Branch("rp_x_125",&rp_x_125,"rp_x_125/D");
+  small_tree->Branch("rp_y_125",&rp_y_125,"rp_y_125/D");
+*/
   small_tree->SetDirectory(0);
 TH1F* test = new TH1F("test","",50,0,0.2);
   map<string,TH2F*> histosTH2F;
@@ -222,8 +249,12 @@ TH1F* test = new TH1F("test","",50,0,0.2);
    const char *ext=".root";
  
    vector<TString>* vdirs = new vector<TString>; 
-   vdirs->push_back("/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/ZeroBias/");
-   vdirs->push_back("/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/ZeroBias/");
+   //vdirs->push_back("/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/ZeroBias/");
+   //vdirs->push_back("/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/ZeroBias/");
+   //vdirs->push_back("/afs/cern.ch/user/l/lhuertas/work/uerj1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/ZeroBias/");
+   //vdirs->push_back("/afs/cern.ch/user/l/lhuertas/work/uerj1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/ZeroBias/");
+   vdirs->push_back("root://eoscms.cern.ch//store/group/phys_diffraction/CMSTOTEM_2012/MergedNtuples/HighBeta/reReco/198902-8369_8371-V00-02-00_new/ZeroBias/");
+   vdirs->push_back("root://eoscms.cern.ch//store/group/phys_diffraction/CMSTOTEM_2012/MergedNtuples/HighBeta/reReco/198903-8372-V00-02-00_new/ZeroBias/");
    
    vector<TString>* vfiles = new vector<TString>;
    for(vector<TString>::iterator itdirs = vdirs->begin(); itdirs != vdirs->end(); ++itdirs){
@@ -239,7 +270,7 @@ TH1F* test = new TH1F("test","",50,0,0.2);
              fname = file->GetName();
              if (!file->IsDirectory() && fname.EndsWith(ext)) {
                  TString root_file = dirname + string(fname.Data());
-                 if (root_file == "/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/ZeroBias/val8372ea_totem_ntuple_UABaseTree_CMS-TOTEM_17_1_Fwu.root") continue;
+                 if (root_file == "/afs/cern.ch/user/l/lhuertas/work/uerj1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/ZeroBias/val8372ea_totem_ntuple_UABaseTree_CMS-TOTEM_17_1_Fwu.root") continue;
 	         vfiles->push_back(root_file); cout<<root_file<<endl;      
              }
          }   
@@ -293,6 +324,8 @@ TH1F* test = new TH1F("test","",50,0,0.2);
 
 
     TFile* file = TFile::Open(*itfiles,"READ");
+    if (file->IsZombie()) continue;
+
     //getting the tree form the current file
     tree = (TTree*) file->Get( treeName.c_str() );
 
@@ -439,6 +472,50 @@ TH1F* test = new TH1F("test","",50,0,0.2);
       double x_plus = ((Jet1_E+Jet1_pz)+(Jet2_E+Jet2_pz))/8000;
       double x_minus = ((Jet1_E-Jet1_pz)+(Jet2_E-Jet2_pz))/8000;
  
+      // TOTEM T2
+      vector<double> const& t2_trk_entryX = t2_event->TrkEntryX;
+      vector<double> const& t2_trk_entryY = t2_event->TrkEntryY;
+      vector<double> const& t2_trk_entryZ =  t2_event->TrkEntryZ;
+      vector<double> const& t2_trk_chiProb =  t2_event->TrkChiProb;
+
+      int n_t2_tracks_selected = 0;
+      int n_t2_tracks_selected_zplus = 0;
+      int n_t2_tracks_selected_zminus = 0;
+      size_t n_t2_tracks = t2_trk_chiProb.size();
+      for(size_t i_t2_trk = 0; i_t2_trk < n_t2_tracks; ++i_t2_trk){
+         double trk_entryZ = t2_trk_entryZ[i_t2_trk];
+         int zside = ( trk_entryZ >= 0. ) ? 1 : -1;
+
+         // Select tracks
+         //if( t2_trk_chiProb[i_t2_trk] < 0.2 ) continue;
+
+         ++n_t2_tracks_selected;
+         if( zside > 0 ) ++n_t2_tracks_selected_zplus;
+         else            ++n_t2_tracks_selected_zminus;
+
+      }
+      if( selectZeroHitsT2Plus && (n_t2_tracks_selected_zplus > 0) ) continue;
+
+      if( selectZeroHitsT2Minus && (n_t2_tracks_selected_zminus > 0) ) continue;
+
+
+      bool proton_right_valid = rec_proton_right->valid;
+      bool proton_left_valid = rec_proton_left->valid;
+
+      if( proton_right_valid && proton_left_valid ) ++n_events_DoubleArm;
+
+      bool tag_elastic_top45_bot56 = elastic_top45_bot56(rp_track_info);      
+      bool tag_elastic_bot45_top56 = elastic_bot45_top56(rp_track_info);      
+      //if( tag_elastic_top45_bot56 || tag_elastic_bot45_top56  )  ++n_events_Elastic;
+
+      // Select single-arm events (inclusive)
+      if( selectSingleArmRecProton && !(proton_right_valid || proton_left_valid) ) continue;
+
+      if( selectDoubleArmRecProton && !(proton_right_valid && proton_left_valid) ) continue;
+      if( selectElastic && !(tag_elastic_top45_bot56 || tag_elastic_bot45_top56) ) continue;
+      // Veto elastic-tagged events
+      if( selectNonElastic && (tag_elastic_top45_bot56 || tag_elastic_bot45_top56) ) continue;
+ 
 
       //fiducial cuts
       bool rp_track_valid_120 = rp_track_info[120]->valid; 
@@ -453,14 +530,22 @@ TH1F* test = new TH1F("test","",50,0,0.2);
       bool rp_track_valid_023 = rp_track_info[23]->valid;
       bool rp_track_valid_024 = rp_track_info[24]->valid;
       bool rp_track_valid_025 = rp_track_info[25]->valid;
-      double rp_x_024 = rp_track_info[24]->x;
-      double rp_y_024 = rp_track_info[24]->y;
-      double rp_x_025 = rp_track_info[25]->x;
-      double rp_y_025 = rp_track_info[25]->y;
-      double rp_x_124 = rp_track_info[124]->x;
-      double rp_y_124 = rp_track_info[124]->y;
-      double rp_x_125 = rp_track_info[125]->x;
-      double rp_y_125 = rp_track_info[125]->y;
+      rp_x_020 = rp_track_info[20]->x;
+      rp_y_020 = rp_track_info[20]->y;
+      rp_x_021 = rp_track_info[21]->x;
+      rp_y_021 = rp_track_info[21]->y;
+      rp_x_120 = rp_track_info[120]->x;
+      rp_y_120 = rp_track_info[120]->y;
+      rp_x_121 = rp_track_info[121]->x;
+      rp_y_121 = rp_track_info[121]->y;
+      rp_x_024 = rp_track_info[24]->x;
+      rp_y_024 = rp_track_info[24]->y;
+      rp_x_025 = rp_track_info[25]->x;
+      rp_y_025 = rp_track_info[25]->y;
+      rp_x_124 = rp_track_info[124]->x;
+      rp_y_124 = rp_track_info[124]->y;
+      rp_x_125 = rp_track_info[125]->x;
+      rp_y_125 = rp_track_info[125]->y;
 
       histosTH2F["proton_y_vs_x_rp_024_025"]->Fill( rp_x_024, rp_y_024, event_weight );
       histosTH2F["proton_y_vs_x_rp_024_025"]->Fill( rp_x_025, rp_y_025, event_weight );
@@ -510,6 +595,14 @@ TH1F* test = new TH1F("test","",50,0,0.2);
       valid_proton_left = proton_left_valid;
       rp_right = rp_track_accept_right;
       rp_left = rp_track_accept_left;
+      rp_right_top_near = rp_track_valid_120; 
+      rp_right_top_far = rp_track_valid_124; 
+      rp_right_bottom_near = rp_track_valid_121; 
+      rp_right_bottom_far = rp_track_valid_125; 
+      rp_left_top_near = rp_track_valid_020;
+      rp_left_top_far = rp_track_valid_024; 
+      rp_left_bottom_near = rp_track_valid_021;
+      rp_left_bottom_far = rp_track_valid_025;
 
       //if(good_proton_right && rp_track_accept_right){
          xi_totem_right_st = -xi_proton_right; 
