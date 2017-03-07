@@ -93,7 +93,7 @@ void data_ntuple_jes_pf_unc(bool jet = false, bool sys_up = false,  const Int_t 
   TString obj = (jet) ? "jet": "pf";
   TString sys = (sys_up) ? "up": "dw";
   TString file_name = "data_ntuple_" + obj + "_" + sys + ".root";
-  TString outputFileName = "/storage/lhuertas/uerj-1/data/" + file_name;
+  TString outputFileName = "/afs/cern.ch/user/l/lhuertas/" + file_name;
   cout<<outputFileName<<endl;
   
   bool verbose = false;
@@ -201,6 +201,8 @@ void data_ntuple_jes_pf_unc(bool jet = false, bool sys_up = false,  const Int_t 
   double eff_trigger, jet1_pt, jet1_eta, jet1_phi, jet2_pt, jet2_eta, jet2_phi;
   bool  valid_proton_right, valid_proton_left, rp_right_top, rp_right_bottom, rp_left_top, rp_left_bottom;
   double vtx_x, vtx_y, vtx_z, x_pos_024, x_pos_124, x_pos_025, x_pos_125, y_pos_025, y_pos_125, y_pos_024, y_pos_124, x_pos_020, x_pos_021, y_pos_020, y_pos_021, x_pos_120, y_pos_120, x_pos_121, y_pos_121;
+  int nVtx;
+  double select_Vertex; 
   TTree* small_tree = new TTree("small_tree","");
   small_tree->Branch("xi_cms_minus",&xi_cms_minus,"xi_cms_minus/D");
   small_tree->Branch("xi_cms_plus",&xi_cms_plus,"xi_cms_plus/D");
@@ -254,7 +256,8 @@ void data_ntuple_jes_pf_unc(bool jet = false, bool sys_up = false,  const Int_t 
   small_tree->Branch("y_pos_124",&y_pos_124,"y_pos_124/D");
   small_tree->Branch("y_pos_025",&y_pos_025,"y_pos_025/D");
   small_tree->Branch("y_pos_125",&y_pos_125,"y_pos_125/D");
-
+  small_tree->Branch("nVtx",&nVtx,"nVtx/I");
+  small_tree->Branch("select_Vertex",&select_Vertex,"select_Vertex/O");
   small_tree->SetDirectory(0);
 
 TH1F* test = new TH1F("test","",50,0,0.2);
@@ -285,20 +288,20 @@ TH1F* test = new TH1F("test","",50,0,0.2);
 
      const char *name = jec_unc_srcnames[isrc];
      //JetCorrectorParameters *p = new JetCorrectorParameters("jes_uncertainty/txt/Fall12_V7_DATA_UncertaintySources_AK5PF.txt", name);
-     JetCorrectorParameters *p = new JetCorrectorParameters("/storage/lhuertas/uerj-storage1/CMSTOTEM/mc/Workspace/Winter14_V8/Winter14_V8_DATA_UncertaintySources_AK5PF.txt", name);
+     JetCorrectorParameters *p = new JetCorrectorParameters("Winter14_V8/Winter14_V8_DATA_UncertaintySources_AK5PF.txt", name);
      JetCorrectionUncertainty *unc = new JetCorrectionUncertainty(*p);
      jec_unc_src[isrc] = unc;
   } // for isrc
 
   // Total uncertainty for reference
-   JetCorrectionUncertainty *jec_unc_total = new JetCorrectionUncertainty(*(new JetCorrectorParameters("/storage/lhuertas/uerj-storage1/CMSTOTEM/mc/Workspace/Winter14_V8/Winter14_V8_DATA_UncertaintySources_AK5PF.txt", "Total")));
+   JetCorrectionUncertainty *jec_unc_total = new JetCorrectionUncertainty(*(new JetCorrectorParameters("Winter14_V8/Winter14_V8_DATA_UncertaintySources_AK5PF.txt", "Total")));
 
 
 
   ///Jet Energy Corrections
-  L2Relative = new JetCorrectorParameters("/storage/lhuertas/uerj-storage1/CMSTOTEM/mc/Workspace/Winter14_V8/Winter14_V8_DATA_L2Relative_AK5PF.txt");
-  L3Absolute = new JetCorrectorParameters("/storage/lhuertas/uerj-storage1/CMSTOTEM/mc/Workspace/Winter14_V8/Winter14_V8_DATA_L3Absolute_AK5PF.txt");
-  L2L3Residual = new JetCorrectorParameters("/storage/lhuertas/uerj-storage1/CMSTOTEM/mc/Workspace/Winter14_V8/Winter14_V8_DATA_L2L3Residual_AK5PF.txt");
+  L2Relative = new JetCorrectorParameters("Winter14_V8/Winter14_V8_DATA_L2Relative_AK5PF.txt");
+  L3Absolute = new JetCorrectorParameters("Winter14_V8/Winter14_V8_DATA_L3Absolute_AK5PF.txt");
+  L2L3Residual = new JetCorrectorParameters("Winter14_V8/Winter14_V8_DATA_L2L3Residual_AK5PF.txt");
   vecL2Relative.push_back(*L2Relative);
   vecL3Absolute.push_back(*L3Absolute);
   vecL2L3Residual.push_back(*L2L3Residual);
@@ -313,10 +316,14 @@ TH1F* test = new TH1F("test","",50,0,0.2);
    const char *ext=".root";
  
    vector<TString>* vdirs = new vector<TString>; 
-     vdirs->push_back("root://eoscms.cern.ch//store/group/phys_diffraction/CMSTOTEM_2012/MergedNtuples/HighBeta/reReco/198902-8369_8371-V00-02-00_new/Jets1/");
-   vdirs->push_back("root://eoscms.cern.ch//store/group/phys_diffraction/CMSTOTEM_2012/MergedNtuples/HighBeta/reReco/198902-8369_8371-V00-02-00_new/Jets2/");
-   vdirs->push_back("root://eoscms.cern.ch//store/group/phys_diffraction/CMSTOTEM_2012/MergedNtuples/HighBeta/reReco/198903-8372-V00-02-00_new/Jets1/");
-   vdirs->push_back("root://eoscms.cern.ch//store/group/phys_diffraction/CMSTOTEM_2012/MergedNtuples/HighBeta/reReco/198903-8372-V00-02-00_new/Jets2/");
+     vdirs->push_back("/afs/cern.ch/user/l/lhuertas/work/uerj1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/");
+     vdirs->push_back("/afs/cern.ch/user/l/lhuertas/work/uerj1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/");
+     vdirs->push_back("/afs/cern.ch/user/l/lhuertas/work/uerj1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/");
+     vdirs->push_back("/afs/cern.ch/user/l/lhuertas/work/uerj1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/");
+     //vdirs->push_back("root://eoscms.cern.ch//store/group/phys_diffraction/CMSTOTEM_2012/MergedNtuples/HighBeta/reReco/198902-8369_8371-V00-02-00_new/Jets1/");
+   //vdirs->push_back("root://eoscms.cern.ch//store/group/phys_diffraction/CMSTOTEM_2012/MergedNtuples/HighBeta/reReco/198902-8369_8371-V00-02-00_new/Jets2/");
+   //vdirs->push_back("root://eoscms.cern.ch//store/group/phys_diffraction/CMSTOTEM_2012/MergedNtuples/HighBeta/reReco/198903-8372-V00-02-00_new/Jets1/");
+   //vdirs->push_back("root://eoscms.cern.ch//store/group/phys_diffraction/CMSTOTEM_2012/MergedNtuples/HighBeta/reReco/198903-8372-V00-02-00_new/Jets2/");
 //   vdirs->push_back("/mnt/hadoop/cms/store/user/lhuertas/CMSTOTEM_2012/MergedNtuples/reReco/198902-8369_8371-V00-02-00/Jets1/");
  //  vdirs->push_back("/mnt/hadoop/cms/store/user/lhuertas/CMSTOTEM_2012/MergedNtuples/reReco/198902-8369_8371-V00-02-00/Jets2/");
   // vdirs->push_back("/mnt/hadoop/cms/store/user/lhuertas/CMSTOTEM_2012/MergedNtuples/reReco/198903-8372-V00-02-00/Jets1/");
@@ -510,19 +517,21 @@ TH1F* test = new TH1F("test","",50,0,0.2);
       //-------------------------------------------------------------------------------------------------
  	    
      // Vertices
-      /*for(vector<MyVertex>::iterator it_vtx = vertex_coll->begin() ; it_vtx != vertex_coll->end() ; ++it_vtx){
-        if (it_vtx!=vertex_coll->begin()) continue;
+     nVtx = 0;
+      for(vector<MyVertex>::iterator it_vtx = vertex_coll->begin() ; it_vtx != vertex_coll->end() ; ++it_vtx){
+        //if (it_vtx!=vertex_coll->begin()) continue;
          int idx_vtx = it_vtx - vertex_coll->begin();
-         if( it_vtx->fake ) continue;
-         if( !it_vtx->validity ) continue;
-         if( it_vtx->ndof<4 ) continue;
+         //if( it_vtx->fake ) continue;
+         //if( !it_vtx->validity ) continue;
+         //if( it_vtx->ndof<4 ) continue;
+	++nVtx;
       }
-*/  
+  
       //if(!passedvtx) continue;
       MyVertex& primaryVertex = vertex_coll->at(0); 
       double prim_vtx_r = sqrt( primaryVertex.x*primaryVertex.x + primaryVertex.y*primaryVertex.y );
-      bool select_Vertex = ( !primaryVertex.fake && primaryVertex.validity && primaryVertex.ndof > 4);// && fabs( primaryVertex.z ) < 15.0 && prim_vtx_r < 2.0);
-      if (!select_Vertex) continue;
+      select_Vertex = ( !primaryVertex.fake && primaryVertex.validity && primaryVertex.ndof > 4);// && fabs( primaryVertex.z ) < 15.0 && prim_vtx_r < 2.0);
+  //    if (!select_Vertex) continue;
       ++n_evt_vtx;
       
       // Tracks
@@ -816,7 +825,7 @@ TH1F* test = new TH1F("test","",50,0,0.2);
       //if( tag_elastic_top45_bot56 || tag_elastic_bot45_top56  )  ++n_events_Elastic;
 
       // Select single-arm events (inclusive)
-      if( selectSingleArmRecProton && !(proton_right_valid || proton_left_valid) ) continue;
+      //if( selectSingleArmRecProton && !(proton_right_valid || proton_left_valid) ) continue;
       // Counter single-arm
 
       if( selectDoubleArmRecProton && !(proton_right_valid && proton_left_valid) ) continue;
@@ -873,11 +882,11 @@ TH1F* test = new TH1F("test","",50,0,0.2);
       int rp_hits_124 = rp_track_info[124]->entries;
       int rp_hits_125 = rp_track_info[125]->entries;
 
-      bool rp_track_right_top = rp_track_valid_120 && rp_track_valid_124 && cut_rp_124;
-      bool rp_track_right_bottom = rp_track_valid_121 && rp_track_valid_125 && cut_rp_125;
+      bool rp_track_right_top = rp_track_valid_120 && rp_track_valid_124;// && cut_rp_124;
+      bool rp_track_right_bottom = rp_track_valid_121 && rp_track_valid_125;// && cut_rp_125;
       bool rp_track_accept_right = rp_track_right_top || rp_track_right_bottom;// || ( rp_track_valid_122 && rp_track_valid_123 );
-      bool rp_track_left_top = rp_track_valid_020 && rp_track_valid_024 && cut_rp_024;
-      bool rp_track_left_bottom = rp_track_valid_021 && rp_track_valid_025 && cut_rp_025;
+      bool rp_track_left_top = rp_track_valid_020 && rp_track_valid_024;// && cut_rp_024;
+      bool rp_track_left_bottom = rp_track_valid_021 && rp_track_valid_025;// && cut_rp_025;
       bool rp_track_accept_left = rp_track_left_top  || rp_track_left_bottom;// || ( rp_track_valid_022 && rp_track_valid_023 );
 
       
