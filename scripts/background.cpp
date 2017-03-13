@@ -39,11 +39,23 @@ class RdmDataEvent {
       ~RdmDataEvent() {}
 
       double xi_totem_right_rdm;
+      double xi_totem_right_top_rdm;
+      double xi_totem_right_bottom_rdm;
       double xi_totem_left_rdm;
+      double xi_totem_left_top_rdm;
+      double xi_totem_left_bottom_rdm;
       double t_totem_right_rdm;
+      double t_totem_right_top_rdm;
+      double t_totem_right_bottom_rdm;
       double t_totem_left_rdm;
+      double t_totem_left_top_rdm;
+      double t_totem_left_bottom_rdm;
       double x_right_rdm;
+      double x_right_top_rdm;
+      double x_right_bottom_rdm;
       double x_left_rdm;
+      double x_left_top_rdm;
+      double x_left_bottom_rdm;
       double beta_right_rdm;
       double beta_left_rdm;
       double jet1_pt_right_rdm;
@@ -51,7 +63,11 @@ class RdmDataEvent {
       double jet2_pt_right_rdm;
       double jet2_pt_left_rdm;
       bool rp_right_rdm;
+      bool rp_right_top_rdm;
+      bool rp_right_bottom_rdm;
       bool rp_left_rdm;
+      bool rp_left_top_rdm;
+      bool rp_left_bottom_rdm;
       bool valid_vtx_rdm;
       bool valid_proton_right_rdm;
       bool valid_proton_left_rdm;
@@ -86,19 +102,35 @@ void BackgroundZB::getBackgroundHistos(bool full, bool vtx_sel){
     TFile* outfile = new TFile("histos_zb_background.root", "RECREATE");
     map<string,TH1F*> TH1F_histos;
     TH1F_histos["xi_cms_minus_totem_right_backg"] = new TH1F("xi_cms_minus_totem_right_backg","",50,-0.4,0.4);
+    TH1F_histos["xi_cms_minus_totem_bottom_right_backg"] = new TH1F("xi_cms_minus_totem_bottom_right_backg","",50,-0.4,0.4);
+    TH1F_histos["xi_cms_minus_totem_top_right_backg"] = new TH1F("xi_cms_minus_totem_top_right_backg","",50,-0.4,0.4);
     TH1F_histos["xi_cms_minus_totem_left_backg"] = new TH1F("xi_cms_minus_totem_left_backg","",50,-0.4,0.4);
+    TH1F_histos["xi_cms_minus_totem_bottom_left_backg"] = new TH1F("xi_cms_minus_totem_bottom_left_backg","",50,-0.4,0.4);
+    TH1F_histos["xi_cms_minus_totem_top_left_backg"] = new TH1F("xi_cms_minus_totem_top_left_backg","",50,-0.4,0.4);
     TH1F_histos["xi_cms_minus_totem_right_backg_bin"] = new TH1F("xi_cms_minus_totem_right_backg_bin","", 15, bin);
     TH1F_histos["xi_cms_minus_totem_left_backg_bin"] = new TH1F("xi_cms_minus_totem_left_backg_bin","", 15, bin);
     TH1F_histos["xi_right_backg"] = new TH1F("xi_right_backg","",50,-0.04,0.2);
     TH1F_histos["xi_left_backg"] = new TH1F("xi_left_backg","",50,-0.04,0.2);
     TH1F_histos["xi_right_cut_backg"] = new TH1F("xi_right_cut_backg","",11, xi_bins);
+    TH1F_histos["xi_right_top_cut_backg"] = new TH1F("xi_right_top_cut_backg","",11, xi_bins);
+    TH1F_histos["xi_right_bottom_cut_backg"] = new TH1F("xi_right_bottom_cut_backg","",11, xi_bins);
     TH1F_histos["xi_left_cut_backg"] = new TH1F("xi_left_cut_backg","", 11, xi_bins);
+    TH1F_histos["xi_left_top_cut_backg"] = new TH1F("xi_left_top_cut_backg","", 11, xi_bins);
+    TH1F_histos["xi_left_bottom_cut_backg"] = new TH1F("xi_left_bottom_cut_backg","", 11, xi_bins);
     TH1F_histos["t_right_backg"] = new TH1F("t_right_backg","",8, tbins);
     TH1F_histos["t_left_backg"] = new TH1F("t_left_backg","", 8, tbins);
     TH1F_histos["t_right_cut_backg"] = new TH1F("t_right_cut_backg","",8, tbins);
+    TH1F_histos["t_right_top_cut_backg"] = new TH1F("t_right_top_cut_backg","",8, tbins);
+    TH1F_histos["t_right_bottom_cut_backg"] = new TH1F("t_right_bottom_cut_backg","",8, tbins);
     TH1F_histos["t_left_cut_backg"] = new TH1F("t_left_cut_backg","",8, tbins);
+    TH1F_histos["t_left_top_cut_backg"] = new TH1F("t_left_top_cut_backg","",8, tbins);
+    TH1F_histos["t_left_bottom_cut_backg"] = new TH1F("t_left_bottom_cut_backg","",8, tbins);
     TH1F_histos["log_x_right_cut_backg"] = new TH1F("log_x_right_cut_backg","",15, -4, 0);
+    TH1F_histos["log_x_right_top_cut_backg"] = new TH1F("log_x_right_top_cut_backg","",15, -4, 0);
+    TH1F_histos["log_x_right_bottom_cut_backg"] = new TH1F("log_x_right_bottom_cut_backg","",15, -4, 0);
     TH1F_histos["log_x_left_cut_backg"] = new TH1F("log_x_left_cut_backg","",15, -4, 0);
+    TH1F_histos["log_x_left_top_cut_backg"] = new TH1F("log_x_left_top_cut_backg","",15, -4, 0);
+    TH1F_histos["log_x_left_bottom_cut_backg"] = new TH1F("log_x_left_bottom_cut_backg","",15, -4, 0);
     TH1F_histos["beta_right_cut_backg"] = new TH1F("beta_right_cut_backg","",15,0,1);
     TH1F_histos["beta_left_cut_backg"] = new TH1F("beta_left_cut_backg","",15,0,1);
 
@@ -109,7 +141,9 @@ void BackgroundZB::getBackgroundHistos(bool full, bool vtx_sel){
  
     double xi_proton_right_zb, xi_proton_left_zb, x_right_zb, x_left_zb, beta_right_zb, beta_left_zb, jet1_pt_zb, jet2_pt_zb;
     double t_proton_right_zb, t_proton_left_zb;
-    bool rp_right_zb, rp_left_zb, valid_vtx_zb, valid_proton_right_zb, valid_proton_left_zb;
+    bool rp_right_zb, rp_left_zb, valid_vtx_zb, valid_proton_right_zb, valid_proton_left_zb, rp_right_top_far_zb, rp_right_bottom_far_zb, rp_left_top_far_zb,
+    rp_left_bottom_far_zb, rp_right_top_near_zb, rp_right_bottom_near_zb, rp_left_top_near_zb, rp_left_bottom_near_zb;
+    double x_pos_024_zb, x_pos_025_zb, x_pos_124_zb, x_pos_125_zb, y_pos_024_zb, y_pos_025_zb, y_pos_124_zb, y_pos_125_zb;
     tree_zb->SetBranchAddress("xi_totem_right",&xi_proton_right_zb);
     tree_zb->SetBranchAddress("xi_totem_left",&xi_proton_left_zb);
     tree_zb->SetBranchAddress("x_right",&x_right_zb);
@@ -119,12 +153,28 @@ void BackgroundZB::getBackgroundHistos(bool full, bool vtx_sel){
     tree_zb->SetBranchAddress("t_totem_right",&t_proton_right_zb);
     tree_zb->SetBranchAddress("t_totem_left",&t_proton_left_zb);
     tree_zb->SetBranchAddress("rp_right",&rp_right_zb);
+    tree_zb->SetBranchAddress("rp_right_top_far",&rp_right_top_far_zb);
+    tree_zb->SetBranchAddress("rp_right_top_near",&rp_right_top_near_zb);
+    tree_zb->SetBranchAddress("rp_right_bottom_far",&rp_right_bottom_far_zb);
+    tree_zb->SetBranchAddress("rp_right_bottom_near",&rp_right_bottom_near_zb);
+    tree_zb->SetBranchAddress("rp_left_top_far",&rp_left_top_far_zb);
+    tree_zb->SetBranchAddress("rp_left_top_near",&rp_left_top_near_zb);
+    tree_zb->SetBranchAddress("rp_left_bottom_far",&rp_left_bottom_far_zb);
+    tree_zb->SetBranchAddress("rp_left_bottom_near",&rp_left_bottom_near_zb);
     tree_zb->SetBranchAddress("rp_left",&rp_left_zb);
     tree_zb->SetBranchAddress("valid_vtx",&valid_vtx_zb);
     tree_zb->SetBranchAddress("valid_proton_right",&valid_proton_right_zb);
     tree_zb->SetBranchAddress("valid_proton_left",&valid_proton_left_zb);
     tree_zb->SetBranchAddress("jet1_pt",&jet1_pt_zb);
     tree_zb->SetBranchAddress("jet2_pt",&jet2_pt_zb);
+    tree_zb->SetBranchAddress("rp_x_024",&x_pos_024_zb);
+    tree_zb->SetBranchAddress("rp_y_024",&y_pos_024_zb);
+    tree_zb->SetBranchAddress("rp_x_025",&x_pos_025_zb);
+    tree_zb->SetBranchAddress("rp_y_025",&y_pos_025_zb);
+    tree_zb->SetBranchAddress("rp_x_124",&x_pos_124_zb);
+    tree_zb->SetBranchAddress("rp_y_124",&y_pos_124_zb);
+    tree_zb->SetBranchAddress("rp_x_125",&x_pos_125_zb);
+    tree_zb->SetBranchAddress("rp_y_125",&y_pos_125_zb);
 
     std::vector<RdmDataEvent> pu;
     //starting loop over events, stops when reached end of file or nevt_max
@@ -159,6 +209,18 @@ void BackgroundZB::getBackgroundHistos(bool full, bool vtx_sel){
               rdm.rp_right_rdm = rp_right_zb;
               rdm.x_right_rdm = x_right_zb;
               rdm.beta_right_rdm = beta_right_zb;
+              if (rp_right_bottom_near_zb && rp_right_bottom_far_zb && x_pos_125_zb>0 && x_pos_125_zb<7 && y_pos_125_zb <-8.4 && y_pos_125_zb>-27){
+                  rdm.xi_totem_right_bottom_rdm = xi_proton_right_zb;
+                  rdm.t_totem_right_bottom_rdm = t_proton_right_zb;
+                  rdm.rp_right_bottom_rdm = rp_right_zb;
+                  rdm.x_right_bottom_rdm = x_right_zb;
+              }
+              if (rp_right_top_near_zb && rp_right_top_far_zb && x_pos_124_zb>0 && x_pos_124_zb<7 && y_pos_124_zb >8.4 && y_pos_124_zb<27){
+                  rdm.xi_totem_right_top_rdm = xi_proton_right_zb;
+                  rdm.t_totem_right_top_rdm = t_proton_right_zb;
+                  rdm.rp_right_top_rdm = rp_right_zb;
+                  rdm.x_right_top_rdm = x_right_zb;
+              }
           } 
           if (/*!valid_vtx_zb &&*/ valid_proton_left_zb && rp_left_zb && !valid_proton_right_zb && !rp_right_zb && t_proton_left_zb>0.03 && t_proton_left_zb<1.){
               rdm.xi_totem_left_rdm = xi_proton_left_zb;
@@ -168,6 +230,18 @@ void BackgroundZB::getBackgroundHistos(bool full, bool vtx_sel){
               rdm.x_left_rdm = x_left_zb;
               rdm.beta_left_rdm = beta_left_zb;
            }
+              if (rp_left_bottom_near_zb && rp_left_bottom_far_zb && x_pos_025_zb>0 && x_pos_025_zb<7 && y_pos_025_zb <-8.4 && y_pos_025_zb>-27){
+                  rdm.xi_totem_left_bottom_rdm = xi_proton_left_zb;
+                  rdm.t_totem_left_bottom_rdm = t_proton_left_zb;
+                  rdm.rp_left_bottom_rdm = rp_left_zb;
+                  rdm.x_left_bottom_rdm = x_left_zb;
+              }
+              if (rp_left_top_near_zb && rp_left_top_far_zb && x_pos_024_zb>0 && x_pos_024_zb<7 && y_pos_024_zb >8.4 && y_pos_024_zb<27){
+                  rdm.xi_totem_left_top_rdm = xi_proton_left_zb;
+                  rdm.t_totem_left_top_rdm = t_proton_left_zb;
+                  rdm.rp_left_top_rdm = rp_left_zb;
+                  rdm.x_left_top_rdm = x_left_zb;
+              }
         }
            
         pu.push_back(rdm);
@@ -215,18 +289,34 @@ void BackgroundZB::getBackgroundHistos(bool full, bool vtx_sel){
         int i_evt_backg = 0 + rdm->Rndm()*(pu.size());
         RdmDataEvent const & pu_zb = pu.at(i_evt_backg);
         double xi_right_totem_pu = pu_zb.xi_totem_right_rdm;
+        double xi_right_totem_top_pu = pu_zb.xi_totem_right_top_rdm;
+        double xi_right_totem_bottom_pu = pu_zb.xi_totem_right_bottom_rdm;
         double t_right_totem_pu = pu_zb.t_totem_right_rdm;
+        double t_right_totem_top_pu = pu_zb.t_totem_right_top_rdm;
+        double t_right_totem_bottom_pu = pu_zb.t_totem_right_bottom_rdm;
         double xi_left_totem_pu = pu_zb.xi_totem_left_rdm;
+        double xi_left_totem_top_pu = pu_zb.xi_totem_left_top_rdm;
+        double xi_left_totem_bottom_pu = pu_zb.xi_totem_left_bottom_rdm;
         double t_left_totem_pu = pu_zb.t_totem_left_rdm;
+        double t_left_totem_top_pu = pu_zb.t_totem_left_top_rdm;
+        double t_left_totem_bottom_pu = pu_zb.t_totem_left_bottom_rdm;
         bool rp_right_pu = pu_zb.rp_right_rdm;
+        bool rp_right_top_pu = pu_zb.rp_right_top_rdm;
+        bool rp_right_bottom_pu = pu_zb.rp_right_bottom_rdm;
         bool rp_left_pu = pu_zb.rp_left_rdm;
+        bool rp_left_top_pu = pu_zb.rp_left_top_rdm;
+        bool rp_left_bottom_pu = pu_zb.rp_left_bottom_rdm;
         bool valid_vtx_pu = pu_zb.valid_vtx_rdm;
         bool valid_proton_right_pu = pu_zb.valid_proton_right_rdm;
         bool valid_proton_left_pu = pu_zb.valid_proton_left_rdm;
         double beta_right_pu = pu_zb.beta_right_rdm;
         double beta_left_pu = pu_zb.beta_left_rdm;
         double x_right_pu = pu_zb.x_right_rdm;
+        double x_right_top_pu = pu_zb.x_right_top_rdm;
+        double x_right_bottom_pu = pu_zb.x_right_bottom_rdm;
         double x_left_pu = pu_zb.x_left_rdm;
+        double x_left_top_pu = pu_zb.x_left_top_rdm;
+        double x_left_bottom_pu = pu_zb.x_left_bottom_rdm;
 
         bool full_right = /*!valid_vtx_zb && */valid_proton_right_pu && rp_right_pu && !valid_proton_left_pu && !rp_left_pu;
         bool full_left = /*!valid_vtx_zb && */valid_proton_left_pu && rp_left_pu && !valid_proton_right_pu && !rp_right_pu;
@@ -259,6 +349,25 @@ void BackgroundZB::getBackgroundHistos(bool full, bool vtx_sel){
                }
             }      
         }
+        if (full==false && !signal_right && jet_rec_sel && xi_right_totem_bottom_pu>0 && xi_right_totem_bottom_pu<0.1 && t_right_totem_bottom_pu>0.03 && 
+          t_right_totem_bottom_pu<1. ){
+            TH1F_histos["xi_cms_minus_totem_bottom_right_backg"]->Fill(xi_rec_cms_minus - xi_right_totem_bottom_pu, weight);
+            if (xi_rec_cms_minus - xi_right_totem_bottom_pu<0){
+                TH1F_histos["xi_right_bottom_cut_backg"]->Fill(xi_right_totem_bottom_pu, weight);
+                TH1F_histos["t_right_bottom_cut_backg"]->Fill(t_right_totem_bottom_pu, weight);
+                TH1F_histos["log_x_right_bottom_cut_backg"]->Fill(log10(x_right_bottom_pu),weight);
+            }  
+        }  
+        if (full==false && !signal_right && jet_rec_sel && xi_right_totem_top_pu>0 && xi_right_totem_top_pu<0.1 && t_right_totem_top_pu>0.03 && 
+          t_right_totem_top_pu<1. ){
+            TH1F_histos["xi_cms_minus_totem_top_right_backg"]->Fill(xi_rec_cms_minus - xi_right_totem_top_pu, weight);
+            if (xi_rec_cms_minus - xi_right_totem_top_pu<0){
+                TH1F_histos["xi_right_top_cut_backg"]->Fill(xi_right_totem_top_pu, weight);
+                TH1F_histos["t_right_top_cut_backg"]->Fill(t_right_totem_top_pu, weight);
+                TH1F_histos["log_x_right_top_cut_backg"]->Fill(log10(x_right_top_pu),weight);
+            }  
+        }  
+
         if (!signal_left && jet_rec_sel && xi_left_totem_pu>0 && xi_left_totem_pu<0.1 && t_left_totem_pu>0.03 && t_left_totem_pu<1.){
             if (full==true && full_left){
               if (vtx_sel && valid_vtx_zb) continue;
@@ -287,6 +396,26 @@ void BackgroundZB::getBackgroundHistos(bool full, bool vtx_sel){
             }
                
         }
+
+        if (full==false && !signal_left && jet_rec_sel && xi_left_totem_bottom_pu>0 && xi_left_totem_bottom_pu<0.1 && t_left_totem_bottom_pu>0.03 && 
+          t_left_totem_bottom_pu<1. ){
+            TH1F_histos["xi_cms_minus_totem_bottom_left_backg"]->Fill(xi_rec_cms_minus - xi_left_totem_bottom_pu, weight);
+            if (xi_rec_cms_minus - xi_left_totem_bottom_pu<0){
+                TH1F_histos["xi_left_bottom_cut_backg"]->Fill(xi_left_totem_bottom_pu, weight);
+                TH1F_histos["t_left_bottom_cut_backg"]->Fill(t_left_totem_bottom_pu, weight);
+                TH1F_histos["log_x_left_bottom_cut_backg"]->Fill(log10(x_left_bottom_pu),weight);
+            }  
+        }  
+        if (full==false && !signal_left && jet_rec_sel && xi_left_totem_top_pu>0 && xi_left_totem_top_pu<0.1 && t_left_totem_top_pu>0.03 && 
+          t_left_totem_top_pu<1. ){
+            TH1F_histos["xi_cms_minus_totem_top_left_backg"]->Fill(xi_rec_cms_minus - xi_left_totem_top_pu, weight);
+            if (xi_rec_cms_minus - xi_left_totem_top_pu<0){
+                TH1F_histos["xi_left_top_cut_backg"]->Fill(xi_left_totem_top_pu, weight);
+                TH1F_histos["t_left_top_cut_backg"]->Fill(t_left_totem_top_pu, weight);
+                TH1F_histos["log_x_left_top_cut_backg"]->Fill(log10(x_left_top_pu),weight);
+            }  
+        }  
+
     }
 
     for(map<string,TH1F*>::const_iterator histos = TH1F_histos.begin(); histos != TH1F_histos.end(); ++histos){
@@ -294,14 +423,14 @@ void BackgroundZB::getBackgroundHistos(bool full, bool vtx_sel){
     } 
 
     outfile->Close();  
-
+    cout << "Right: " << ++nevent_backg_right << "  Left: " << ++nevent_backg_left << endl;
 }
 
 void BackgroundZB::BackgNormalisation(TH1F* data, TH1F* zb, double &norm){
 
   //input the xi_cms - xi_totem histos
   TAxis *axis = data->GetXaxis();
-  int bmin = axis->FindBin(0.0); 
+  int bmin = axis->FindBin(0.048); 
   int bmax = axis->FindBin(0.4); 
 
   double area_data = data->Integral(bmin, bmax);
@@ -310,9 +439,9 @@ void BackgroundZB::BackgNormalisation(TH1F* data, TH1F* zb, double &norm){
 
 }
 
-// int main(void)
-// {
-// 	BackgroundZB zb_background;
-// 	zb_background.getBackgroundHistos(false, false);
-// 	return 0;
-// }
+int main(void)
+{
+	BackgroundZB zb_background;
+	zb_background.getBackgroundHistos(false, false);
+	return 0;
+}
