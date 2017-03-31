@@ -23,6 +23,7 @@
 #include <TLatex.h>
 #include <TRandom.h>
 #include <TKey.h>
+#include <TObject.h>
 //STANDARD C++ INCLUDES
 #include <iostream>
 #include <string>
@@ -41,6 +42,11 @@ using namespace std;
 Double_t beta_fit(Double_t *x, Double_t *par ){
   Double_t result = 0;
   result = par[0]+par[1]*x[0]+ par[2]*x[0]*x[0];
+  return result;
+}
+Double_t fFermiLike(Double_t *x, Double_t *par) {
+  Double_t result = 0;
+  result = 1.0/(TMath::Exp((par[0]-TMath::Sqrt(x[0]))/par[1]) + 1);
   return result;
 }
 
@@ -68,7 +74,7 @@ public:
 	MCAnalysis();
 	~MCAnalysis();
 	void getMCHistos( string const& mc = "pomwig_pom", bool reweight = false, bool reweight_slope = false, bool unc_rp_y_up = false, 
-		bool unc_rp_y_dw = false, bool unc_gauss = false, bool unc_rp_x = false);
+		bool unc_rp_y_dw = false, bool unc_gauss = false, bool unc_rp_x = false, bool trigger_up = false, bool trigger_dw = false);
 	// void getMCHistos( TH1F* &t_rec_right, string const& mc = "pomwig_regg", bool reweight = false, bool reweight_slope = false, bool unc_rp_y_up = false, 
 	// 	bool unc_rp_y_dw = false, bool unc_gauss = false, bool unc_rp_x = false);
 	// void getMCHistos( TH1F* &t_rec_right, string const& mc = "pythia8_4c", bool reweight = false, bool reweight_slope = false, bool unc_rp_y_up = false, 
@@ -94,23 +100,28 @@ MCAnalysis::~MCAnalysis (void){
 
 
 void MCAnalysis::getMCHistos ( string const& mc, bool reweight, bool reweight_slope, bool unc_rp_y_up, bool unc_rp_y_dw, 
-		bool unc_gauss,  bool unc_rp_x){
+		bool unc_gauss,  bool unc_rp_x, bool trigger_up, bool trigger_dw){
 
     string treeName = "small_tree"; 
     string fileName, type, rew;
 
     // correction due proton reconstruction
-    bool rec_corr = false;
-    TFile* accep_thx_vs_xi = TFile::Open("~/cernbox/doctorado/note/scripts/accep_param_vs_fullsim_gen.root","READ");
-    TH2F* accep_thx_vs_xi_nojet_right = (TH2F*)accep_thx_vs_xi->Get("theta_x_vs_xi_gen_rp_nojet");
+    bool rec_corr = true; double max = -10;
+    if (mc == "pomwig_regg") rec_corr = false; 
+    TFile* accep_thx_vs_xi = TFile::Open("~/cernbox/doctorado/note/scripts/final_analysis/accep_param_vs_fullsim_gen.root","READ");
+    TH2F* accep_thx_vs_xi_nojet_right = (TH2F*)accep_thx_vs_xi->Get("theta_x_vs_xi_gen_right_rp_nojet");
+    double sum = 0;
     for (int i = 2; i <= 6; ++i)
     { 
         for (int j = 2; j <= 19; ++j)
         {
             // cout<<i<<" "<<j<<" "<<accep_thx_vs_xi_nojet_right->GetBinContent(i,j)<<endl;
             corr_thx_vs_xi[i-2][j-2] = accep_thx_vs_xi_nojet_right->GetBinContent(i,j);
+            sum += accep_thx_vs_xi_nojet_right->GetBinContent(i,j);
+            if (corr_thx_vs_xi[i-2][j-2] > max) max = corr_thx_vs_xi[i-2][j-2];
         }   
     }accep_thx_vs_xi->Close();
+    cout << "corr: " << sum/90 << "  "<< max<<endl;
     //...........................
 
     float tbins[9] = {0.03, 0.07, 0.11, 0.21, 0.31, 0.45,  0.58, 0.72, 1.};
@@ -171,24 +182,36 @@ void MCAnalysis::getMCHistos ( string const& mc, bool reweight, bool reweight_sl
 	    scale_rew_slope_left = 0.9770;
 	}
 
+    TH1F_right_histos["correction"] = new TH1F("correction","",20,-1, 2);
 	TH1F_right_histos["xi_cms_minus_totem_rec_right"] = new TH1F("xi_cms_minus_totem_rec_right","",50,-0.4,0.4);
 	TH1F_right_histos["xi_cms_minus_totem_rec_right_top"] = new TH1F("xi_cms_minus_totem_rec_right_top","",50,-0.4,0.4);
 	TH1F_right_histos["xi_cms_minus_totem_rec_right_bottom"] = new TH1F("xi_cms_minus_totem_rec_right_bottom","",50,-0.4,0.4);
 	TH1F_right_histos["xi_cms_minus_totem_rec_right_bin"] = new TH1F("xi_cms_minus_totem_rec_right_bin","", 15, bin);
 	TH1F_right_histos["xi_rec_right"] = new TH1F("xi_rec_right","",50,-0.04,0.2);
 	TH1F_right_histos["xi_rec_right_cut"] = new TH1F("xi_rec_right_cut","",11,xi_bins);
+    TH1F_right_histos["xi_gen_right_sasha"] = new TH1F("xi_gen_right_sasha","",8, bin_sasha);
 	TH1F_right_histos["xi_rec_right_cut_top"] = new TH1F("xi_rec_right_cut_top","",11,xi_bins);
 	TH1F_right_histos["xi_rec_right_cut_bottom"] = new TH1F("xi_rec_right_cut_bottom","",11,xi_bins);
 	TH1F_right_histos["xi_rec_right_cut_nojet"] = new TH1F("xi_rec_right_cut_nojet","",11,xi_bins);
-	TH1F_right_histos["xi_gen_right_cut_nojet"] = new TH1F("xi_gen_right_cut_nojet","",11,xi_bins);
-	TH1F_right_histos["xi_gen_rp_right_cut_nojet"] = new TH1F("xi_gen_rp_right_cut_nojet","",11,xi_bins);
+    TH1F_right_histos["xi_gen_right_cut_nojet"] = new TH1F("xi_gen_right_cut_nojet","",11,xi_bins);
+    TH1F_right_histos["xi_gen_right_cut_nojet_top"] = new TH1F("xi_gen_right_cut_nojet_top","",11,xi_bins);
+	TH1F_right_histos["xi_gen_right_cut_nojet_bottom"] = new TH1F("xi_gen_right_cut_nojet_bottom","",11,xi_bins);
+    TH1F_right_histos["xi_gen_rp_right_cut_nojet"] = new TH1F("xi_gen_rp_right_cut_nojet","",11,xi_bins);
+    TH1F_right_histos["xi_gen_rp_right_cut_nojet_top"] = new TH1F("xi_gen_rp_right_cut_nojet_top","",11,xi_bins);
+    TH1F_right_histos["xi_gen_rp_right_cut_nojet_bottom"] = new TH1F("xi_gen_rp_right_cut_nojet_bottom","",11,xi_bins);
+	TH1F_right_histos["xi_gen_rp_right_cut_nojet_aftercorr"] = new TH1F("xi_gen_rp_right_cut_nojet_aftercorr","",11,xi_bins);
 	TH1F_right_histos["xi_gen_right"] = new TH1F("xi_gen_right_cut","",11,xi_bins);
 	TH1F_right_histos["t_rec_right_cut"] = new TH1F("t_rec_right_cut","", 8, tbins);
 	TH1F_right_histos["t_rec_right_cut_top"] = new TH1F("t_rec_right_cut_top","", 8, tbins);
 	TH1F_right_histos["t_rec_right_cut_bottom"] = new TH1F("t_rec_right_cut_bottom","", 8, tbins);
     TH1F_right_histos["t_rec_right_cut_nojet"] = new TH1F("t_rec_right_cut_nojet","", 8, tbins);
     TH1F_right_histos["t_gen_right_cut_nojet"] = new TH1F("t_gen_right_cut_nojet","", 8, tbins);
+    TH1F_right_histos["t_gen_right_cut_nojet_top"] = new TH1F("t_gen_right_cut_nojet_top","", 8, tbins);
+    TH1F_right_histos["t_gen_right_cut_nojet_bottom"] = new TH1F("t_gen_right_cut_nojet_bottom","", 8, tbins);
     TH1F_right_histos["t_gen_rp_right_cut_nojet"] = new TH1F("t_gen_rp_right_cut_nojet","", 8, tbins);
+    TH1F_right_histos["t_gen_rp_right_cut_nojet_top"] = new TH1F("t_gen_rp_right_cut_nojet_top","", 8, tbins);
+    TH1F_right_histos["t_gen_rp_right_cut_nojet_bottom"] = new TH1F("t_gen_rp_right_cut_nojet_bottom","", 8, tbins);
+    TH1F_right_histos["t_gen_rp_right_cut_nojet_aftercorr"] = new TH1F("t_gen_rp_right_cut_nojet_aftercorr","", 8, tbins);
     TH1F_right_histos["t_gen_right_cut"] = new TH1F("t_gen_right_cut","", 8, tbins);
     TH1F_right_histos["beta_right_cut"] = new TH1F("beta_right_cut","",15,0,1);
     TH1F_right_histos["xi_cms_rec_right"] = new TH1F("xi_cms_rec_right","",11,xi_bins);
@@ -203,8 +226,9 @@ void MCAnalysis::getMCHistos ( string const& mc, bool reweight, bool reweight_sl
     TH1F_right_histos["pt_jet2_right_cut"] = new TH1F("pt_jet2_right_cut","", 15, 0, 200);
     TH1F_right_histos["eta_jet1_right_cut"] = new TH1F("eta_jet1_right_cut","", 20, -5.2, 5.2);
     TH1F_right_histos["eta_jet2_right_cut"] = new TH1F("eta_jet2_right_cut","", 20, -5.2, 5.2);
-    TH1F_right_histos["xi_rec_right_cut_sasha"] = new TH1F("xi__rec_right_sasha","",11,xi_bins);
-    TH1F_right_histos["xi_gen_right_cut_sasha"] = new TH1F("xi__gen_right_sasha","",11,xi_bins);
+    TH1F_right_histos["xi_rec_right_cut_sasha"] = new TH1F("xi__rec_right_sasha","",8, bin_sasha);
+    TH1F_right_histos["xi_rec_cms_minus_sasha"] = new TH1F("xi_rec_cms_minus_sasha","",8, bin_sasha);
+    TH1F_right_histos["xi_gen_right_cut_sasha"] = new TH1F("xi__gen_right_sasha","",8, bin_sasha);
     TH1F_right_histos["xi_cms_rec_right_cut_sasha"] = new TH1F("xi_cms_rec_right_cut_sasha","",8, bin_sasha);
     TH1F_right_histos["xi_cms_gen_right_cut_sasha"] = new TH1F("xi_cms_gen_right_cut_sasha","",8, bin_sasha);
     TH1F_right_histos["x_rec_gen_right"] = new TH1F("x_rec_gen_right","",20,-0.4,0.4);
@@ -213,9 +237,19 @@ void MCAnalysis::getMCHistos ( string const& mc, bool reweight, bool reweight_sl
     TH1F_right_histos["th_x_gen_right"] = new TH1F("th_x_gen_right","",20, -0.4e-3, 0.4e-3);
     TH1F_right_histos["th_y_gen_right"] = new TH1F("th_y_gen_right","",20, -0.4e-3, 0.4e-3);
     TH1F_right_histos["th_x_gen_right_nojet"] = new TH1F("th_x_gen_right_nojet","",20, -0.4e-3, 0.4e-3);
+    TH1F_right_histos["th_x_gen_right_nojet_top"] = new TH1F("th_x_gen_right_nojet_top","",20, -0.4e-3, 0.4e-3);
+    TH1F_right_histos["th_x_gen_right_nojet_bottom"] = new TH1F("th_x_gen_right_nojet_bottom","",20, -0.4e-3, 0.4e-3);
     TH1F_right_histos["th_x_gen_rp_right_nojet"] = new TH1F("th_x_gen_rp_right_nojet","",20, -0.4e-3, 0.4e-3);
+    TH1F_right_histos["th_x_gen_rp_right_nojet_top"] = new TH1F("th_x_gen_rp_right_nojet_top","",20, -0.4e-3, 0.4e-3);
+    TH1F_right_histos["th_x_gen_rp_right_nojet_bottom"] = new TH1F("th_x_gen_rp_right_nojet_bottom","",20, -0.4e-3, 0.4e-3);
+    TH1F_right_histos["th_x_gen_rp_right_nojet_aftercorr"] = new TH1F("th_x_gen_rp_right_nojet_aftercorr","",20, -0.4e-3, 0.4e-3);
     TH1F_right_histos["th_y_gen_right_nojet"] = new TH1F("th_y_gen_right_nojet","",20, -0.4e-3, 0.4e-3);
+    TH1F_right_histos["th_y_gen_right_nojet_top"] = new TH1F("th_y_gen_right_nojet_top","",20, -0.4e-3, 0.4e-3);
+    TH1F_right_histos["th_y_gen_right_nojet_bottom"] = new TH1F("th_y_gen_right_nojet_bottom","",20, -0.4e-3, 0.4e-3);
     TH1F_right_histos["th_y_gen_rp_right_nojet"] = new TH1F("th_y_gen_rp_right_nojet","",20, -0.4e-3, 0.4e-3);
+    TH1F_right_histos["th_y_gen_rp_right_nojet_top"] = new TH1F("th_y_gen_rp_right_nojet_top","",20, -0.4e-3, 0.4e-3);
+    TH1F_right_histos["th_y_gen_rp_right_nojet_bottom"] = new TH1F("th_y_gen_rp_right_nojet_bottom","",20, -0.4e-3, 0.4e-3);
+    TH1F_right_histos["th_y_gen_rp_right_nojet_aftercorr"] = new TH1F("th_y_gen_rp_right_nojet_aftercorr","",20, -0.4e-3, 0.4e-3);
     TH1F_right_histos["delta_eta_jets_right_cut"] = new TH1F("delta_eta_jets_right_cut","", 40, -5.2, 5.2);
     TH1F_right_histos["delta_phi_jets_right_cut"] = new TH1F("delta_phi_jets_right_cut","", 40, -5.2, 5.2);
     TH1F_right_histos["mass_x_rec_right"] = new TH1F("mass_x_right","",20, 0, 1800);
@@ -231,7 +265,7 @@ void MCAnalysis::getMCHistos ( string const& mc, bool reweight, bool reweight_sl
     TH2F_right_histos["response_t_right"] = new TH2F("response_t_right", "", 8, tbins, 8, tbins);
     TH2F_right_histos["response_xi_right"] = new TH2F("response_xi_right", "", 11, xi_bins, 11, xi_bins);
     TH2F_right_histos["response_logx_right"] = new TH2F("response_logx_right", "", 15, -4, 0, 15, -4, 0);
-    TH2F_right_histos["rp_pos_rigth"] = new TH2F("rp_pos_rigth","",100,-1,10,100,-40,40);
+    TH2F_right_histos["rp_pos_right"] = new TH2F("rp_pos_right","",100,-1,10,100,-40,40);
     TH2F_right_histos["pt2_xi_gen_minus"] = new TH2F("pt2_xi_gen_minus","",20,0,1,20,0,0.1);
     TH2F_right_histos["pt2_xi_gen_minus_rp"] = new TH2F("pt2_xi_gen_minus_rp","",20,0,1,20,0,0.1);
     TH2F_right_histos["t_gen_vs_xi_gen_minus"] = new TH2F("t_gen_vs_xi_gen_minus","", 8, tbins, 11, xi_bins);
@@ -241,8 +275,9 @@ void MCAnalysis::getMCHistos ( string const& mc, bool reweight, bool reweight_sl
     TH2F_right_histos["logx_minus_th2"] = new TH2F("logx_minus_th2","", 15, -4, 0,15, -4, 0);
     TH2F_right_histos["log_t_vs_log_xi_right"] = new TH2F("log_t_vs_log_xi_right","",100,-4,1,100,-4,-0.5);
     TH2F_right_histos["delta_thx_vs_delta_xi_right"] = new TH2F("delta_thx_vs_delta_xi_right", "", 20, -0.1e-3, 0.1e-3, 20, -0.04, 0.04);
-    TH2F_right_histos["theta_x_vs_xi_gen_nojet"] = new TH2F("theta_x_vs_xi_gen_nojet","", 11,xi_bins, 20, thetax_bins);
-    TH2F_right_histos["theta_x_vs_xi_gen_rp_nojet"] = new TH2F("theta_x_vs_xi_gen_rp_nojet","", 11,xi_bins, 20, thetax_bins);
+    TH2F_right_histos["theta_x_vs_xi_gen_nojet"] = new TH2F("theta_x_vs_xi_gen_right_nojet","", 11,xi_bins, 20, thetax_bins);
+    TH2F_right_histos["theta_x_vs_xi_gen_rp_nojet"] = new TH2F("theta_x_vs_xi_gen_right_rp_nojet","", 11,xi_bins, 20, thetax_bins);
+    TH2F_right_histos["theta_x_vs_xi_gen_rp_nojet_aftercorr"] = new TH2F("theta_x_vs_xi_gen_right_rp_nojet_aftercorr","", 11,xi_bins, 20, thetax_bins);
 
     TH1F_left_histos["xi_cms_minus_totem_rec_left"] = new TH1F("xi_cms_minus_totem_rec_left","",50,-0.4,0.4);
     TH1F_left_histos["xi_cms_minus_totem_rec_left_top"] = new TH1F("xi_cms_minus_totem_rec_left_top","",50,-0.4,0.4);
@@ -254,12 +289,24 @@ void MCAnalysis::getMCHistos ( string const& mc, bool reweight, bool reweight_sl
     TH1F_left_histos["xi_rec_left_cut_bottom"] = new TH1F("xi_rec_left_cut_bottom","",11,xi_bins);
     TH1F_left_histos["xi_rec_left_cut_nojet"] = new TH1F("xi_rec_left_cut_nojet","",11,xi_bins);
     TH1F_left_histos["xi_gen_left_cut_nojet"] = new TH1F("xi_gen_left_cut_nojet","",11,xi_bins);
+    TH1F_left_histos["xi_gen_left_cut_nojet_top"] = new TH1F("xi_gen_left_cut_nojet_top","",11,xi_bins);
+    TH1F_left_histos["xi_gen_left_cut_nojet_bottom"] = new TH1F("xi_gen_left_cut_nojet_bottom","",11,xi_bins);
+    TH1F_left_histos["xi_gen_rp_left_cut_nojet"] = new TH1F("xi_gen_rp_left_cut_nojet","",11,xi_bins);
+    TH1F_left_histos["xi_gen_rp_left_cut_nojet_top"] = new TH1F("xi_gen_rp_left_cut_nojet_top","",11,xi_bins);
+    TH1F_left_histos["xi_gen_rp_left_cut_nojet_bottom"] = new TH1F("xi_gen_rp_left_cut_nojet_bottom","",11,xi_bins);
+    TH1F_left_histos["xi_gen_rp_left_cut_nojet_aftercorr"] = new TH1F("xi_gen_rp_left_cut_nojet_aftercorr","",11,xi_bins);
     TH1F_left_histos["xi_gen_left"] = new TH1F("xi_gen_left_cut","",11,xi_bins);
     TH1F_left_histos["t_rec_left_cut"] = new TH1F("t_rec_left_cut","", 8, tbins);
     TH1F_left_histos["t_rec_left_cut_top"] = new TH1F("t_rec_left_cut_top","", 8, tbins);
     TH1F_left_histos["t_rec_left_cut_bottom"] = new TH1F("t_rec_left_cut_bottom","", 8, tbins);
     TH1F_left_histos["t_rec_left_cut_nojet"] = new TH1F("t_rec_left_cut_nojet","", 8, tbins);
     TH1F_left_histos["t_gen_left_cut_nojet"] = new TH1F("t_gen_left_cut_nojet","", 8, tbins);
+    TH1F_left_histos["t_gen_left_cut_nojet_top"] = new TH1F("t_gen_left_cut_nojet_top","", 8, tbins);
+    TH1F_left_histos["t_gen_left_cut_nojet_bottom"] = new TH1F("t_gen_left_cut_nojet_bottom","", 8, tbins);
+    TH1F_left_histos["t_gen_rp_left_cut_nojet"] = new TH1F("t_gen_rp_left_cut_nojet","", 8, tbins);
+    TH1F_left_histos["t_gen_rp_left_cut_nojet_top"] = new TH1F("t_gen_rp_left_cut_nojet_top","", 8, tbins);
+    TH1F_left_histos["t_gen_rp_left_cut_nojet_bottom"] = new TH1F("t_gen_rp_left_cut_nojet_bottom","", 8, tbins);
+    TH1F_left_histos["t_gen_rp_left_cut_nojet_aftercorr"] = new TH1F("t_gen_rp_left_cut_nojet_aftercorr","", 8, tbins);
     TH1F_left_histos["t_gen_left_cut"] = new TH1F("t_gen_left_cut","", 8, tbins);
     TH1F_left_histos["beta_left_cut"] = new TH1F("beta_left_cut","",15,0,1);
     TH1F_left_histos["xi_cms_rec_left"] = new TH1F("xi_cms_rec_left","",11,xi_bins);
@@ -283,6 +330,20 @@ void MCAnalysis::getMCHistos ( string const& mc, bool reweight, bool reweight_sl
     TH1F_left_histos["th_y_rec_left"] = new TH1F("th_y_rec_left","",20, -0.4e-3, 0.4e-3);
     TH1F_left_histos["th_x_gen_left"] = new TH1F("th_x_gen_left","",20, -0.4e-3, 0.4e-3);
     TH1F_left_histos["th_y_gen_left"] = new TH1F("th_y_gen_left","",20, -0.4e-3, 0.4e-3);
+    TH1F_left_histos["th_x_gen_left_nojet"] = new TH1F("th_x_gen_left_nojet","",20, -0.4e-3, 0.4e-3);
+    TH1F_left_histos["th_x_gen_left_nojet_top"] = new TH1F("th_x_gen_left_nojet_top","",20, -0.4e-3, 0.4e-3);
+    TH1F_left_histos["th_x_gen_left_nojet_bottom"] = new TH1F("th_x_gen_left_nojet_bottom","",20, -0.4e-3, 0.4e-3);
+    TH1F_left_histos["th_x_gen_rp_left_nojet"] = new TH1F("th_x_gen_rp_left_nojet","",20, -0.4e-3, 0.4e-3);
+    TH1F_left_histos["th_x_gen_rp_left_nojet_top"] = new TH1F("th_x_gen_rp_left_nojet_top","",20, -0.4e-3, 0.4e-3);
+    TH1F_left_histos["th_x_gen_rp_left_nojet_bottom"] = new TH1F("th_x_gen_rp_left_nojet_bottom","",20, -0.4e-3, 0.4e-3);
+    TH1F_left_histos["th_x_gen_rp_left_nojet_aftercorr"] = new TH1F("th_x_gen_rp_left_nojet_aftercorr","",20, -0.4e-3, 0.4e-3);
+    TH1F_left_histos["th_y_gen_left_nojet"] = new TH1F("th_y_gen_left_nojet","",20, -0.4e-3, 0.4e-3);
+    TH1F_left_histos["th_y_gen_left_nojet_top"] = new TH1F("th_y_gen_left_nojet_top","",20, -0.4e-3, 0.4e-3);
+    TH1F_left_histos["th_y_gen_left_nojet_bottom"] = new TH1F("th_y_gen_left_nojet_bottom","",20, -0.4e-3, 0.4e-3);
+    TH1F_left_histos["th_y_gen_rp_left_nojet"] = new TH1F("th_y_gen_rp_left_nojet","",20, -0.4e-3, 0.4e-3);
+    TH1F_left_histos["th_y_gen_rp_left_nojet_top"] = new TH1F("th_y_gen_rp_left_nojet_top","",20, -0.4e-3, 0.4e-3);
+    TH1F_left_histos["th_y_gen_rp_left_nojet_bottom"] = new TH1F("th_y_gen_rp_left_nojet_bottom","",20, -0.4e-3, 0.4e-3);
+    TH1F_left_histos["th_y_gen_rp_left_nojet_aftercorr"] = new TH1F("th_y_gen_rp_left_nojet_aftercorr","",20, -0.4e-3, 0.4e-3);
     TH1F_left_histos["delta_eta_jets_left_cut"] = new TH1F("delta_eta_jets_left_cut","", 40, -5.2, 5.2);
     TH1F_left_histos["delta_phi_jets_left_cut"] = new TH1F("delta_phi_jets_left_cut","", 40, -5.2, 5.2);
     TH1F_left_histos["mass_x_rec_left"] = new TH1F("mass_x_left","",20, 0, 1800);
@@ -294,6 +355,9 @@ void MCAnalysis::getMCHistos ( string const& mc, bool reweight, bool reweight_sl
     TH1F_left_histos["reco_xi_left"] = new TH1F("reco_xi_left","", 11,xi_bins);
     TH1F_left_histos["truth_logx_left"] = new TH1F("truth_x_left","", 15, -4, 0);
     TH1F_left_histos["reco_logx_left"] = new TH1F("reco_x_left","", 15, -4, 0);
+    TH2F_left_histos["theta_x_vs_xi_gen_nojet"] = new TH2F("theta_x_vs_xi_gen_left_nojet","", 11,xi_bins, 20, thetax_bins);
+    TH2F_left_histos["theta_x_vs_xi_gen_rp_nojet"] = new TH2F("theta_x_vs_xi_gen_rp_left_nojet","", 11,xi_bins, 20, thetax_bins);
+    TH2F_left_histos["theta_x_vs_xi_gen_rp_nojet_aftercorr"] = new TH2F("theta_x_vs_xi_gen_rp_left_nojet_aftercorr","", 11,xi_bins, 20, thetax_bins);
 
     TH2F_left_histos["response_t_left"] = new TH2F("response_t_left", "", 8, tbins, 8, tbins);
     TH2F_left_histos["response_xi_left"] = new TH2F("response_xi_left", "", 11, xi_bins, 11, xi_bins);
@@ -324,11 +388,27 @@ void MCAnalysis::getMCHistos ( string const& mc, bool reweight, bool reweight_sl
     TFile* pythia8 = TFile::Open("~/cernbox/doctorado/note/scripts/root_files/beam_smearing/pythia8_diff_ntuple_beam_smearing.root","READ");
     TFile* pythia8_CUETP8M1 = TFile::Open("~/cernbox/doctorado/note/scripts/root_files/beam_smearing/pythia8_diff_CUETP8M1_ntuple_beam_smearing.root","READ");
 
+    ///trigger efficiency
+    TF1* func_trigger = new TF1("func_trigger", fFermiLike, 0., 200, 2);
+    func_trigger->SetParameter(0,4.992);
+    func_trigger->SetParameter(1,0.4885);
+
+    if (trigger_up){
+        func_trigger->SetParameter(0, 4.992 + 0.06335);
+        func_trigger->SetParameter(1, 0.4885 + 0.04156);
+    }
+    if (trigger_dw){
+        func_trigger->SetParameter(0, 4.992 - 0.06335);
+        func_trigger->SetParameter(1, 0.4885 - 0.04156);
+    }
+
     //output file
-    if (unc_rp_y_up && !unc_rp_y_dw && !unc_rp_x && !unc_gauss) type = "unc_rp_y_up";
-    else if (!unc_rp_y_up && unc_rp_y_dw && !unc_rp_x && !unc_gauss) type = "unc_rp_y_dw";
-    else if (!unc_rp_y_up && !unc_rp_y_dw && unc_rp_x && !unc_gauss) type = "unc_rp_x";
-    else if (!unc_rp_y_up && !unc_rp_y_dw && !unc_rp_x && unc_gauss) type = "unc_gauss";
+    if (unc_rp_y_up && !unc_rp_y_dw && !unc_rp_x && !unc_gauss && !trigger_up && !trigger_dw) type = "unc_rp_y_up";
+    else if (!unc_rp_y_up && unc_rp_y_dw && !unc_rp_x && !unc_gauss && !trigger_up && !trigger_dw) type = "unc_rp_y_dw";
+    else if (!unc_rp_y_up && !unc_rp_y_dw && unc_rp_x && !unc_gauss && !trigger_up && !trigger_dw) type = "unc_rp_x";
+    else if (!unc_rp_y_up && !unc_rp_y_dw && !unc_rp_x && unc_gauss && !trigger_up && !trigger_dw) type = "unc_gauss";
+    else if (!unc_rp_y_up && !unc_rp_y_dw && !unc_rp_x && !unc_gauss && trigger_up && !trigger_dw) type = "unc_trigger_up";
+    else if (!unc_rp_y_up && !unc_rp_y_dw && !unc_rp_x && !unc_gauss && !trigger_up && trigger_dw) type = "unc_trigger_dw";
     else type = "nominal";
 
     if (reweight && !reweight_slope) rew = "betarew";
@@ -407,6 +487,7 @@ void MCAnalysis::getMCHistos ( string const& mc, bool reweight, bool reweight_sl
     tree_minus->SetBranchAddress("nVtx",&nVtx);
     tree_minus->SetBranchAddress("mjj2_rec",&mjj2_rec_minus);
 
+double regg = 0;
     double pt_threshold = 40.;
     for(int i_evt = 0; i_evt < nev; ++i_evt){
         tree_minus->GetEntry(i_evt);
@@ -414,6 +495,10 @@ void MCAnalysis::getMCHistos ( string const& mc, bool reweight, bool reweight_sl
         // if (single_vertex && nVtx!=1) continue;
         // if (!single_vertex && nVtx<1) continue;
         if (nVtx<1) continue;
+
+if (jet1_gen_pt>30 && jet2_gen_pt>30) ++regg;
+
+        double eff_trigger = func_trigger->Eval(jet2_rec_pt);
 
         xi_rec_proton_right = (unc_gauss == false) ? xi_rec_proton_right : xi_rec_proton_right_gauss;
         t_rec_proton_right = (unc_gauss == false) ? t_rec_proton_right : t_rec_proton_right_gauss; 
@@ -447,7 +532,12 @@ void MCAnalysis::getMCHistos ( string const& mc, bool reweight, bool reweight_sl
         if(unc_rp_y_up == false && unc_rp_y_dw == false && unc_rp_x == true) rp_right_sel = (rp_right_accep_top && fid_cuts_unc_x_right_top) || (rp_right_accep_bottom && fid_cuts_unc_x_right_bottom);
 
         double corr_xi = 1;//(xi_rec_proton_right_pom > 0.08) ? 1.32864 : 1.;
-        // if (rec_corr) xi_thx_corr(xi_gen_proton_right, theta_x_minus, corr_xi);
+        if (rec_corr) xi_thx_corr(xi_gen_proton_right, theta_x_minus, corr_xi);
+
+        TH1F_right_histos["correction"]->Fill(xi_rec_cms_minus/xi_gen_cms_minus, 1.);
+
+        if ((rp_right_accep_top && fid_cuts_nom_right_top) && !(rp_right_accep_bottom && fid_cuts_nom_right_bottom)) TH2F_right_histos["rp_pos_right"]->Fill(rp_xpos_124*1000, rp_ypos_124*1000, 1.);
+        if (!(rp_right_accep_top && fid_cuts_nom_right_top) && (rp_right_accep_bottom && fid_cuts_nom_right_bottom)) TH2F_right_histos["rp_pos_right"]->Fill(rp_xpos_125*1000, rp_ypos_125*1000, 1.);
 
         TH2F_right_histos["delta_thx_vs_delta_xi_right"]->Fill(theta_x_minus_smear-theta_x_minus, xi_rec_proton_right-xi_gen_proton_right, 1.);
 
@@ -460,13 +550,42 @@ void MCAnalysis::getMCHistos ( string const& mc, bool reweight, bool reweight_sl
              TH1F_right_histos["th_x_gen_right_nojet"]->Fill(theta_x_minus, 1.);
              TH1F_right_histos["th_y_gen_right_nojet"]->Fill(theta_y_minus, 1.);
              TH2F_right_histos["theta_x_vs_xi_gen_nojet"]->Fill(xi_gen_proton_right, theta_x_minus, 1.);
-             if(proton_rec_sel && rp_right_sel){
-       		   TH1F_right_histos["t_gen_rp_right_cut_nojet"]->Fill(fabs(t_gen_proton_right), 1.);
-         	   TH1F_right_histos["xi_gen_rp_right_cut_nojet"]->Fill(xi_gen_proton_right, 1.);
-         	   TH1F_right_histos["th_x_gen_rp_right_nojet"]->Fill(theta_x_minus, 1.);
-         	   TH1F_right_histos["th_y_gen_rp_right_nojet"]->Fill(theta_y_minus, 1.);
+             if(rp_right_sel){
+               TH1F_right_histos["t_gen_rp_right_cut_nojet"]->Fill(fabs(t_gen_proton_right), 1.);
+               TH1F_right_histos["xi_gen_rp_right_cut_nojet"]->Fill(xi_gen_proton_right, 1.);
+               TH1F_right_histos["th_x_gen_rp_right_nojet"]->Fill(theta_x_minus, 1.);
+               TH1F_right_histos["th_y_gen_rp_right_nojet"]->Fill(theta_y_minus, 1.);
                TH2F_right_histos["theta_x_vs_xi_gen_rp_nojet"]->Fill(xi_gen_proton_right, theta_x_minus, 1.);
+               TH1F_right_histos["t_gen_rp_right_cut_nojet_aftercorr"]->Fill(fabs(t_gen_proton_right), 1./corr_xi);
+               TH1F_right_histos["xi_gen_rp_right_cut_nojet_aftercorr"]->Fill(xi_gen_proton_right, 1./corr_xi);
+               TH1F_right_histos["th_x_gen_rp_right_nojet_aftercorr"]->Fill(theta_x_minus, 1./corr_xi);
+               TH1F_right_histos["th_y_gen_rp_right_nojet_aftercorr"]->Fill(theta_y_minus, 1./corr_xi);
+               TH2F_right_histos["theta_x_vs_xi_gen_rp_nojet_aftercorr"]->Fill(xi_gen_proton_right, theta_x_minus, 1./corr_xi);
              }
+            if(theta_y_minus >= 0){
+               TH1F_right_histos["t_gen_right_cut_nojet_top"]->Fill(fabs(t_gen_proton_right), 1.);
+               TH1F_right_histos["xi_gen_right_cut_nojet_top"]->Fill(xi_gen_proton_right, 1.);
+               TH1F_right_histos["th_x_gen_right_nojet_top"]->Fill(theta_x_minus, 1.);
+               TH1F_right_histos["th_y_gen_right_nojet_top"]->Fill(theta_y_minus, 1.);
+               if (rp_right_accep_top && fid_cuts_nom_right_top){ 
+                  TH1F_right_histos["t_gen_rp_right_cut_nojet_top"]->Fill(fabs(t_gen_proton_right), 1./corr_xi);
+                  TH1F_right_histos["xi_gen_rp_right_cut_nojet_top"]->Fill(xi_gen_proton_right, 1./corr_xi);
+                  TH1F_right_histos["th_x_gen_rp_right_nojet_top"]->Fill(theta_x_minus, 1./corr_xi);
+                  TH1F_right_histos["th_y_gen_rp_right_nojet_top"]->Fill(theta_y_minus, 1./corr_xi);
+                } 
+            }     
+            if(theta_y_minus < 0){
+               TH1F_right_histos["t_gen_right_cut_nojet_bottom"]->Fill(fabs(t_gen_proton_right), 1.);
+               TH1F_right_histos["xi_gen_right_cut_nojet_bottom"]->Fill(xi_gen_proton_right, 1.);
+               TH1F_right_histos["th_x_gen_right_nojet_bottom"]->Fill(theta_x_minus, 1.);
+               TH1F_right_histos["th_y_gen_right_nojet_bottom"]->Fill(theta_y_minus, 1.);
+               if (rp_right_accep_bottom && fid_cuts_nom_right_bottom){ 
+                  TH1F_right_histos["t_gen_rp_right_cut_nojet_bottom"]->Fill(fabs(t_gen_proton_right), 1./corr_xi);
+                  TH1F_right_histos["xi_gen_rp_right_cut_nojet_bottom"]->Fill(xi_gen_proton_right, 1./corr_xi);
+                  TH1F_right_histos["th_x_gen_rp_right_nojet_bottom"]->Fill(theta_x_minus, 1./corr_xi);
+                  TH1F_right_histos["th_y_gen_rp_right_nojet_bottom"]->Fill(theta_y_minus, 1./corr_xi);
+                } 
+            }
         }   
 
         if (rp_right && jet_gen_sel){
@@ -479,7 +598,8 @@ void MCAnalysis::getMCHistos ( string const& mc, bool reweight, bool reweight_sl
         }
 
         if (jet1_gen_pt>20 && jet2_gen_pt>20 && fabs(jet1_gen_eta)<4.4 && fabs(jet2_gen_eta)<4.4){
-              TH1F_right_histos["xi_cms_gen_right_sasha"]->Fill(xi_gen_cms_minus,1.);
+              TH1F_right_histos["xi_cms_gen_right_sasha"]->Fill(xi_gen_cms_minus, event_weight_minus);
+              TH1F_right_histos["xi_gen_right_sasha"]->Fill(xi_gen_proton_right, event_weight_minus);
         }
 
         if (jet_gen_sel){
@@ -490,32 +610,36 @@ void MCAnalysis::getMCHistos ( string const& mc, bool reweight, bool reweight_sl
 
         TH2F_right_histos["log_t_vs_log_xi_right"]->Fill(log10(fabs(t_gen_proton_right)), log10(xi_gen_proton_right));
 
+        if (jet_rec_sel && (rp_right_accep_top || rp_right_accep_bottom)){
+            TH1F_right_histos["xi_rec_right_cut_sasha"]->Fill(xi_rec_proton_right, event_weight_minus*eff_trigger*eff_proton/corr_xi);
+            TH1F_right_histos["xi_rec_cms_minus_sasha"]->Fill(1.25*xi_rec_cms_minus, event_weight_minus*eff_trigger*eff_proton/corr_xi);
+        }    
+
         if (jet_rec_sel && proton_rec_sel && rp_right_sel){
-              TH1F_right_histos["xi_cms_minus_totem_rec_right"]->Fill(xi_rec_cms_minus - xi_rec_proton_right, event_weight_minus);
-              TH1F_right_histos["xi_cms_minus_totem_rec_right_bin"]->Fill(xi_rec_cms_minus - xi_rec_proton_right, event_weight_minus);
-              TH1F_right_histos["xi_rec_right"]->Fill(xi_rec_proton_right, event_weight_minus);
+              TH1F_right_histos["xi_cms_minus_totem_rec_right"]->Fill(xi_rec_cms_minus - xi_rec_proton_right, event_weight_minus*eff_trigger*eff_proton/corr_xi);
+              TH1F_right_histos["xi_cms_minus_totem_rec_right_bin"]->Fill(xi_rec_cms_minus - xi_rec_proton_right, event_weight_minus*eff_trigger*eff_proton/corr_xi);
+              TH1F_right_histos["xi_rec_right"]->Fill(xi_rec_proton_right, event_weight_minus*eff_trigger*eff_proton/corr_xi);
               if (xi_rec_cms_minus - xi_rec_proton_right<0){
-                  TH1F_right_histos["xi_rec_right_cut"]->Fill(xi_rec_proton_right, event_weight_minus*eff_proton/corr_xi);
-                  TH1F_right_histos["xi_rec_right_cut_sasha"]->Fill(xi_rec_proton_right, event_weight_minus*eff_proton/corr_xi);
-	              TH1F_right_histos["t_rec_right_cut"]->Fill(fabs(t_rec_proton_right), event_weight_minus*eff_proton/corr_xi); 
-                  TH1F_right_histos["beta_right_cut"]->Fill(beta_rec_proton_right, event_weight_minus*eff_proton/corr_xi);
-                  TH1F_right_histos["log_x_rec_right_cut"]->Fill(log10(x_rec_right), event_weight_minus*eff_proton/corr_xi);
-              	  TH1F_right_histos["pt_jet1_right_cut"]->Fill(jet1_rec_pt, event_weight_minus*eff_proton/corr_xi);
-                  TH1F_right_histos["pt_jet2_right_cut"]->Fill(jet2_rec_pt, event_weight_minus*eff_proton/corr_xi);
-                  TH1F_right_histos["eta_jet1_right_cut"]->Fill(jet1_rec_eta, event_weight_minus*eff_proton/corr_xi);
-                  TH1F_right_histos["eta_jet2_right_cut"]->Fill(jet2_rec_eta, event_weight_minus*eff_proton/corr_xi);
+                  TH1F_right_histos["xi_rec_right_cut"]->Fill(xi_rec_proton_right, event_weight_minus*eff_trigger*eff_proton/corr_xi);
+                  TH1F_right_histos["t_rec_right_cut"]->Fill(fabs(t_rec_proton_right), event_weight_minus*eff_trigger*eff_proton/corr_xi); 
+                  TH1F_right_histos["beta_right_cut"]->Fill(beta_rec_proton_right, event_weight_minus*eff_trigger*eff_proton/corr_xi);
+                  TH1F_right_histos["log_x_rec_right_cut"]->Fill(log10(x_rec_right), event_weight_minus*eff_trigger*eff_proton/corr_xi);
+                  TH1F_right_histos["pt_jet1_right_cut"]->Fill(jet1_rec_pt, event_weight_minus*eff_trigger*eff_proton/corr_xi);
+                  TH1F_right_histos["pt_jet2_right_cut"]->Fill(jet2_rec_pt, event_weight_minus*eff_trigger*eff_proton/corr_xi);
+                  TH1F_right_histos["eta_jet1_right_cut"]->Fill(jet1_rec_eta, event_weight_minus*eff_trigger*eff_proton/corr_xi);
+                  TH1F_right_histos["eta_jet2_right_cut"]->Fill(jet2_rec_eta, event_weight_minus*eff_trigger*eff_proton/corr_xi);
                   TH1F_right_histos["x_rec_gen_right"]->Fill(log10(x_rec_right)-log10(x_gen_right),1);
-                  TH1F_right_histos["th_x_rec_right"]->Fill(theta_x_minus_smear, event_weight_minus*eff_proton/corr_xi);
-                  TH1F_right_histos["th_y_rec_right"]->Fill(theta_y_minus_smear, event_weight_minus*eff_proton/corr_xi);
-                  TH1F_right_histos["delta_eta_jets_right_cut"]->Fill(jet1_rec_eta - jet2_rec_eta, event_weight_minus*eff_proton/corr_xi);
-                  TH1F_right_histos["delta_phi_jets_right_cut"]->Fill(jet1_rec_phi - jet2_rec_phi, event_weight_minus*eff_proton/corr_xi);
-                  TH1F_right_histos["xi_cms_rec_right_cut_sasha"]->Fill(xi_rec_cms_minus, event_weight_minus*eff_proton/corr_xi);
-                  TH1F_right_histos["mass_jj_rec_right"]->Fill(sqrt(mjj2_rec_minus), event_weight_minus*eff_proton/corr_xi);
-                  TH1F_right_histos["mass_x_rec_right"]->Fill(4000*sqrt(xi_rec_proton_right), event_weight_minus*eff_proton/corr_xi);
-                  TH1F_right_histos["r_jj_rec_right"]->Fill(sqrt(mjj2_rec_minus)/(4000*sqrt(xi_rec_proton_right)), event_weight_minus*eff_proton/corr_xi);
-                  TH1F_right_histos["reco_t_right"]->Fill(fabs(t_rec_proton_right), event_weight_minus*eff_proton/corr_xi);
-                  TH1F_right_histos["reco_xi_right"]->Fill(xi_rec_proton_right, event_weight_minus*eff_proton/corr_xi);
-                  TH1F_right_histos["reco_logx_right"]->Fill(log10(x_rec_right), event_weight_minus*eff_proton/corr_xi);
+                  TH1F_right_histos["th_x_rec_right"]->Fill(theta_x_minus_smear, event_weight_minus*eff_trigger*eff_proton/corr_xi);
+                  TH1F_right_histos["th_y_rec_right"]->Fill(theta_y_minus_smear, event_weight_minus*eff_trigger*eff_proton/corr_xi);
+                  TH1F_right_histos["delta_eta_jets_right_cut"]->Fill(jet1_rec_eta - jet2_rec_eta, event_weight_minus*eff_trigger*eff_proton/corr_xi);
+                  TH1F_right_histos["delta_phi_jets_right_cut"]->Fill(jet1_rec_phi - jet2_rec_phi, event_weight_minus*eff_trigger*eff_proton/corr_xi);
+                  TH1F_right_histos["xi_cms_rec_right_cut_sasha"]->Fill(xi_rec_cms_minus, event_weight_minus*eff_trigger*eff_proton/corr_xi);
+                  TH1F_right_histos["mass_jj_rec_right"]->Fill(sqrt(mjj2_rec_minus), event_weight_minus*eff_trigger*eff_proton/corr_xi);
+                  TH1F_right_histos["mass_x_rec_right"]->Fill(4000*sqrt(xi_rec_proton_right), event_weight_minus*eff_trigger*eff_proton/corr_xi);
+                  TH1F_right_histos["r_jj_rec_right"]->Fill(sqrt(mjj2_rec_minus)/(4000*sqrt(xi_rec_proton_right)), event_weight_minus*eff_trigger*eff_proton/corr_xi);
+                  TH1F_right_histos["reco_t_right"]->Fill(fabs(t_rec_proton_right), event_weight_minus*eff_trigger*eff_proton/corr_xi);
+                  TH1F_right_histos["reco_xi_right"]->Fill(xi_rec_proton_right, event_weight_minus*eff_trigger*eff_proton/corr_xi);
+                  TH1F_right_histos["reco_logx_right"]->Fill(log10(x_rec_right), event_weight_minus*eff_trigger*eff_proton/corr_xi);
 
                   // if (!(jet_gen_sel && proton_gen_sel)){
                   //    t_minus_response.Fake(fabs(t_rec_proton_right), event_weight_minus*norm_minus*eff_proton/corr_xi);
@@ -528,12 +652,12 @@ void MCAnalysis::getMCHistos ( string const& mc, bool reweight, bool reweight_sl
                      // t_minus_response.Fill(fabs(t_rec_proton_right), fabs(t_gen_proton_right), event_weight_minus*norm_minus*eff_proton/corr_xi);
                      // xi_minus_response.Fill(xi_rec_proton_right, xi_gen_proton_right, event_weight_minus*norm_minus*eff_proton/corr_xi);
                      // logx_minus_response.Fill(log10(x_rec_right),log10(x_gen_right), event_weight_minus*norm_minus*eff_proton/corr_xi);
-                     TH2F_right_histos["xi_minus_th2"]->Fill(xi_rec_proton_right, xi_gen_proton_right, event_weight_minus*norm_minus*eff_proton/corr_xi);
-                     TH2F_right_histos["logx_minus_th2"]->Fill(log10(x_rec_right),log10(x_gen_right), event_weight_minus*norm_minus*eff_proton/corr_xi);
-                     TH2F_right_histos["t_minus_th2"]->Fill(fabs(t_rec_proton_right), fabs(t_gen_proton_right), event_weight_minus*norm_minus*eff_proton/corr_xi);
-                     TH2F_right_histos["response_t_right"]->Fill(fabs(t_rec_proton_right), fabs(t_gen_proton_right), event_weight_minus*eff_proton*norm_minus/corr_xi);
-                     TH2F_right_histos["response_xi_right"]->Fill(xi_rec_proton_right, xi_gen_proton_right, event_weight_minus*eff_proton*norm_minus/corr_xi);
-                     TH2F_right_histos["response_logx_right"]->Fill(log10(x_rec_right), log10(x_gen_right), event_weight_minus*eff_proton*norm_minus/corr_xi);
+                     TH2F_right_histos["xi_minus_th2"]->Fill(xi_rec_proton_right, xi_gen_proton_right, event_weight_minus*norm_minus*eff_trigger*eff_proton/corr_xi);
+                     TH2F_right_histos["logx_minus_th2"]->Fill(log10(x_rec_right),log10(x_gen_right), event_weight_minus*norm_minus*eff_trigger*eff_proton/corr_xi);
+                     TH2F_right_histos["t_minus_th2"]->Fill(fabs(t_rec_proton_right), fabs(t_gen_proton_right), event_weight_minus*norm_minus*eff_trigger*eff_proton/corr_xi);
+                     TH2F_right_histos["response_t_right"]->Fill(fabs(t_rec_proton_right), fabs(t_gen_proton_right), event_weight_minus*eff_proton*norm_minus*eff_trigger/corr_xi);
+                     TH2F_right_histos["response_xi_right"]->Fill(xi_rec_proton_right, xi_gen_proton_right, event_weight_minus*eff_proton*norm_minus*eff_trigger/corr_xi);
+                     TH2F_right_histos["response_logx_right"]->Fill(log10(x_rec_right), log10(x_gen_right), event_weight_minus*eff_proton*norm_minus*eff_trigger/corr_xi);
                    }  
 // 	              //     if(jet1_gen_pt>20 && jet2_gen_pt>20 && fabs(jet1_gen_eta)<4.4 && fabs(jet2_gen_eta)<4.4 && proton_gen_sel)
 // 	              //        xi_cms_minus_response.Fill(xi_rec_cms_minus, xi_gen_cms_minus, event_weight_minus*norm_minus*eff_proton/corr_xi);
@@ -541,18 +665,18 @@ void MCAnalysis::getMCHistos ( string const& mc, bool reweight, bool reweight_sl
         }
 
         if (jet_rec_sel && proton_rec_sel){
-        	if (rp_right_accep_top && fid_cuts_nom_right_top) TH1F_right_histos["xi_cms_minus_totem_rec_right_top"]->Fill(xi_rec_cms_minus - xi_rec_proton_right, event_weight_minus);
-        	if (rp_right_accep_bottom && fid_cuts_nom_right_bottom) TH1F_right_histos["xi_cms_minus_totem_rec_right_bottom"]->Fill(xi_rec_cms_minus - xi_rec_proton_right, event_weight_minus);
+        	if (rp_right_accep_top && fid_cuts_nom_right_top) TH1F_right_histos["xi_cms_minus_totem_rec_right_top"]->Fill(xi_rec_cms_minus - xi_rec_proton_right, event_weight_minus*eff_trigger*eff_proton/corr_xi);
+        	if (rp_right_accep_bottom && fid_cuts_nom_right_bottom) TH1F_right_histos["xi_cms_minus_totem_rec_right_bottom"]->Fill(xi_rec_cms_minus - xi_rec_proton_right, event_weight_minus*eff_trigger*eff_proton/corr_xi);
             if (xi_rec_cms_minus - xi_rec_proton_right<0){
             	if (rp_right_accep_top && fid_cuts_nom_right_top){
-	                    TH1F_right_histos["xi_rec_right_cut_top"]->Fill(xi_rec_proton_right, event_weight_minus*eff_proton/corr_xi);
-                    TH1F_right_histos["t_rec_right_cut_top"]->Fill(fabs(t_rec_proton_right), event_weight_minus*eff_proton/corr_xi); 
-                    TH1F_right_histos["log_x_rec_right_cut_top"]->Fill(log10(x_rec_right), event_weight_minus*eff_proton/corr_xi);
+	                TH1F_right_histos["xi_rec_right_cut_top"]->Fill(xi_rec_proton_right, event_weight_minus*eff_trigger*eff_proton/corr_xi);
+                    TH1F_right_histos["t_rec_right_cut_top"]->Fill(fabs(t_rec_proton_right),event_weight_minus*eff_trigger*eff_proton/corr_xi); 
+                    TH1F_right_histos["log_x_rec_right_cut_top"]->Fill(log10(x_rec_right), event_weight_minus*eff_trigger*eff_proton/corr_xi);
             	}
             	if (rp_right_accep_bottom && fid_cuts_nom_right_bottom){
-	                    TH1F_right_histos["xi_rec_right_cut_bottom"]->Fill(xi_rec_proton_right, event_weight_minus*eff_proton/corr_xi);
-                    TH1F_right_histos["t_rec_right_cut_bottom"]->Fill(fabs(t_rec_proton_right), event_weight_minus*eff_proton/corr_xi); 
-                    TH1F_right_histos["log_x_rec_right_cut_bottom"]->Fill(log10(x_rec_right), event_weight_minus*eff_proton/corr_xi);
+	                    TH1F_right_histos["xi_rec_right_cut_bottom"]->Fill(xi_rec_proton_right, event_weight_minus*eff_trigger*eff_proton/corr_xi);
+                    TH1F_right_histos["t_rec_right_cut_bottom"]->Fill(fabs(t_rec_proton_right), event_weight_minus*eff_trigger*eff_proton/corr_xi); 
+                    TH1F_right_histos["log_x_rec_right_cut_bottom"]->Fill(log10(x_rec_right), event_weight_minus*eff_trigger*eff_proton/corr_xi);
             	}
             }
         }
@@ -582,7 +706,7 @@ void MCAnalysis::getMCHistos ( string const& mc, bool reweight, bool reweight_sl
 // 	        }    
     }
 
-
+cout<<regg<<endl;
     TFile* file_plus; double norm_plus = 0;
     if (mc == "pomwig_pom"){ file_plus = pomwig_pom_plus; norm_plus = norm_pomwig_plus_pom;}
     if (mc == "pomwig_regg"){ file_plus = pomwig_regg_plus; norm_plus = norm_pomwig_plus_regg;}
@@ -648,6 +772,9 @@ void MCAnalysis::getMCHistos ( string const& mc, bool reweight, bool reweight_sl
         // if (single_vertex && nVtx_left!=1) continue;
         if (nVtx_left<1) continue;
 
+        ///trigger efficiency
+        double eff_trigger = func_trigger->Eval(jet2_rec_pt_left);
+
         xi_rec_proton_left = (unc_gauss == false) ? xi_rec_proton_left : xi_rec_proton_left_gauss;
         t_rec_proton_left = (unc_gauss == false) ? t_rec_proton_left : t_rec_proton_left_gauss; 
 
@@ -682,10 +809,58 @@ void MCAnalysis::getMCHistos ( string const& mc, bool reweight, bool reweight_sl
         double corr_xi = 1;//(xi_rec_proton_right_pom > 0.08) ? 1.32864 : 1.;
         if (rec_corr) xi_thx_corr(xi_gen_proton_left, theta_x_plus, corr_xi);
 
-      	// if ((rp_left_accep_top && fid_cuts_unc_left_top) && !(rp_left_accep_bottom && fid_cuts_unc_left_bottom)) TH2F_left_histos["rp_pos_left"]->Fill(rp_xpos_024*1000, rp_ypos_024*1000, 1.);
-          // if (!(rp_left_accep_top && fid_cuts_unc_left_top) && (rp_left_accep_bottom && fid_cuts_unc_left_bottom)) TH2F_left_histos["rp_pos_left"]->Fill(rp_xpos_025*1000, rp_ypos_025*1000, 1.);
+      	if ((rp_left_accep_top && fid_cuts_nom_left_top) && !(rp_left_accep_bottom && fid_cuts_nom_left_bottom)) TH2F_left_histos["rp_pos_left"]->Fill(rp_xpos_024*1000, rp_ypos_024*1000, 1.);
+        if (!(rp_left_accep_top && fid_cuts_nom_left_top) && (rp_left_accep_bottom && fid_cuts_nom_left_bottom)) TH2F_left_histos["rp_pos_left"]->Fill(rp_xpos_025*1000, rp_ypos_025*1000, 1.);
 
 	    TH2F_left_histos["delta_thx_vs_delta_xi_left"]->Fill(theta_x_plus_smear-theta_x_plus, xi_rec_proton_left-xi_gen_proton_left, 1.);
+
+        if(proton_gen_sel){
+             TH1F_left_histos["t_gen_left_cut_nojet"]->Fill(fabs(t_gen_proton_left), 1.);
+             TH1F_left_histos["xi_gen_left_cut_nojet"]->Fill(xi_gen_proton_left, 1.);
+             TH2F_left_histos["t_gen_vs_xi_gen_plus"]->Fill( fabs(t_gen_proton_left), xi_gen_proton_left, 1.);
+             TH1F_left_histos["t_rec_left_cut_nojet"]->Fill(fabs(t_rec_proton_left), 1.);
+             TH1F_left_histos["xi_rec_left_cut_nojet"]->Fill(xi_rec_proton_left, 1.);
+             TH1F_left_histos["th_x_gen_left_nojet"]->Fill(theta_x_plus, 1.);
+             TH1F_left_histos["th_y_gen_left_nojet"]->Fill(theta_y_plus, 1.);
+             TH2F_left_histos["theta_x_vs_xi_gen_nojet"]->Fill(xi_gen_proton_left, theta_x_plus, 1.);
+             if(rp_left_sel){
+               TH1F_left_histos["t_gen_rp_left_cut_nojet"]->Fill(fabs(t_gen_proton_left), 1.);
+               TH1F_left_histos["xi_gen_rp_left_cut_nojet"]->Fill(xi_gen_proton_left, 1.);
+               TH1F_left_histos["th_x_gen_rp_left_nojet"]->Fill(theta_x_plus, 1.);
+               TH1F_left_histos["th_y_gen_rp_left_nojet"]->Fill(theta_y_plus, 1.);
+               TH2F_left_histos["theta_x_vs_xi_gen_rp_nojet"]->Fill(xi_gen_proton_left, theta_x_plus, 1.);
+               TH1F_left_histos["t_gen_rp_left_cut_nojet_aftercorr"]->Fill(fabs(t_gen_proton_left), 1./corr_xi);
+               TH1F_left_histos["xi_gen_rp_left_cut_nojet_aftercorr"]->Fill(xi_gen_proton_left, 1./corr_xi);
+               TH1F_left_histos["th_x_gen_rp_left_nojet_aftercorr"]->Fill(theta_x_plus, 1./corr_xi);
+               TH1F_left_histos["th_y_gen_rp_left_nojet_aftercorr"]->Fill(theta_y_plus, 1./corr_xi);
+               TH2F_left_histos["theta_x_vs_xi_gen_rp_nojet_aftercorr"]->Fill(xi_gen_proton_left, theta_x_plus, 1./corr_xi);
+             }
+            if(theta_y_plus >= 0){
+               TH1F_left_histos["t_gen_left_cut_nojet_top"]->Fill(fabs(t_gen_proton_left), 1.);
+               TH1F_left_histos["xi_gen_left_cut_nojet_top"]->Fill(xi_gen_proton_left, 1.);
+               TH1F_left_histos["th_x_gen_left_nojet_top"]->Fill(theta_x_plus, 1.);
+               TH1F_left_histos["th_y_gen_left_nojet_top"]->Fill(theta_y_plus, 1.);
+               if (rp_left_accep_top && fid_cuts_nom_left_top){ 
+                  TH1F_left_histos["t_gen_rp_left_cut_nojet_top"]->Fill(fabs(t_gen_proton_left), 1./corr_xi);
+                  TH1F_left_histos["xi_gen_rp_left_cut_nojet_top"]->Fill(xi_gen_proton_left, 1./corr_xi);
+                  TH1F_left_histos["th_x_gen_rp_left_nojet_top"]->Fill(theta_x_plus, 1./corr_xi);
+                  TH1F_left_histos["th_y_gen_rp_left_nojet_top"]->Fill(theta_y_plus, 1./corr_xi);
+                } 
+            }     
+            if(theta_y_plus < 0){
+               TH1F_left_histos["t_gen_left_cut_nojet_bottom"]->Fill(fabs(t_gen_proton_left), 1.);
+               TH1F_left_histos["xi_gen_left_cut_nojet_bottom"]->Fill(xi_gen_proton_left, 1.);
+               TH1F_left_histos["th_x_gen_left_nojet_bottom"]->Fill(theta_x_plus, 1.);
+               TH1F_left_histos["th_y_gen_left_nojet_bottom"]->Fill(theta_y_plus, 1.);
+               if (rp_left_accep_bottom && fid_cuts_nom_left_bottom){ 
+                  TH1F_left_histos["t_gen_rp_left_cut_nojet_bottom"]->Fill(fabs(t_gen_proton_left), 1./corr_xi);
+                  TH1F_left_histos["xi_gen_rp_left_cut_nojet_bottom"]->Fill(xi_gen_proton_left, 1./corr_xi);
+                  TH1F_left_histos["th_x_gen_rp_left_nojet_bottom"]->Fill(theta_x_plus, 1./corr_xi);
+                  TH1F_left_histos["th_y_gen_rp_left_nojet_bottom"]->Fill(theta_y_plus, 1./corr_xi);
+                } 
+            }
+        }   
+
 
     	if(proton_gen_sel){
         	TH1F_left_histos["t_gen_left_cut_nojet"]->Fill(fabs(t_gen_proton_left), 1.);
@@ -725,27 +900,27 @@ void MCAnalysis::getMCHistos ( string const& mc, bool reweight, bool reweight_sl
           TH1F_left_histos["xi_cms_minus_totem_rec_left_bin"]->Fill(xi_rec_cms_plus - xi_rec_proton_left, event_weight_plus);
           TH1F_left_histos["xi_rec_left"]->Fill(xi_rec_proton_left, event_weight_plus);
           if (xi_rec_cms_plus - xi_rec_proton_left<0){
-              TH1F_left_histos["xi_rec_left_cut"]->Fill(xi_rec_proton_left, event_weight_plus*eff_proton/corr_xi);
-              TH1F_left_histos["xi_rec_left_cut_sasha"]->Fill(xi_rec_proton_left, event_weight_plus*eff_proton/corr_xi);
-              TH1F_left_histos["t_rec_left_cut"]->Fill(fabs(t_rec_proton_left), event_weight_plus*eff_proton/corr_xi); 
-              TH1F_left_histos["beta_left_cut"]->Fill(beta_rec_proton_left, event_weight_plus*eff_proton/corr_xi);
-              TH1F_left_histos["log_x_rec_left_cut"]->Fill(log10(x_rec_left), event_weight_plus*eff_proton/corr_xi);
-              TH1F_left_histos["pt_jet1_left_cut"]->Fill(jet1_rec_pt_left, event_weight_plus*eff_proton/corr_xi);
-              TH1F_left_histos["pt_jet2_left_cut"]->Fill(jet2_rec_pt_left, event_weight_plus*eff_proton/corr_xi);
-              TH1F_left_histos["eta_jet1_left_cut"]->Fill(jet1_rec_eta_left, event_weight_plus*eff_proton/corr_xi);
-              TH1F_left_histos["eta_jet2_left_cut"]->Fill(jet2_rec_eta_left, event_weight_plus*eff_proton/corr_xi);
+              TH1F_left_histos["xi_rec_left_cut"]->Fill(xi_rec_proton_left, event_weight_plus*eff_trigger*eff_proton/corr_xi);
+              TH1F_left_histos["xi_rec_left_cut_sasha"]->Fill(xi_rec_proton_left, event_weight_plus*eff_trigger*eff_proton/corr_xi);
+              TH1F_left_histos["t_rec_left_cut"]->Fill(fabs(t_rec_proton_left), event_weight_plus*eff_trigger*eff_proton/corr_xi); 
+              TH1F_left_histos["beta_left_cut"]->Fill(beta_rec_proton_left, event_weight_plus*eff_trigger*eff_proton/corr_xi);
+              TH1F_left_histos["log_x_rec_left_cut"]->Fill(log10(x_rec_left), event_weight_plus*eff_trigger*eff_proton/corr_xi);
+              TH1F_left_histos["pt_jet1_left_cut"]->Fill(jet1_rec_pt_left, event_weight_plus*eff_trigger*eff_proton/corr_xi);
+              TH1F_left_histos["pt_jet2_left_cut"]->Fill(jet2_rec_pt_left, event_weight_plus*eff_trigger*eff_proton/corr_xi);
+              TH1F_left_histos["eta_jet1_left_cut"]->Fill(jet1_rec_eta_left, event_weight_plus*eff_trigger*eff_proton/corr_xi);
+              TH1F_left_histos["eta_jet2_left_cut"]->Fill(jet2_rec_eta_left, event_weight_plus*eff_trigger*eff_proton/corr_xi);
               TH1F_left_histos["x_rec_gen_left"]->Fill(log10(x_rec_left)-log10(x_gen_left),1);
-              TH1F_left_histos["th_x_rec_left"]->Fill(theta_x_plus_smear, event_weight_plus*eff_proton/corr_xi);
-              TH1F_left_histos["th_y_rec_left"]->Fill(theta_y_plus_smear, event_weight_plus*eff_proton/corr_xi);
-              TH1F_left_histos["delta_eta_jets_left_cut"]->Fill(jet1_rec_eta_left - jet2_rec_eta_left, event_weight_plus*eff_proton/corr_xi);
-              TH1F_left_histos["delta_phi_jets_left_cut"]->Fill(jet1_rec_phi_left - jet2_rec_phi_left, event_weight_plus*eff_proton/corr_xi);
-              TH1F_left_histos["xi_cms_rec_left_cut_sasha"]->Fill(xi_rec_cms_plus, event_weight_plus*eff_proton/corr_xi);
-              TH1F_left_histos["mass_jj_rec_left"]->Fill(sqrt(mjj2_rec_plus), event_weight_plus*eff_proton/corr_xi);
-              TH1F_left_histos["mass_x_rec_left"]->Fill(4000*sqrt(xi_rec_proton_left), event_weight_plus*eff_proton/corr_xi);
-              TH1F_left_histos["r_jj_rec_left"]->Fill(sqrt(mjj2_rec_plus)/(4000*sqrt(xi_rec_proton_left)), event_weight_plus*eff_proton/corr_xi);
-              TH1F_left_histos["reco_t_left"]->Fill(fabs(t_rec_proton_left), event_weight_plus*eff_proton/corr_xi);
-              TH1F_left_histos["reco_xi_left"]->Fill(xi_rec_proton_left, event_weight_plus*eff_proton/corr_xi);
-              TH1F_left_histos["reco_logx_left"]->Fill(log10(x_rec_left), event_weight_plus*eff_proton/corr_xi);
+              TH1F_left_histos["th_x_rec_left"]->Fill(theta_x_plus_smear, event_weight_plus*eff_trigger*eff_proton/corr_xi);
+              TH1F_left_histos["th_y_rec_left"]->Fill(theta_y_plus_smear, event_weight_plus*eff_trigger*eff_proton/corr_xi);
+              TH1F_left_histos["delta_eta_jets_left_cut"]->Fill(jet1_rec_eta_left - jet2_rec_eta_left, event_weight_plus*eff_trigger*eff_proton/corr_xi);
+              TH1F_left_histos["delta_phi_jets_left_cut"]->Fill(jet1_rec_phi_left - jet2_rec_phi_left, event_weight_plus*eff_trigger*eff_proton/corr_xi);
+              TH1F_left_histos["xi_cms_rec_left_cut_sasha"]->Fill(xi_rec_cms_plus, event_weight_plus*eff_trigger*eff_proton/corr_xi);
+              TH1F_left_histos["mass_jj_rec_left"]->Fill(sqrt(mjj2_rec_plus), event_weight_plus*eff_trigger*eff_proton/corr_xi);
+              TH1F_left_histos["mass_x_rec_left"]->Fill(4000*sqrt(xi_rec_proton_left), event_weight_plus*eff_trigger*eff_proton/corr_xi);
+              TH1F_left_histos["r_jj_rec_left"]->Fill(sqrt(mjj2_rec_plus)/(4000*sqrt(xi_rec_proton_left)), event_weight_plus*eff_trigger*eff_proton/corr_xi);
+              TH1F_left_histos["reco_t_left"]->Fill(fabs(t_rec_proton_left), event_weight_plus*eff_trigger*eff_proton/corr_xi);
+              TH1F_left_histos["reco_xi_left"]->Fill(xi_rec_proton_left, event_weight_plus*eff_trigger*eff_proton/corr_xi);
+              TH1F_left_histos["reco_logx_left"]->Fill(log10(x_rec_left), event_weight_plus*eff_trigger*eff_proton/corr_xi);
 
         //       // if (!(jet_gen_sel && proton_gen_sel)){
         //       //    t_plus_response.Fake(fabs(t_rec_proton_left), event_weight_plus*norm_plus*eff_proton/corr_xi);
@@ -758,12 +933,12 @@ void MCAnalysis::getMCHistos ( string const& mc, bool reweight, bool reweight_sl
         //          // t_plus_response.Fill(fabs(t_rec_proton_left), fabs(t_gen_proton_left), event_weight_plus*norm_plus*eff_proton/corr_xi);
         //          // xi_plus_response.Fill(xi_rec_proton_left, xi_gen_proton_left, event_weight_plus*norm_plus*eff_proton/corr_xi);
         //          // logx_plus_response.Fill(log10(x_rec_left),log10(x_gen_left), event_weight_plus*norm_plus*eff_proton/corr_xi);
-                 TH2F_left_histos["xi_plus_th2"]->Fill(xi_rec_proton_left, xi_gen_proton_left, event_weight_plus*norm_plus*eff_proton/corr_xi);
-                 TH2F_left_histos["logx_plus_th2"]->Fill(log10(x_rec_left),log10(x_gen_left), event_weight_plus*norm_plus*eff_proton/corr_xi);
-                 TH2F_left_histos["t_plus_th2"]->Fill(fabs(t_rec_proton_left), fabs(t_gen_proton_left), event_weight_plus*norm_plus*eff_proton/corr_xi);
-                 TH2F_left_histos["response_t_left"]->Fill(fabs(t_rec_proton_left), fabs(t_gen_proton_left), event_weight_plus*eff_proton*norm_plus/corr_xi);
-                 TH2F_left_histos["response_xi_left"]->Fill(xi_rec_proton_left, xi_gen_proton_left, event_weight_plus*eff_proton*norm_plus/corr_xi);
-                 TH2F_left_histos["response_logx_left"]->Fill(log10(x_rec_left), log10(x_gen_left), event_weight_plus*eff_proton*norm_plus/corr_xi);
+                 TH2F_left_histos["xi_plus_th2"]->Fill(xi_rec_proton_left, xi_gen_proton_left, event_weight_plus*norm_plus*eff_proton*eff_trigger/corr_xi);
+                 TH2F_left_histos["logx_plus_th2"]->Fill(log10(x_rec_left),log10(x_gen_left), event_weight_plus*norm_plus*eff_proton*eff_trigger/corr_xi);
+                 TH2F_left_histos["t_plus_th2"]->Fill(fabs(t_rec_proton_left), fabs(t_gen_proton_left), event_weight_plus*norm_plus*eff_proton*eff_trigger/corr_xi);
+                 TH2F_left_histos["response_t_left"]->Fill(fabs(t_rec_proton_left), fabs(t_gen_proton_left), event_weight_plus*eff_proton*norm_plus*eff_trigger/corr_xi);
+                 TH2F_left_histos["response_xi_left"]->Fill(xi_rec_proton_left, xi_gen_proton_left, event_weight_plus*eff_proton*norm_plus*eff_trigger/corr_xi);
+                 TH2F_left_histos["response_logx_left"]->Fill(log10(x_rec_left), log10(x_gen_left), event_weight_plus*eff_proton*norm_plus*eff_trigger/corr_xi);
                 }  
         //         // if(jet1_gen_pt>20 && jet2_gen_pt>20 && fabs(jet1_gen_eta)<4.4 && fabs(jet2_gen_eta)<4.4 && proton_gen_sel)
         //         //  xi_cms_plus_response.Fill(xi_rec_cms_plus, xi_gen_cms_plus, event_weight_plus*norm_plus*eff_proton/corr_xi);
@@ -771,18 +946,18 @@ void MCAnalysis::getMCHistos ( string const& mc, bool reweight, bool reweight_sl
         }     
       
         if (jet_rec_sel && proton_rec_sel){
-        	if (rp_left_accep_top && fid_cuts_nom_left_top) TH1F_left_histos["xi_cms_minus_totem_rec_left_top"]->Fill(xi_rec_cms_plus - xi_rec_proton_left, event_weight_plus);
-        	if (rp_left_accep_bottom && fid_cuts_nom_left_bottom) TH1F_left_histos["xi_cms_minus_totem_rec_left_bottom"]->Fill(xi_rec_cms_plus - xi_rec_proton_left, event_weight_plus);
+        	if (rp_left_accep_top && fid_cuts_nom_left_top) TH1F_left_histos["xi_cms_minus_totem_rec_left_top"]->Fill(xi_rec_cms_plus - xi_rec_proton_left, event_weight_plus*eff_trigger*eff_proton/corr_xi);
+        	if (rp_left_accep_bottom && fid_cuts_nom_left_bottom) TH1F_left_histos["xi_cms_minus_totem_rec_left_bottom"]->Fill(xi_rec_cms_plus - xi_rec_proton_left, event_weight_plus*eff_trigger*eff_proton/corr_xi);
             if (xi_rec_cms_plus - xi_rec_proton_left<0){
             	if (rp_left_accep_top && fid_cuts_nom_left_top){
-	                TH1F_left_histos["xi_rec_left_cut_top"]->Fill(xi_rec_proton_left, event_weight_plus*eff_proton/corr_xi);
-                    TH1F_left_histos["t_rec_left_cut_top"]->Fill(fabs(t_rec_proton_left), event_weight_plus*eff_proton/corr_xi); 
-                    TH1F_left_histos["log_x_rec_left_cut_top"]->Fill(log10(x_rec_left), event_weight_plus*eff_proton/corr_xi);
+	                TH1F_left_histos["xi_rec_left_cut_top"]->Fill(xi_rec_proton_left, event_weight_plus*eff_trigger*eff_proton/corr_xi);
+                    TH1F_left_histos["t_rec_left_cut_top"]->Fill(fabs(t_rec_proton_left), event_weight_plus*eff_trigger*eff_proton/corr_xi); 
+                    TH1F_left_histos["log_x_rec_left_cut_top"]->Fill(log10(x_rec_left), event_weight_plus*eff_trigger*eff_proton/corr_xi);
             	}
             	if (rp_left_accep_bottom && fid_cuts_nom_left_bottom){
-	                    TH1F_left_histos["xi_rec_left_cut_bottom"]->Fill(xi_rec_proton_left, event_weight_plus*eff_proton/corr_xi);
-                    TH1F_left_histos["t_rec_left_cut_bottom"]->Fill(fabs(t_rec_proton_left), event_weight_plus*eff_proton/corr_xi); 
-                    TH1F_left_histos["log_x_rec_left_cut_bottom"]->Fill(log10(x_rec_left), event_weight_plus*eff_proton/corr_xi);
+	                TH1F_left_histos["xi_rec_left_cut_bottom"]->Fill(xi_rec_proton_left, event_weight_plus*eff_trigger*eff_proton/corr_xi);
+                    TH1F_left_histos["t_rec_left_cut_bottom"]->Fill(fabs(t_rec_proton_left), event_weight_plus*eff_trigger*eff_proton/corr_xi); 
+                    TH1F_left_histos["log_x_rec_left_cut_bottom"]->Fill(log10(x_rec_left), event_weight_plus*eff_trigger*eff_proton/corr_xi);
             	}
             }
         }
@@ -834,9 +1009,9 @@ void MCAnalysis::getMCHistos ( string const& mc, bool reweight, bool reweight_sl
 
 void MCAnalysis::addHistosPomwigPomRegg (void){
 
-	TFile* histos_pomwig_pom = TFile::Open("histos_pomwig_pom_betarew_sloperew_unc_gauss.root","READ");
-	TFile* histos_pomwig_regg = TFile::Open("histos_pomwig_regg_betarew_sloperew_unc_gauss.root","READ");
-    TFile* outfile = new TFile("pomwig_pom_plus_regg_betarew_sloperew_unc_gauss.root", "RECREATE");
+	TFile* histos_pomwig_pom = TFile::Open("histos_pomwig_pom_betarew_sloperew_nominal.root","READ");
+	TFile* histos_pomwig_regg = TFile::Open("histos_pomwig_regg_betarew_sloperew_nominal.root","READ");
+    TFile* outfile = new TFile("pomwig_pom_plus_regg_betarew_sloperew_nominal.root", "RECREATE");
 
 
 	if (!histos_pomwig_pom || !histos_pomwig_regg) { cout << "Pomwig files do not exist" << endl; return; }
@@ -907,8 +1082,11 @@ void MCAnalysis::getUnfoldingTest (TH1F* reco, TH1F* truth, TH2F* response, TH1F
 // int main(void)
 // {
 // 	MCAnalysis pomwig, regg;
-// 	pomwig.getMCHistos("pythia8_4c", true,true,false,false,false,true);
-// 	pomwig.getMCHistos("pythia8_cuetp8m1", true,true,false,false,false,true);
+//  //    pomwig.getMCHistos("pomwig_regg", true,true,false,false,false,false,false, false);
+//  //    // pomwig.getMCHistos("pomwig_pom", true,true,false,false,false,false, false, true);
+//  // //    pomwig.getMCHistos("pomwig_regg", false,false,false,false,true,false);
+// 	// pomwig.getMCHistos("pythia8_4c", true,true,false,false,false,false,false,false);
+// 	// pomwig.getMCHistos("pythia8_cuetp8m1", true,true,false,false,false,false,false,false);
 //     // pomwig.getMCHistos("pomwig_regg", true,false,false,false,false,false);
 //     // pomwig.getMCHistos("pomwig_regg", false,true,false,false,false,false);
 //     // pomwig.getMCHistos("pomwig_regg", true,true,false,false,false,false);
@@ -917,7 +1095,7 @@ void MCAnalysis::getUnfoldingTest (TH1F* reco, TH1F* truth, TH2F* response, TH1F
 //     // pomwig.getMCHistos("pomwig_regg", true,true,false,false,true,false);
 //     // pomwig.getMCHistos("pomwig_regg", true,true,false,false,false,true);
 // 	// rec->Draw();
-// 	// pomwig.addHistosPomwigPomRegg();
+// 	pomwig.addHistosPomwigPomRegg();
 // 	// pomwig.getUnfoldedHistos(rec, gen, response);
 // 	return 0;
 // }
