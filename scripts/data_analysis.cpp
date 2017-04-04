@@ -733,6 +733,9 @@ void DataAnalysis::AssymError (TH1F* histo_unfolded_nominal, TH1F* histo_jes_up_
 
 
     for(int i = initial; i <= Nbins; ++i){
+    // for(int i = 4; i <= 4; ++i){
+    // for(int i = 2; i <= 2; ++i){
+    // for(int i = 6; i <= 6; ++i){
     // for(int i = 8; i <= 8; ++i){
  
         y[i] = y_ref->GetBinContent(i); 
@@ -960,10 +963,10 @@ void DataAnalysis::AssymError (TH1F* histo_unfolded_nominal, TH1F* histo_jes_up_
         unc_bias_dw->SetLineColor(38); 
         unc_trigger_up->SetLineColor(5);    
         unc_trigger_dw->SetLineColor(5);    
-        unc_jesup->SetYTitle("#sigma(%)");    
-        if (result == "t") unc_jesup->SetXTitle("|t| (GeV)^{2}");    
-        if (result == "xi") unc_jesup->SetXTitle("#xi");    
-        if (result == "x") unc_jesup->SetXTitle("log_{10} x");    
+           
+        if (result == "t"){ unc_jesup->SetXTitle("|t| (GeV)^{2}"); unc_jesup->SetYTitle("#Delta(|t|)"); }   
+        if (result == "xi"){ unc_jesup->SetXTitle("#xi");   unc_jesup->SetYTitle("#Delta(#xi)"); }    
+        if (result == "x"){ unc_jesup->SetXTitle("log_{10} x"); unc_jesup->SetYTitle("#Delta(log_{10} x)"); }      
         unc_jesup->Draw("hist");    
         unc_jesdw->Draw("histsame");    
         unc_pfup->Draw("histsame");    
@@ -978,8 +981,8 @@ void DataAnalysis::AssymError (TH1F* histo_unfolded_nominal, TH1F* histo_jes_up_
         unc_rp_dw->Draw("histsame");    
         unc_gauss_up->Draw("histsame");    
         unc_gauss_dw->Draw("histsame");    
-        unc_trigger_up->Draw("histsame");    
-        unc_trigger_dw->Draw("histsame");    
+        // unc_trigger_up->Draw("histsame");    
+        // unc_trigger_dw->Draw("histsame");    
         unc_sector_up->Draw("histsame");    
         unc_sector_dw->Draw("histsame");    
         unc_accep_up->Draw("histsame");    
@@ -990,7 +993,7 @@ void DataAnalysis::AssymError (TH1F* histo_unfolded_nominal, TH1F* histo_jes_up_
         unc_bias_dw->Draw("histsame");  
        TLegend *leg1 = new TLegend(0.2,0.75,0.48,0.9);
        leg1->AddEntry(unc_jesup,"Jet Energy Scale","l");
-       leg1->AddEntry(unc_trigger_up,"Trigger efficiency","l");
+       // leg1->AddEntry(unc_trigger_up,"Trigger efficiency","l");
        leg1->AddEntry(unc_pfup,"Calorimeter Energy Scale","l");
        leg1->AddEntry(unc_backg_up,"Background","l");
        leg1->AddEntry(unc_rp_up,"RPs acceptance","l");
@@ -1020,10 +1023,10 @@ void DataAnalysis::AssymError (TH1F* histo_unfolded_nominal, TH1F* histo_jes_up_
         bias_mc2_unfolded_mc3_dw->SetLineColor(6);  
         bias_mc3_unfolded_mc1_dw->SetLineColor(7);  
         bias_mc3_unfolded_mc2_dw->SetLineColor(41);  
-        bias_mc1_unfolded_mc2->SetYTitle("#sigma(%)");    
-        if (result == "t") bias_mc1_unfolded_mc2->SetXTitle("|t| (GeV)^{2}");    
-        if (result == "xi") bias_mc1_unfolded_mc2->SetXTitle("#xi");    
-        if (result == "x") bias_mc1_unfolded_mc2->SetXTitle("log_{10} x");    
+            
+        if (result == "t"){ bias_mc1_unfolded_mc2->SetXTitle("|t| (GeV)^{2}"); bias_mc1_unfolded_mc2->SetYTitle("#Delta(|t|)");}   
+        if (result == "xi"){ bias_mc1_unfolded_mc2->SetXTitle("#xi"); bias_mc1_unfolded_mc2->SetYTitle("#Delta(#xi)");}      
+        if (result == "x"){ bias_mc1_unfolded_mc2->SetXTitle("log_{10} x"); bias_mc1_unfolded_mc2->SetYTitle("#Delta(log_{10} x)");}       
         bias_mc1_unfolded_mc2->Draw("hist");
         bias_mc1_unfolded_mc3->Draw("histsame");  
         bias_mc2_unfolded_mc1->Draw("histsame");  
@@ -1182,8 +1185,8 @@ void DataAnalysis::AbsoluteSigma (TH1F* data, TH1F* mc_gen, TH1F* mc_rec, double
     int initial = 1;
     // if (result == "x" || result == "ratio") {Nbins = 10; initial = 4; bin = -4+(3*4./15.);}; 
 
-    for(int i = 4; i <= 10; ++i){
-    // for(int i = 1; i <= nbins; ++i){
+    // for(int i = 4; i <= 10; ++i){
+    for(int i = 1; i <= nbins; ++i){
         sum_data_nominal += data->GetBinContent(i); sum_error_data += pow(data->GetBinError(i),2);
         sum_rec += mc_rec->GetBinContent(i);
         sum_gen += mc_gen->GetBinContent(i);
@@ -1193,73 +1196,13 @@ void DataAnalysis::AbsoluteSigma (TH1F* data, TH1F* mc_gen, TH1F* mc_rec, double
     error_data = sqrt(sum_error_data)*sum_gen/sum_rec/luminosity;
 
 }
-// double* DataAnalysis::AbsoluteErrorVariation (TH1F* data_nominal, TH1F* jes_up, TH1F* jes_dw, TH1F* pf_up, TH1F* pf_dw, TH1F* xi_up, TH1F* xi_dw, 
-//     TH1F* rp_y_up, TH1F* rp_y_dw, TH1F* rp_x, TH1F* hera_backg, TH1F* iter, TH1F* data_right, TH1F* data_left, TH1F* mc_nom_gen, TH1F* mc_nom_rec, 
-//     TH1F* mc_rec_norew, TH1F* mc_gen_norew, TH1F* mc_rec_betarew, TH1F* mc_gen_betarew, TH1F* mc_rec_rp_y_up, TH1F* mc_gen_rp_y_up, TH1F* mc_rec_rp_y_dw, 
-//     TH1F* mc_gen_rp_y_dw, TH1F* mc_rec_rp_x, TH1F* mc_gen_rp_x, TH1F* mc_rec_gauss, TH1F* mc_gen_gauss, double sigmas []){
-//     //Absolute systematic uncertainty
-
-//     double sum_data_nominal = 0; double sum_error_data = 0; double sum_rec = 0; double sum_gen = 0; double sum_data_jetup = 0; double sum_data_jetdw = 0;
-//     double sum_data_pfup = 0; double sum_data_pfdw = 0; double sum_data_xiup = 0; double sum_data_xidw = 0; double sum_data_yup = 0; double sum_data_ydw = 0;
-//     double sum_data_x = 0;  double sum_data_backg = 0; double sum_iter = 0; double sum_data_right = 0; double sum_data_left = 0; double sum_rec_yup = 0;
-//     double sum_gen_yup = 0; double sum_rec_ydw = 0; double sum_gen_ydw = 0; double sum_rec_x = 0; double sum_gen_x = 0; double sum_rec_gauss = 0;
-//     double sum_gen_gauss = 0; double sum_rec_norew = 0; double sum_gen_norew = 0; double sum_rec_betarew = 0; double sum_gen_betarew = 0;
-//     double luminosity = 37.5;
-
-//     for(int i = 1; i <= data_nominal->GetNbinsX(); ++i){
-//         sum_data_nominal += data_nominal->GetBinContent(i); sum_error_data += pow(data_nominal->GetBinError(i),2);
-//         sum_rec += mc_nom_rec->GetBinContent(i);
-//         sum_gen += mc_nom_gen->GetBinContent(i);
-//         sum_data_jetup += jes_up->GetBinContent(i); sum_data_jetdw += jes_dw->GetBinContent(i);
-//         sum_data_pfup += pf_up->GetBinContent(i); sum_data_pfdw += pf_dw->GetBinContent(i);
-//         sum_data_xiup += xi_up->GetBinContent(i); sum_data_xidw += xi_dw->GetBinContent(i);
-//         sum_data_yup += rp_y_up->GetBinContent(i); sum_data_ydw += rp_y_dw->GetBinContent(i); sum_data_x += rp_x->GetBinContent(i);
-//         sum_data_backg += hera_backg->GetBinContent(i);
-//         sum_iter += iter->GetBinContent(i);
-//         sum_data_right += data_right->GetBinContent(i); sum_data_left += data_left->GetBinContent(i);
-//         sum_rec_yup += mc_rec_rp_y_up->GetBinContent(i); sum_rec_ydw += mc_rec_rp_y_dw->GetBinContent(i);
-//         sum_gen_yup += mc_gen_rp_y_up->GetBinContent(i); sum_gen_ydw += mc_gen_rp_y_dw->GetBinContent(i);
-//         sum_rec_x += mc_rec_rp_x->GetBinContent(i); sum_gen_x += mc_gen_rp_x->GetBinContent(i);
-//         sum_rec_gauss += mc_rec_gauss->GetBinContent(i); sum_gen_gauss += mc_gen_gauss->GetBinContent(i);
-//         sum_rec_norew += mc_rec_norew->GetBinContent(i); sum_gen_norew += mc_gen_norew->GetBinContent(i);
-//         sum_rec_betarew += mc_rec_betarew->GetBinContent(i); sum_gen_betarew += mc_gen_betarew->GetBinContent(i);
-//     }
-
-//     double sigma_nominal = sum_data_nominal*sum_gen/sum_rec/luminosity;
-//     double sigma_jes_up = sum_data_jetup*sum_gen/sum_rec/luminosity; double sigma_jes_dw = sum_data_jetdw*sum_gen/sum_rec/luminosity;
-//     double sigma_pf_up = sum_data_pfup*sum_gen/sum_rec/luminosity; double sigma_pf_dw = sum_data_pfdw*sum_gen/sum_rec/luminosity;
-//     double sigma_backg = sum_data_backg*sum_gen/sum_rec/luminosity;
-//     double sigma_rp_y_up = sum_data_yup*sum_gen_yup/sum_rec_yup/luminosity; double sigma_rp_y_dw = sum_data_ydw*sum_gen_ydw/sum_rec_ydw/luminosity;
-//     double sigma_rp_x = sum_data_x*sum_gen_x/sum_rec_x/luminosity;
-//     double sigma_gauss = sum_data_nominal*sum_gen_gauss/sum_rec_gauss/luminosity;
-//     double sigma_xi_up = sum_data_xiup*sum_gen/sum_rec/luminosity; double sigma_xi_dw = sum_data_xidw*sum_gen/sum_rec/luminosity;
-//     double sigma_norew = sum_data_nominal*sum_gen_norew/sum_rec_norew/luminosity;
-//     double sigma_betarew = sum_data_nominal*sum_gen_betarew/sum_rec_betarew/luminosity;
-//     double sigma_right = sum_data_right*sum_gen/sum_rec/luminosity; double sigma_left = sum_data_left*sum_gen/sum_rec/luminosity; 
-
-//     sigmas[17] = {sigma_nominal, sigma_jes_up, sigma_jes_dw, sigma_pf_up, sigma_pf_dw, sigma_backg, sigma_rp_y_up, sigma_rp_y_dw, sigma_rp_x, sigma_gauss,
-//         sigma_xi_up, sigma_xi_dw, sigma_betarew, sigma_norew, sum_iter, sigma_right, sigma_left};
-
-//     cout << "" << endl;
-//     cout << "-------------- Absolute systematic uncertainty variation --------------" << endl;
-//     cout << "Absolute cross section: " <<  sigma_nominal << " +/- " <<  sqrt(sum_error_data)*sum_gen/sum_rec/luminosity << endl;
-//     cout << "JES:  " << fabs(sigma_jes_up - sigma_nominal) << " / " << fabs(sigma_jes_dw - sigma_nominal) << endl;
-//     cout << "PF:  " << fabs(sigma_pf_up - sigma_nominal) << " / " << fabs(sigma_pf_dw - sigma_nominal) <<endl;
-//     cout << "Background:   +/- " << fabs(sigma_backg - sigma_nominal)/2 << endl;
-//     cout << "RP:   +/- " << sqrt(pow(sigma_rp_y_up - sigma_nominal, 2) + pow(sigma_rp_y_dw - sigma_nominal, 2) + pow(sigma_rp_x - sigma_nominal, 2))/2 << endl;
-//     cout << "Beam divergence:   +/- "<< fabs(sigma_gauss - sigma_nominal)/2 << endl;
-//     cout << "Horizontal dispersion:  " << fabs(sigma_xi_up - sigma_nominal) << " / " << fabs(sigma_xi_dw - sigma_nominal) << endl;
-//     cout << "t slope:   +/- "<< fabs(sigma_betarew - sigma_nominal)/2 << endl;
-//     cout << "Beta reweight:   +/- "<< fabs(sigma_betarew - sigma_norew)/2 << endl;
-//     cout << "Unfolding regularisation:   +/- "<< fabs(sum_iter - sigma_nominal)/2 << endl;
-//     cout << "Sector:   +/- "<< fabs(sigma_left - sigma_right)/2 << endl;
 
 // }
 DataAnalysis::~DataAnalysis (void) {}
 
 int main() {
 	DataAnalysis data;
-    data.getHistos(false,false,false,false,false,false,false,false,false);
+    data.getHistos(true,false,false,false,false,false,false,false,false);
     // data.getHistos(false,false,false,false,false,false,false,true,false);
 	// data.getHistos(false,false,false,false,false,false,false,false,true);
     DataAnalysis data2;
