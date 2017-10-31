@@ -165,6 +165,7 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
   int nVtx;
   bool select_Vertex;
   double mjj2_gen, mjj2_rec, rp_xpos_20, rp_ypos_20, rp_xpos_21, rp_ypos_21, rp_xpos_120, rp_ypos_120, rp_xpos_121, rp_ypos_121;
+  double thx_plus_for_transport, thy_plus_for_transport;
   TTree* small_tree = new TTree("small_tree","");
   small_tree->Branch("nVtx",&nVtx,"nVtx/I");
   small_tree->Branch("select_Vertex",&select_Vertex,"select_Vertex/O");
@@ -258,6 +259,8 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
   small_tree->Branch("theta_y_plus_smear",&theta_y_plus_smear,"theta_y_plus_smear/D");
   small_tree->Branch("theta_x_minus_smear",&theta_x_minus_smear,"theta_x_minus_smear/D");
   small_tree->Branch("theta_y_minus_smear",&theta_y_minus_smear,"theta_y_minus_smear/D");
+  small_tree->Branch("thx_plus_for_transport",&thx_plus_for_transport,"thx_plus_for_transport/D");
+  small_tree->Branch("thy_plus_for_transport",&thy_plus_for_transport,"thy_plus_for_transport/D");
   small_tree->Branch("px_proton_right",&px_proton_right,"px_proton_right/D");
   small_tree->Branch("px_proton_left",&px_proton_left,"px_proton_left/D");
   small_tree->Branch("py_proton_right",&py_proton_right,"py_proton_right/D");
@@ -800,26 +803,30 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
          t_plus_proton_gen = t_vec_plus_gen.Mag2();
          xi_plus_proton_gen =  ( 1 - (proton_pz_plus/proton_pi) );
          
+         //beam smearing
+         beam_smearing(proton_px_plus, proton_py_plus, proton_pz_plus, proton_energy_plus, 
+                       proton_px_plus_beam_smearing, proton_py_plus_beam_smearing, proton_pz_plus_beam_smearing, proton_energy_plus_beam_smearing);
+
+         TVector3 p_scatt_plus_beam_smearing (proton_px_plus_beam_smearing, proton_py_plus_beam_smearing, proton_pz_plus_beam_smearing);
+  
          // Check
 	 // Variables for transport
-         TVector3 p_scatt_plus_gen (proton_px_plus, proton_py_plus, proton_pz_plus);
-         double p_beam = TMath::Sqrt( proton_pi*proton_pi - M_P*M_P ); 
-         double xi_for_transport = 1. - ( p_scatt_plus_gen.Mag() )/p_beam ;
-         double thx_for_transport =  ( -p_scatt_plus_gen.Px() )/p_beam ;
-         double thy_for_transport =  (  p_scatt_plus_gen.Py() )/p_beam ;
          //TVector3 p_scatt_plus_gen (proton_px_plus, proton_py_plus, proton_pz_plus);
+         double p_beam = TMath::Sqrt( proton_pi*proton_pi - M_P*M_P ); 
+         double xi_for_transport = 1. - ( p_scatt_plus_beam_smearing.Mag() )/p_beam ;
+         double thx_for_transport =  ( -p_scatt_plus_beam_smearing.Px() )/p_beam ;
+         double thy_for_transport =  (  p_scatt_plus_beam_smearing.Py() )/p_beam ;
+         TVector3 p_scatt_plus_gen (proton_px_plus, proton_py_plus, proton_pz_plus);
          //thx_plus_proton = atan(-proton_px_plus/proton_pi);//p_beam_plus.Mag2());
          //thy_plus_proton = atan(proton_py_plus/proton_pi);//p_beam_plus.Mag2());
          double theta_plus = p_scatt_plus_gen.Theta();//acos(proton_pz_plus/p_scatt_plus.Mag());
          double phi_plus = p_scatt_plus_gen.Phi();//acos(proton_px_plus/sqrt(proton_px_plus*proton_px_plus+proton_py_plus*proton_py_plus));
          thx_plus_proton = theta_plus*cos(phi_plus);
          thy_plus_proton = theta_plus*sin(phi_plus);
-        
-         //beam smearing
-         beam_smearing(proton_px_plus, proton_py_plus, proton_pz_plus, proton_energy_plus, 
-                       proton_px_plus_beam_smearing, proton_py_plus_beam_smearing, proton_pz_plus_beam_smearing, proton_energy_plus_beam_smearing);
-
-         TVector3 p_scatt_plus_beam_smearing (proton_px_plus_beam_smearing, proton_py_plus_beam_smearing, proton_pz_plus_beam_smearing);
+       
+         thx_plus_for_transport = thx_for_transport; 
+         thy_plus_for_transport = thy_for_transport;
+ 
          double theta_plus_beam_smearing = p_scatt_plus_beam_smearing.Theta();
          double phi_plus_beam_smearing = p_scatt_plus_beam_smearing.Phi();
          double thx_plus_proton_beam_smearing = theta_plus_beam_smearing*cos(phi_plus_beam_smearing);
