@@ -65,9 +65,12 @@
 //#include "CondFormats/JetMETObjects/interface/FactorizedJetCorrector.h"
 //#include "CondFormats/JetMETObjects/interface/JetCorrectorParameters.h"
 //#include "CondFormats/JetMETObjects/interface/JetCorrectionUncertainty.h"
-#include "JetCorrectorParameters.h"
+#include "CondFormats/JetMETObjects/interface/JetCorrectorParameters.h"
 #include "JetCorrectionUncertainty.h"
 #include "FactorizedJetCorrector.h"
+#include "CondFormats/JetMETObjects/interface/SimpleJetResolution.h"
+#include "CondFormats/JetMETObjects/src/SimpleJetResolution.cc"
+#include "smearedJet.h"
 
 //ROOUNFOLD CLASSES
 //#include "/storage/lhuertas/uerj-1/CMSTOTEM/mc/RooUnfold-1.1.1/src/RooUnfoldResponse.h"
@@ -93,11 +96,13 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
   if (side_minus && side_plus) side = "bothsides";
   TString regg = (reggeon) ? "_reggeon" : ""; 
   file_name = mc + regg + "_" + side + "_ntuple.root";
-  TString outputFileName = "/storage/lhuertas/uerj-1/mc/Workspace/root_files/" + file_name; 
-  //TString outputFileName = "/afs/cern.ch/user/l/lhuertas/" + file_name; 
+  //TString outputFileName = "/storage/lhuertas/uerj-1/mc/Workspace/root_files/" + file_name; 
+  TString outputFileName = "/afs/cern.ch/user/l/lhuertas/" + file_name; 
   cout<<outputFileName<<endl;
 
-  bool use_beam_smearing = true;
+
+  bool use_beam_smearing = false;
+  bool use_beam_smearing_for_transport = true;
 
   bool verbose = false;
   string treeName = "evt";//"cms_totem";
@@ -149,15 +154,20 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
   TH1F* theta = new TH1F("","",100,-0.001, 0.001);
   const Int_t nevt_max_corr = (nevt_max >= 0) ? nevt_max : 99999999;
 
+  TFile* output = new TFile(outputFileName,"RECREATE");
+  output->cd();
+
   bool rp_right, rp_left, rp_right_accep_top, rp_right_accep_bottom, rp_left_accep_top, rp_left_accep_bottom;
   double xi_rec_cms_right, xi_rec_cms_left, xi_gen_cms_right, xi_gen_cms_left, xi_rec_proton_right, xi_rec_proton_left, xi_gen_proton_right, xi_gen_proton_left;
   double t_rec_proton_right, t_rec_proton_left, t_gen_proton_right, t_gen_proton_right_old, t_gen_proton_left, x_rec_right, x_rec_left, x_gen_right, x_gen_left;
+  double x_rec_right_thirdjet, x_rec_left_thirdjet, x_gen_right_thirdjet, x_gen_left_thirdjet;
   double t_rec_proton_right_gauss, t_rec_proton_left_gauss, t_gen_proton_right_gauss, t_gen_proton_left_gauss, xi_rec_proton_right_gauss, xi_rec_proton_left_gauss, xi_gen_proton_right_gauss, xi_gen_proton_left_gauss;
   double beta_rec_right, beta_rec_left, beta_gen_right, beta_gen_left, weight_mc;
   double jet1_rec_pt, jet1_rec_eta, jet1_rec_phi, jet2_rec_pt, jet2_rec_eta, jet2_rec_phi;
   double jet1_gen_pt, jet1_gen_eta, jet1_gen_phi, jet2_gen_pt, jet2_gen_eta, jet2_gen_phi;
   double jet1_rec_px, jet1_rec_py, jet1_rec_pz, jet1_rec_mass, jet1_gen_px, jet1_gen_py, jet1_gen_pz, jet1_gen_mass;
   double jet2_rec_px, jet2_rec_py, jet2_rec_pz, jet2_rec_mass, jet2_gen_px, jet2_gen_py, jet2_gen_pz, jet2_gen_mass;
+  double jet3_gen_pt, jet3_gen_eta, jet3_gen_phi, jet3_rec_pt, jet3_rec_eta, jet3_rec_phi, jet3_rec_px, jet3_rec_py, jet3_rec_pz, jet3_rec_mass, jet3_gen_px, jet3_gen_py, jet3_gen_pz, jet3_gen_mass;
   double theta_x_plus, theta_y_plus, theta_x_minus, theta_y_minus, rp_xpos_24, rp_xpos_124, rp_ypos_24, rp_ypos_124, rp_xpos_25, rp_xpos_125, rp_ypos_25, rp_ypos_125;
   double theta_x_plus_smear, theta_y_plus_smear, theta_x_minus_smear, theta_y_minus_smear;
   double px_proton_right_smear, px_proton_left_smear, py_proton_right_smear, py_proton_left_smear, pz_proton_right_smear, pz_proton_left_smear, e_proton_right_smear,e_proton_left_smear;
@@ -165,6 +175,7 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
   int nVtx;
   bool select_Vertex;
   double mjj2_gen, mjj2_rec, rp_xpos_20, rp_ypos_20, rp_xpos_21, rp_ypos_21, rp_xpos_120, rp_ypos_120, rp_xpos_121, rp_ypos_121;
+  double thx_plus_for_transport, thy_plus_for_transport;
   TTree* small_tree = new TTree("small_tree","");
   small_tree->Branch("nVtx",&nVtx,"nVtx/I");
   small_tree->Branch("select_Vertex",&select_Vertex,"select_Vertex/O");
@@ -246,6 +257,12 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
   small_tree->Branch("jet2_gen_phi",&jet2_gen_phi,"jet2_gen_phi/D");
   small_tree->Branch("mjj2_gen",&mjj2_gen,"mjj2_gen/D");
   small_tree->Branch("mjj2_rec",&mjj2_rec,"mjj2_rec/D");
+  small_tree->Branch("jet3_rec_pt",&jet3_rec_pt,"jet3_rec_pt/D");
+  small_tree->Branch("jet3_rec_eta",&jet3_rec_eta,"jet3_rec_eta/D");
+  small_tree->Branch("jet3_rec_phi",&jet3_rec_phi,"jet3_rec_phi/D");
+  small_tree->Branch("jet3_gen_pt",&jet3_gen_pt,"jet3_gen_pt/D");
+  small_tree->Branch("jet3_gen_eta",&jet3_gen_eta,"jet3_gen_eta/D");
+  small_tree->Branch("jet3_gen_phi",&jet3_gen_phi,"jet3_gen_phi/D");
 /*  small_tree->Branch("jet2_gen_px",&jet2_gen_px,"jet2_gen_px/D");
   small_tree->Branch("jet2_gen_py",&jet2_gen_py,"jet2_gen_py/D");
   small_tree->Branch("jet2_gen_pz",&jet2_gen_pz,"jet2_gen_pz/D");
@@ -258,26 +275,15 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
   small_tree->Branch("theta_y_plus_smear",&theta_y_plus_smear,"theta_y_plus_smear/D");
   small_tree->Branch("theta_x_minus_smear",&theta_x_minus_smear,"theta_x_minus_smear/D");
   small_tree->Branch("theta_y_minus_smear",&theta_y_minus_smear,"theta_y_minus_smear/D");
+  small_tree->Branch("thx_plus_for_transport",&thx_plus_for_transport,"thx_plus_for_transport/D");
+  small_tree->Branch("thy_plus_for_transport",&thy_plus_for_transport,"thy_plus_for_transport/D");
   small_tree->Branch("px_proton_right",&px_proton_right,"px_proton_right/D");
   small_tree->Branch("px_proton_left",&px_proton_left,"px_proton_left/D");
   small_tree->Branch("py_proton_right",&py_proton_right,"py_proton_right/D");
   small_tree->Branch("py_proton_left",&py_proton_left,"py_proton_left/D");
   small_tree->Branch("pz_proton_right",&pz_proton_right,"pz_proton_right/D");
   small_tree->Branch("pz_proton_left",&pz_proton_left,"pz_proton_left/D");
-  //small_tree->Branch("px_proton_right_smear",&px_proton_right_smear,"px_proton_right_smear/D");
-  //small_tree->Branch("px_proton_left_smear",&px_proton_left_smear,"px_proton_left_smear/D");
-  //small_tree->Branch("py_proton_right_smear",&py_proton_right_smear,"py_proton_right_smear/D");
-  //small_tree->Branch("py_proton_left_smear",&py_proton_left_smear,"py_proton_left_smear/D");
-  //small_tree->Branch("pz_proton_right_smear",&pz_proton_right_smear,"pz_proton_right_smear/D");
-  //small_tree->Branch("pz_proton_left_smear",&pz_proton_left_smear,"pz_proton_left_smear/D");
-  //small_tree->Branch("e_proton_right",&e_proton_right,"e_proton_right/D");
-  //small_tree->Branch("e_proton_left",&e_proton_left,"e_proton_left/D");
-  //small_tree->Branch("e_proton_right_smear",&e_proton_right_smear,"e_proton_right_smear/D");
-  //small_tree->Branch("e_proton_left_smear",&e_proton_left_smear,"e_proton_left_smear/D");
- // small_tree->Branch("mass_proton_left",&mass_proton_left,"mass_proton_left/D");
-  //small_tree->Branch("mass_proton_right",&mass_proton_right,"mass_proton_right/D");
 
-  small_tree->SetDirectory(0);
 
   TH1F* vtx_zpos = new TH1F("vtx_zpos", "z(vtx)" , 150 , -30. , 30.);
 
@@ -297,17 +303,23 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
   if (mc == "pomwig"){
      if (side_minus){ 
         //if (!reggeon) vdirs->push_back("/storage/lhuertas/uerj-1/samples/mc/Pomwig_SDDijetsMinus_8TeV/");
-        if (!reggeon) vdirs->push_back("/storage/lhuertas/uerj-1/samples/mc/Pomwig_SDDijetsMinus_8TeV_pt30/");
-        else vdirs->push_back("/storage/lhuertas/uerj-1/samples/mc/Pomwig_Reggeon_SDDijetsMinus_8TeV/");
+        //if (!reggeon) vdirs->push_back("/storage/lhuertas/uerj-1/samples/mc/Pomwig_SDDijetsMinus_8TeV_pt30/");
+        if (!reggeon) vdirs->push_back("/storage1/lhuertas/CMSTOTEM/samples/mc/Pomwig_SDDijetsMinus_8TeV_pt30/");
+        //else vdirs->push_back("/storage/lhuertas/uerj-1/samples/mc/Pomwig_Reggeon_SDDijetsMinus_8TeV/");
+        else vdirs->push_back("/storage1/lhuertas/CMSTOTEM/samples/mc/Pomwig_Reggeon_SDDijetsMinus_8TeV/");
      }
      if (side_plus){
         //if (!reggeon) vdirs->push_back("/storage/lhuertas/uerj-1/CMSTOTEM/samples/mc/Pomwig_plus_test/");//SDDijetsPlus_8TeV/");
-        if (!reggeon) vdirs->push_back("/storage/lhuertas/uerj-1/samples/mc/Pomwig_SDDijetsPlus_8TeV_pt30/");
-        else vdirs->push_back("/storage/lhuertas/uerj-1/samples/mc/Pomwig_Reggeon_SDDijetsPlus_8TeV/");//SDDijetsPlus_8TeV/");
+        //if (!reggeon) vdirs->push_back("/storage/lhuertas/uerj-1/samples/mc/Pomwig_SDDijetsPlus_8TeV_pt30/");
+        if (!reggeon) vdirs->push_back("/storage1/lhuertas/CMSTOTEM/samples/mc/Pomwig_SDDijetsPlus_8TeV_pt30/");
+        //else vdirs->push_back("/storage/lhuertas/uerj-1/samples/mc/Pomwig_Reggeon_SDDijetsPlus_8TeV/");//SDDijetsPlus_8TeV/");
+        else vdirs->push_back("/storage1/lhuertas/CMSTOTEM/samples/mc/Pomwig_Reggeon_SDDijetsPlus_8TeV/");//SDDijetsPlus_8TeV/");
      }
   }
-  if (mc == "pythia8_diff") vdirs->push_back("/storage/lhuertas/uerj-1/samples/mc/Pythia8_SD_DD_Dijets_8Tev_Pt20/");
-  if (mc == "pythia8_diff_CUETP8M1") vdirs->push_back("/storage/lhuertas/uerj-1/samples/mc/Pythia8_SD_DD_Dijets_CUETP8M1_8Tev_Pt30/");
+  //if (mc == "pythia8_diff") vdirs->push_back("/storage/lhuertas/uerj-1/samples/mc/Pythia8_SD_DD_Dijets_8Tev_Pt20/");
+  if (mc == "pythia8_diff") vdirs->push_back("/storage1/lhuertas/CMSTOTEM/samples/mc/Pythia8_SD_DD_Dijets_8Tev_Pt20/");
+  //if (mc == "pythia8_diff_CUETP8M1") vdirs->push_back("/storage/lhuertas/uerj-1/samples/mc/Pythia8_SD_DD_Dijets_CUETP8M1_8Tev_Pt30/");
+  if (mc == "pythia8_diff_CUETP8M1") vdirs->push_back("/storage1/lhuertas/CMSTOTEM/samples/mc/Pythia8_SD_DD_Dijets_CUETP8M1_8Tev_Pt30/");
 
   vector<TString>* vfiles = new vector<TString>;
   for(vector<TString>::iterator itdirs = vdirs->begin(); itdirs != vdirs->end(); ++itdirs){
@@ -346,12 +358,21 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
   //=================================================
 
   // Jet energy corrections
-  L2Relative = new JetCorrectorParameters("/storage/lhuertas/uerj-1/mc/Workspace/Winter14_V8/Winter14_V8_MC_L2Relative_AK5PF.txt");
-  L3Absolute = new JetCorrectorParameters("/storage/lhuertas/uerj-1/mc/Workspace/Winter14_V8/Winter14_V8_MC_L3Absolute_AK5PF.txt");
+  //L2Relative = new JetCorrectorParameters("/storage/lhuertas/uerj-1/mc/Workspace/Winter14_V8/Winter14_V8_MC_L2Relative_AK5PF.txt");
+  L2Relative = new JetCorrectorParameters("/storage1/lhuertas/CMSTOTEM/mc/Workspace/Winter14_V8/Winter14_V8_MC_L2Relative_AK5PF.txt");
+  //L3Absolute = new JetCorrectorParameters("/storage/lhuertas/uerj-1/mc/Workspace/Winter14_V8/Winter14_V8_MC_L3Absolute_AK5PF.txt");
+  L3Absolute = new JetCorrectorParameters("/storage1/lhuertas/CMSTOTEM/mc/Workspace/Winter14_V8/Winter14_V8_MC_L3Absolute_AK5PF.txt");
   vecL2Relative.push_back(*L2Relative);
   vecL3Absolute.push_back(*L3Absolute);
   FactorizedJetCorrector *jecL2Relative   = new FactorizedJetCorrector(vecL2Relative);
   FactorizedJetCorrector *jecL3Absolute   = new FactorizedJetCorrector(vecL3Absolute);
+
+  // Jet energy resolution
+  string ak5Tag = "/storage1/lhuertas/CMSTOTEM/mc/Workspace/JetResolutionInputAK5PF.txt";
+  JetCorrectorParameters *AK5PFPar    = new JetCorrectorParameters(ak5Tag);
+  SimpleJetResolution *ak5PFResolution =  new SimpleJetResolution(*AK5PFPar);
+  //cout<<"AK5PFPar isValid:"<<AK5PFPar->isValid()<<endl;
+  //cout<<"AK5PFPar size:"<<AK5PFPar->size()<<endl;
 
   rp_aperture_config();
   
@@ -459,6 +480,7 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
       Double_t Jet2_eta_rec; 
       Double_t Jet1_phi_rec, Jet1_px_rec, Jet1_py_rec, Jet1_pz_rec, Jet1_energy_rec; 
       Double_t Jet2_phi_rec, Jet2_px_rec, Jet2_py_rec, Jet2_pz_rec, Jet2_energy_rec;
+      Double_t Jet3_phi_rec, Jet3_px_rec, Jet3_py_rec, Jet3_pz_rec, Jet3_energy_rec, Jet3_mass_rec, Jet3_pt_rec, Jet3_eta_rec;
 
       vector<MyBaseJet> JetVectorCorrected;
       JetVectorCorrected.resize( pfJet_coll->size() );
@@ -467,6 +489,8 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
          map<string,MyBaseJet>::iterator it_map = it_jet->mapjet.begin();
          for(; it_map != it_jet->mapjet.end(); ++it_map)
             if(verbose) cout << it_map->first << endl;
+
+         if( loosePFJetID(*it_jet,jetCorrName) ) continue;
 
          MyBaseJet const& basejet = it_jet->mapjet[jetCorrName];
 
@@ -494,14 +518,54 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
                                                  JetL2RelativeL3Absolute.Pz(),
                                                  JetL2RelativeL3Absolute.E() );
          JetVectorCorrected[idx_jet].jec = CoorFactor;
+
+
       }
 
       std::stable_sort(JetVectorCorrected.begin(),JetVectorCorrected.end(),sortByPt);
 
+
+      //Jet energy resolution
+
+      std::vector<float> fx, fY;
+      double jetResolution;
+      double jetScaleFactor;
+      double smearFactor;
+      //vector<MyGenJet> genJetMatched;
+      MyGenJet const* genJetMatched;
+      TRandom rdm_number(12345);
+
+      for(vector<MyBaseJet>::iterator it_jet = JetVectorCorrected.begin(); it_jet != JetVectorCorrected.end() ; ++it_jet){
+
+          //cout << it_jet->Pt() << endl;
+          fx.push_back(it_jet->Eta());  // Jet Eta
+          fY.push_back(it_jet->Pt()); // Jet PT
+          fY.push_back(0); // Number of truth pileup
+          jetResolution = ak5PFResolution->resolution(fx,fY);
+          jetScaleFactor = getScaleFactor(it_jet->Eta());
+          genJetMatched = getMatch(*it_jet, *genJet_coll, jetResolution);      
+
+          //for(vector<MyGenJet>::iterator it_genjet = genJetMatched.begin(); it_genjet != genJetMatched.end() ; ++it_genjet){
+	  if (genJetMatched){
+             double dPt = it_jet->Pt() - genJetMatched->Pt();
+             //cout << dPt << endl;
+             smearFactor = 1 + (jetScaleFactor - 1.)*dPt/it_jet->Pt(); 
+	  }
+          else{
+             double sigma = jetResolution * std::sqrt(jetScaleFactor * jetScaleFactor - 1);
+             smearFactor = 1. + rdm_number.Gaus(0, sigma); 
+          }
+
+          fx.clear();	
+          fY.clear();	
+      }
+  
+
+      // Dijet information
       
       if( pfJet_coll->size() > 0 ){
-	 MyBaseJet const& leadingJet = ( pfJet_coll->at(0) ).mapjet[jetCorrName];
-	 //MyBaseJet const& leadingJet = ( JetVectorCorrected.at(0) );
+	 //MyBaseJet const& leadingJet = ( pfJet_coll->at(0) ).mapjet[jetCorrName];
+	 MyBaseJet const& leadingJet = ( JetVectorCorrected.at(0) );
 	 Jet1_pt_rec = leadingJet.Pt(); 
 	 Jet1_eta_rec = leadingJet.Eta(); 
 	 Jet1_phi_rec = leadingJet.Phi(); 
@@ -514,8 +578,8 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
       //if(!jet1_rec_selected) continue;
       
       if( pfJet_coll->size() > 1 ){
-	 MyBaseJet const& secondJet = ( pfJet_coll->at(1) ).mapjet[jetCorrName];
-	 //MyBaseJet const& secondJet = ( JetVectorCorrected.at(1) );
+	 //MyBaseJet const& secondJet = ( pfJet_coll->at(1) ).mapjet[jetCorrName];
+	 MyBaseJet const& secondJet = ( JetVectorCorrected.at(1) );
          Jet2_pt_rec = secondJet.Pt(); 
 	 Jet2_eta_rec = secondJet.Eta(); 
 	 Jet2_phi_rec = secondJet.Phi(); 
@@ -525,16 +589,36 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
          Jet2_energy_rec = secondJet.E();
          Jet2_mass_rec = secondJet.M();
       }
+
+      if( pfJet_coll->size() > 2 ){
+         //MyBaseJet const& thirdJet = ( pfJet_coll->at(2) ).mapjet[jetCorrName];
+	 MyBaseJet const& thirdJet = ( JetVectorCorrected.at(2) );
+         Jet3_pt_rec = thirdJet.Pt();
+         Jet3_eta_rec = thirdJet.Eta();
+         Jet3_phi_rec = thirdJet.Phi();
+         Jet3_px_rec = thirdJet.Px();
+         Jet3_py_rec = thirdJet.Py();
+         Jet3_pz_rec = thirdJet.Pz();
+         Jet3_energy_rec = thirdJet.E();
+         Jet3_mass_rec = thirdJet.M();
+      }
+
+
+
+
       //if(!jet2_rec_selected) continue;
       double mass_jets_rec= sqrt(pow(Jet1_energy_rec+Jet2_energy_rec,2)-pow(Jet1_px_rec+Jet2_px_rec,2)-pow(Jet1_py_rec+Jet2_py_rec,2)-pow(Jet1_pz_rec+Jet2_pz_rec,2));
       double x_minus_rec = ((Jet1_energy_rec-Jet1_pz_rec)+(Jet2_energy_rec-Jet2_pz_rec))/8000; 
       double x_plus_rec = ((Jet1_energy_rec+Jet1_pz_rec)+(Jet2_energy_rec+Jet2_pz_rec))/8000; 
+      double x_minus_rec_thirdjet = ((Jet1_energy_rec-Jet1_pz_rec)+(Jet2_energy_rec-Jet2_pz_rec)+(Jet3_energy_rec-Jet3_pz_rec))/8000; 
+      double x_plus_rec_thirdjet = ((Jet1_energy_rec+Jet1_pz_rec)+(Jet2_energy_rec+Jet2_pz_rec)+(Jet3_energy_rec+Jet3_pz_rec))/8000; 
       mjj2_rec = Jet1_mass_rec*Jet1_mass_rec + Jet2_mass_rec*Jet2_mass_rec + 2*(Jet1_energy_rec*Jet2_energy_rec - Jet1_px_rec* Jet2_px_rec - Jet1_py_rec*Jet2_py_rec - Jet1_pz_rec*Jet2_pz_rec);
 
 
       //Jet generated level         
       double leadingJet_pt_gen = -999;
       double secondJet_pt_gen = -999;
+      double thirdJet_pt_gen = -999;
       double Jet1_energy_gen;
       double Jet1_px_gen;
       double Jet1_py_gen;
@@ -549,6 +633,7 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
       double Jet2_phi_gen;
       double Jet1_mass_gen;
       double Jet2_mass_gen;
+      double Jet3_energy_gen, Jet3_px_gen, Jet3_py_gen, Jet3_pz_gen, Jet3_eta_gen, Jet3_phi_gen, Jet3_mass_gen;
 
 
       for(vector<MyGenJet>::iterator it_genjet = genJet_coll->begin(); it_genjet != genJet_coll->end(); ++it_genjet){
@@ -583,6 +668,16 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
              Jet2_phi_gen = jet_phi_gen;
              Jet2_mass_gen = jet_mass_gen;
          }
+	 if (jet_pt_gen>thirdJet_pt_gen && jet_pt_gen<secondJet_pt_gen){
+             thirdJet_pt_gen = jet_pt_gen;
+             Jet3_energy_gen = jet_ene_gen;
+             Jet3_px_gen = jet_px_gen;
+             Jet3_py_gen = jet_py_gen;
+             Jet3_pz_gen = jet_pz_gen;
+             Jet3_eta_gen = jet_eta_gen;
+             Jet3_phi_gen = jet_phi_gen;
+             Jet3_mass_gen = jet_mass_gen;
+         }
       }
       if(leadingJet_pt_gen>30. && fabs(Jet1_eta_gen)<4.4) jet1_gen_selected = true;
       if(secondJet_pt_gen>30. && fabs(Jet2_eta_gen)<4.4) jet2_gen_selected = true;
@@ -593,6 +688,8 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
       double mass_jets_gen= sqrt(pow(Jet1_energy_gen+Jet2_energy_gen,2)-pow(Jet1_px_gen+Jet2_px_gen,2)-pow(Jet1_py_gen+Jet2_py_gen,2)-pow(Jet1_pz_gen+Jet2_pz_gen,2));
       double x_minus_gen = ((Jet1_energy_gen-Jet1_pz_gen)+(Jet2_energy_gen-Jet2_pz_gen))/8000;
       double x_plus_gen = ((Jet1_energy_gen+Jet1_pz_gen)+(Jet2_energy_gen+Jet2_pz_gen))/8000;
+      double x_minus_gen_thirdjet = ((Jet1_energy_gen-Jet1_pz_gen)+(Jet2_energy_gen-Jet2_pz_gen)+(Jet3_energy_gen-Jet3_pz_gen))/8000;
+      double x_plus_gen_thirdjet = ((Jet1_energy_gen+Jet1_pz_gen)+(Jet2_energy_gen+Jet2_pz_gen)+(Jet3_energy_gen+Jet3_pz_gen))/8000;
 
 
       // Particle-flow
@@ -657,7 +754,8 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
       Double_t proton_pf;
       Double_t eta_gen;
       Double_t phi_gen;
-      
+      double mx_gen = 0;     
+ 
       for(vector<MyGenPart>::iterator it_genpart = genPart->begin(); it_genpart != genPart->end(); ++it_genpart){
  
 	 //double eta_gen = it_genpart->Eta();
@@ -677,6 +775,7 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
 	    if (id != 2212) {
    	       genEPlusPz += (energy_gen + pz_gen);
 	       genEMinusPz += (energy_gen - pz_gen);
+  	       mx_gen += mass_gen;
             }
 	    if (id == 2212) {
              double pz_cut = 0.7*proton_pi;
@@ -800,26 +899,29 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
          t_plus_proton_gen = t_vec_plus_gen.Mag2();
          xi_plus_proton_gen =  ( 1 - (proton_pz_plus/proton_pi) );
          
-         // Check
-	 // Variables for transport
-         TVector3 p_scatt_plus_gen (proton_px_plus, proton_py_plus, proton_pz_plus);
-         double p_beam = TMath::Sqrt( proton_pi*proton_pi - M_P*M_P ); 
-         double xi_for_transport = 1. - ( p_scatt_plus_gen.Mag() )/p_beam ;
-         double thx_for_transport =  ( -p_scatt_plus_gen.Px() )/p_beam ;
-         double thy_for_transport =  (  p_scatt_plus_gen.Py() )/p_beam ;
-         //TVector3 p_scatt_plus_gen (proton_px_plus, proton_py_plus, proton_pz_plus);
-         //thx_plus_proton = atan(-proton_px_plus/proton_pi);//p_beam_plus.Mag2());
-         //thy_plus_proton = atan(proton_py_plus/proton_pi);//p_beam_plus.Mag2());
-         double theta_plus = p_scatt_plus_gen.Theta();//acos(proton_pz_plus/p_scatt_plus.Mag());
-         double phi_plus = p_scatt_plus_gen.Phi();//acos(proton_px_plus/sqrt(proton_px_plus*proton_px_plus+proton_py_plus*proton_py_plus));
-         thx_plus_proton = theta_plus*cos(phi_plus);
-         thy_plus_proton = theta_plus*sin(phi_plus);
-        
          //beam smearing
          beam_smearing(proton_px_plus, proton_py_plus, proton_pz_plus, proton_energy_plus, 
                        proton_px_plus_beam_smearing, proton_py_plus_beam_smearing, proton_pz_plus_beam_smearing, proton_energy_plus_beam_smearing);
 
          TVector3 p_scatt_plus_beam_smearing (proton_px_plus_beam_smearing, proton_py_plus_beam_smearing, proton_pz_plus_beam_smearing);
+  
+         // Check
+	 // Variables for transport
+         //TVector3 p_scatt_plus_gen (proton_px_plus, proton_py_plus, proton_pz_plus);
+         double p_beam = TMath::Sqrt( proton_pi*proton_pi - M_P*M_P ); 
+         double xi_for_transport = 1. - ( p_scatt_plus_beam_smearing.Mag() )/p_beam ;
+         double thx_for_transport =  ( -p_scatt_plus_beam_smearing.Px() )/p_beam ;
+         double thy_for_transport =  (  p_scatt_plus_beam_smearing.Py() )/p_beam ;
+ 
+        TVector3 p_scatt_plus_gen (proton_px_plus, proton_py_plus, proton_pz_plus);
+         double theta_plus = p_scatt_plus_gen.Theta();//acos(proton_pz_plus/p_scatt_plus.Mag());
+         double phi_plus = p_scatt_plus_gen.Phi();//acos(proton_px_plus/sqrt(proton_px_plus*proton_px_plus+proton_py_plus*proton_py_plus));
+         thx_plus_proton = theta_plus*cos(phi_plus);
+         thy_plus_proton = theta_plus*sin(phi_plus);
+       
+         thx_plus_for_transport = thx_for_transport; 
+         thy_plus_for_transport = thy_for_transport;
+ 
          double theta_plus_beam_smearing = p_scatt_plus_beam_smearing.Theta();
          double phi_plus_beam_smearing = p_scatt_plus_beam_smearing.Phi();
          double thx_plus_proton_beam_smearing = theta_plus_beam_smearing*cos(phi_plus_beam_smearing);
@@ -863,8 +965,7 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
          // i)
 	 if( use_beam_smearing ){
             //Check
-            //xi_plus_proton_smear = (334.25*delta_thx_plus) + xi_plus_proton_beam_smearing; 
-            xi_plus_proton_smear = (334.25*delta_thx_plus) + xi_for_transport; 
+            xi_plus_proton_smear = (334.25*delta_thx_plus) + xi_plus_proton_beam_smearing; 
          } else{
          // ii)
             xi_plus_proton_smear = (334.25*delta_thx_plus) + xi_plus_proton_gen; 
@@ -892,12 +993,12 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
 
          TLorentzVector p_beam_scatt_plus_smear;
          // i)
-	 if( use_beam_smearing ){
-            p_beam_scatt_plus_smear.SetPxPyPzE(proton_px_plus_from_theta, proton_py_plus_from_theta, proton_pz_plus_from_xi, proton_energy_plus_from_xi_theta);
-         } else{
+	 //if( use_beam_smearing ){
+         p_beam_scatt_plus_smear.SetPxPyPzE(proton_px_plus_from_theta, proton_py_plus_from_theta, proton_pz_plus_from_xi, proton_energy_plus_from_xi_theta);
+         //} else{
          // ii)
-            p_beam_scatt_plus_smear.SetPxPyPzE(proton_px_plus_from_theta, proton_py_plus_from_theta, proton_pz_plus, proton_energy_plus);
-         }
+         //   p_beam_scatt_plus_smear.SetPxPyPzE(proton_px_plus_from_theta, proton_py_plus_from_theta, proton_pz_plus, proton_energy_plus);
+         //}
 
          TLorentzVector t_vec_plus_rec = (p_beam_plus_lorentz - p_beam_scatt_plus_smear);
          t_plus_proton_rec = t_vec_plus_rec.Mag2();
@@ -906,7 +1007,7 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
          //FIXME
          double out_x, out_thx, out_y, out_thy, out_xi;
          // i)
-	 if( use_beam_smearing ){
+	 if( use_beam_smearing_for_transport ){
             //Check
             //proton_plus_rp_accept_020 = protonRPDetected(v_x, -thx_plus_proton_beam_smearing, v_y, thy_plus_proton_beam_smearing, -xi_plus_proton_beam_smearing, 20, out_x, out_thx, out_y, out_thy, out_xi);
             proton_plus_rp_accept_020 = protonRPDetected(v_x, thx_for_transport, v_y, thy_for_transport, -xi_for_transport, 20, out_x, out_thx, out_y, out_thy, out_xi);
@@ -920,7 +1021,7 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
          proton_plus_pars[20][4] = out_xi;
 
 
-         if( use_beam_smearing ){
+         if( use_beam_smearing_for_transport ){
             //proton_plus_rp_accept_021 = protonRPDetected(v_x, -thx_plus_proton_beam_smearing, v_y, thy_plus_proton_beam_smearing, -xi_plus_proton_beam_smearing, 21, out_x, out_thx, out_y, out_thy, out_xi);
             proton_plus_rp_accept_021 = protonRPDetected(v_x, thx_for_transport, v_y, thy_for_transport, -xi_for_transport, 21, out_x, out_thx, out_y, out_thy, out_xi);
          } else{
@@ -932,7 +1033,7 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
          proton_plus_pars[21][2] = out_thx; proton_plus_pars[21][3] = out_thy;
          proton_plus_pars[21][4] = out_xi;
 
-	 if( use_beam_smearing ){
+	 if( use_beam_smearing_for_transport ){
             //proton_plus_rp_accept_024 = protonRPDetected(v_x, -thx_plus_proton_beam_smearing, v_y, thy_plus_proton_beam_smearing, -xi_plus_proton_beam_smearing, 24, out_x, out_thx, out_y, out_thy, out_xi);
             proton_plus_rp_accept_024 = protonRPDetected(v_x, thx_for_transport, v_y, thy_for_transport, -xi_for_transport, 24, out_x, out_thx, out_y, out_thy, out_xi);
          } else{
@@ -946,7 +1047,7 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
          fiducial_cut_rp_024 = proton_plus_pars[24][0]>0 && proton_plus_pars[24][0]<0.006 && proton_plus_pars[24][1]>0.0084 && proton_plus_pars[24][1]<0.029;
          //fiducial_cut_rp_024 = proton_plus_pars[24][0]>0 && proton_plus_pars[24][0]<0.006 && proton_plus_pars[24][1]>0.0082 && proton_plus_pars[24][1]<0.029;
       
-	 if( use_beam_smearing ){
+	 if( use_beam_smearing_for_transport ){
             //proton_plus_rp_accept_025 = protonRPDetected(v_x, -thx_plus_proton_beam_smearing, v_y, thy_plus_proton_beam_smearing, -xi_plus_proton_beam_smearing, 25, out_x, out_thx, out_y, out_thy, out_xi);
             proton_plus_rp_accept_025 = protonRPDetected(v_x, thx_for_transport, v_y, thy_for_transport, -xi_for_transport, 25, out_x, out_thx, out_y, out_thy, out_xi);
          } else{
@@ -960,7 +1061,7 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
          fiducial_cut_rp_025 = proton_plus_pars[25][0]>0 && proton_plus_pars[25][0]<0.006 && proton_plus_pars[25][1]<-0.0084 && proton_plus_pars[25][1]>-0.029;
          //fiducial_cut_rp_025 = proton_plus_pars[25][0]>0 && proton_plus_pars[25][0]<0.006 && proton_plus_pars[25][1]<-0.0082 && proton_plus_pars[25][1]>-0.029;
 
-	 if( use_beam_smearing ){
+	 if( use_beam_smearing_for_transport ){
             //proton_plus_rp_accept_022 = protonRPDetected(v_x, -thx_plus_proton_beam_smearing, v_y, thy_plus_proton_beam_smearing, -xi_plus_proton_beam_smearing, 22);
             //proton_plus_rp_accept_023 = protonRPDetected(v_x, -thx_plus_proton_beam_smearing, v_y, thy_plus_proton_beam_smearing, -xi_plus_proton_beam_smearing, 23);
             proton_plus_rp_accept_022 = protonRPDetected(v_x, thx_for_transport, v_y, thy_for_transport, -xi_for_transport, 22, out_x, out_thx, out_y, out_thy, out_xi);
@@ -1006,6 +1107,8 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
 	 //--------------------------
          //thx_minus_proton = atan(-proton_px_minus/proton_pi);//p_beam_minus.Mag2());
          //thy_minus_proton = atan(proton_py_minus/proton_pi);//p_beam_minus.Mag2());
+
+
 	 TVector3 p_scatt_minus (proton_px_minus, proton_py_minus, -proton_pz_minus);
          double theta_minus = p_scatt_minus.Theta();
          double phi_minus = p_scatt_minus.Phi();
@@ -1022,6 +1125,13 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
          double thx_minus_proton_beam_smearing = theta_minus_beam_smearing*cos(phi_minus_beam_smearing);
          double thy_minus_proton_beam_smearing = theta_minus_beam_smearing*sin(phi_minus_beam_smearing);
 
+         // Check
+         // Variables for transport
+         //TVector3 p_scatt_plus_gen (proton_px_plus, proton_py_plus, proton_pz_plus);
+         double p_beam = -TMath::Sqrt( proton_pi*proton_pi - M_P*M_P ); 
+         double xi_for_transport = (proton_pz_minus < 0.) ? ( 1. + ( p_scatt_minus_beam_smearing.Mag() )/p_beam ) : -1 ;
+         double thx_for_transport =  ( -p_scatt_minus_beam_smearing.Px() )/p_beam ;
+         double thy_for_transport =  (  p_scatt_minus_beam_smearing.Py() )/p_beam ;
          //-------------- Reconstruction (parametrised)
          // I)
          // i)
@@ -1052,6 +1162,7 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
            thx_minus_proton_smear = thx_minus_proton + gRandom->Gaus(0,25.10e-6);
            thy_minus_proton_smear = thy_minus_proton + gRandom->Gaus(0,2.42e-6);
          }
+
          double delta_thx_minus = thx_minus_proton_smear - thx_minus_proton;
          double theta_minus_proton_smear = sqrt( thx_minus_proton_smear*thx_minus_proton_smear + thy_minus_proton_smear*thy_minus_proton_smear );
 //cout<<thx_minus_proton_beam_smearing <<" "<<thx_minus_proton <<endl;
@@ -1085,20 +1196,21 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
 
          TLorentzVector p_beam_scatt_minus_smear;
          // i)
-         if( use_beam_smearing ){
-            p_beam_scatt_minus_smear.SetPxPyPzE (proton_px_minus_from_theta, proton_py_minus_from_theta, proton_pz_minus_from_xi, proton_energy_minus_from_xi_theta);
-         } else{
+         //if( use_beam_smearing ){
+          p_beam_scatt_minus_smear.SetPxPyPzE (proton_px_minus_from_theta, proton_py_minus_from_theta, proton_pz_minus_from_xi, proton_energy_minus_from_xi_theta);
+         //} else{
          // ii)
-            p_beam_scatt_minus_smear.SetPxPyPzE (proton_px_minus_from_theta, proton_py_minus_from_theta, proton_pz_minus, proton_energy_minus);
-         }
+         //   p_beam_scatt_minus_smear.SetPxPyPzE (proton_px_minus_from_theta, proton_py_minus_from_theta, proton_pz_minus, proton_energy_minus);
+         //}
 
          TLorentzVector t_vec_minus_rec = (p_beam_minus - p_beam_scatt_minus_smear);
          t_minus_proton_rec = t_vec_minus_rec.Mag2();
 
          double out_x, out_thx, out_y, out_thy, out_xi;
          // i)
-         if( use_beam_smearing ){
-            proton_minus_rp_accept_120 = protonRPDetected(v_x, -thx_minus_proton_beam_smearing, v_y, thy_minus_proton_beam_smearing, -xi_minus_proton_beam_smearing, 120, out_x, out_thx, out_y, out_thy, out_xi);
+         if( use_beam_smearing_for_transport ){
+            //proton_minus_rp_accept_120 = protonRPDetected(v_x, -thx_minus_proton_beam_smearing, v_y, thy_minus_proton_beam_smearing, -xi_minus_proton_beam_smearing, 120, out_x, out_thx, out_y, out_thy, out_xi);
+            proton_minus_rp_accept_120 = protonRPDetected(v_x, thx_for_transport, v_y, thy_for_transport, -xi_for_transport, 120, out_x, out_thx, out_y, out_thy, out_xi);
          } else{
          // ii)
            proton_minus_rp_accept_120 = protonRPDetected(v_x, -thx_minus_proton, v_y, thy_minus_proton, -xi_minus_proton_gen, 120, out_x, out_thx, out_y, out_thy, out_xi);
@@ -1108,8 +1220,9 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
          proton_minus_pars[120][2] = out_thx; proton_minus_pars[120][3] = out_thy;
          proton_minus_pars[120][4] = out_xi;
 
-         if( use_beam_smearing ){
-            proton_minus_rp_accept_121 = protonRPDetected(v_x, -thx_minus_proton_beam_smearing, v_y, thy_minus_proton_beam_smearing, -xi_minus_proton_beam_smearing, 121, out_x, out_thx, out_y, out_thy, out_xi);
+         if( use_beam_smearing_for_transport ){
+            //proton_minus_rp_accept_121 = protonRPDetected(v_x, -thx_minus_proton_beam_smearing, v_y, thy_minus_proton_beam_smearing, -xi_minus_proton_beam_smearing, 121, out_x, out_thx, out_y, out_thy, out_xi);
+            proton_minus_rp_accept_121 = protonRPDetected(v_x, thx_for_transport, v_y, thy_for_transport, -xi_for_transport, 121, out_x, out_thx, out_y, out_thy, out_xi);
          } else{
             proton_minus_rp_accept_121 = protonRPDetected(v_x, -thx_minus_proton, v_y, thy_minus_proton, -xi_minus_proton_gen, 121, out_x, out_thx, out_y, out_thy, out_xi);
          }
@@ -1118,8 +1231,9 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
          proton_minus_pars[121][2] = out_thx; proton_minus_pars[121][3] = out_thy;
          proton_minus_pars[121][4] = out_xi;
 
-         if( use_beam_smearing ){
-            proton_minus_rp_accept_124 = protonRPDetected(v_x, -thx_minus_proton_beam_smearing, v_y, thy_minus_proton_beam_smearing, -xi_minus_proton_beam_smearing, 124, out_x, out_thx, out_y, out_thy, out_xi);
+         if( use_beam_smearing_for_transport ){
+            //proton_minus_rp_accept_124 = protonRPDetected(v_x, -thx_minus_proton_beam_smearing, v_y, thy_minus_proton_beam_smearing, -xi_minus_proton_beam_smearing, 124, out_x, out_thx, out_y, out_thy, out_xi);
+            proton_minus_rp_accept_124 = protonRPDetected(v_x, thx_for_transport, v_y, thy_for_transport, -xi_for_transport, 124, out_x, out_thx, out_y, out_thy, out_xi);
          } else{
             proton_minus_rp_accept_124 = protonRPDetected(v_x, -thx_minus_proton, v_y, thy_minus_proton, -xi_minus_proton_gen, 124, out_x, out_thx, out_y, out_thy, out_xi);}
          proton_minus_pars[124] = std::vector<double>(5,0.);
@@ -1131,8 +1245,9 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
          fiducial_cut_rp_124_smear = proton_minus_pars[124][0]>0 && proton_minus_pars[124][0]<0.006 && proton_minus_pars[124][1]>0.0082 && proton_minus_pars[124][1]<0.027;//lower y bound by 200microm
 
 
-         if( use_beam_smearing ){
-            proton_minus_rp_accept_125 = protonRPDetected(v_x, -thx_minus_proton_beam_smearing, v_y, thy_minus_proton_beam_smearing, -xi_minus_proton_beam_smearing, 125, out_x, out_thx, out_y, out_thy, out_xi);
+         if( use_beam_smearing_for_transport ){
+            //proton_minus_rp_accept_125 = protonRPDetected(v_x, -thx_minus_proton_beam_smearing, v_y, thy_minus_proton_beam_smearing, -xi_minus_proton_beam_smearing, 125, out_x, out_thx, out_y, out_thy, out_xi);
+            proton_minus_rp_accept_125 = protonRPDetected(v_x, thx_for_transport, v_y, thy_for_transport, -xi_for_transport, 125, out_x, out_thx, out_y, out_thy, out_xi);
          } else{
             proton_minus_rp_accept_125 = protonRPDetected(v_x, -thx_minus_proton, v_y, thy_minus_proton, -xi_minus_proton_gen, 125, out_x, out_thx, out_y, out_thy, out_xi);
          }
@@ -1149,9 +1264,11 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
              histosTH2F["pos_y_vs_x_proton_minus_124_125_accept"]->Fill( proton_minus_pars[125][0]*1000, proton_minus_pars[125][1]*1000 , event_weight );
          }
 
-         if( use_beam_smearing ){
-            proton_minus_rp_accept_122 = protonRPDetected(v_x, -thx_minus_proton_beam_smearing, v_y, thy_minus_proton_beam_smearing, -xi_minus_proton_beam_smearing, 122);
-            proton_minus_rp_accept_123 = protonRPDetected(v_x, -thx_minus_proton_beam_smearing, v_y, thy_minus_proton_beam_smearing, -xi_minus_proton_beam_smearing, 123);
+         if( use_beam_smearing_for_transport ){
+            //proton_minus_rp_accept_122 = protonRPDetected(v_x, -thx_minus_proton_beam_smearing, v_y, thy_minus_proton_beam_smearing, -xi_minus_proton_beam_smearing, 122);
+            //proton_minus_rp_accept_123 = protonRPDetected(v_x, -thx_minus_proton_beam_smearing, v_y, thy_minus_proton_beam_smearing, -xi_minus_proton_beam_smearing, 123);
+            proton_minus_rp_accept_122 = protonRPDetected(v_x, thx_for_transport, v_y, thy_for_transport, -xi_for_transport, 122, out_x, out_thx, out_y, out_thy, out_xi);
+            proton_minus_rp_accept_123 = protonRPDetected(v_x, thx_for_transport, v_y, thy_for_transport, -xi_for_transport, 123, out_x, out_thx, out_y, out_thy, out_xi);
          } else{
            proton_minus_rp_accept_122 = protonRPDetected(v_x, -thx_minus_proton, v_y, thy_minus_proton, -xi_minus_proton_gen, 122);
            proton_minus_rp_accept_123 = protonRPDetected(v_x, -thx_minus_proton, v_y, thy_minus_proton, -xi_minus_proton_gen, 123);
@@ -1188,11 +1305,11 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
 
       //theta smearing
       double xi_minus_proton_smear_rec = xi_minus_proton_smear;// + gRandom->Gaus(0,sigma_xi56);
-      double proton_beta_minus_rec = x_minus_rec/xi_minus_proton_smear_rec;
-      double proton_beta_minus_gen = x_minus_gen/xi_minus_proton_gen;
+      double proton_beta_minus_rec = (Jet3_pt_rec>20) ? x_minus_rec_thirdjet/xi_minus_proton_smear_rec : x_minus_rec/xi_minus_proton_smear_rec;
+      double proton_beta_minus_gen = (thirdJet_pt_gen>20) ? x_minus_gen_thirdjet/xi_minus_proton_gen : x_minus_gen/xi_minus_proton_gen;
       double xi_plus_proton_smear_rec = xi_plus_proton_smear;// + gRandom->Gaus(0,sigma_xi45_smear);
-      double proton_beta_plus_rec = x_plus_rec/xi_plus_proton_smear_rec;
-      double proton_beta_plus_gen = x_plus_gen/xi_plus_proton_gen;
+      double proton_beta_plus_rec = (Jet3_pt_rec>20) ? x_plus_rec_thirdjet/xi_plus_proton_smear_rec : x_plus_rec/xi_plus_proton_smear_rec;
+      double proton_beta_plus_gen = (thirdJet_pt_gen>20) ? x_plus_gen_thirdjet/xi_plus_proton_gen : x_plus_gen/xi_plus_proton_gen;
 
 
       //rp_accept
@@ -1242,10 +1359,10 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
       t_gen_proton_right = t_minus_proton_gen; 
       t_gen_proton_right_old = t_minus_proton_gen_old; 
       t_gen_proton_left = t_plus_proton_gen; 
-      x_rec_right = x_minus_rec; 
-      x_rec_left = x_plus_rec; 
-      x_gen_right = x_minus_gen; 
-      x_gen_left = x_plus_gen;
+      x_rec_right = (Jet3_pt_rec>20) ? x_minus_rec_thirdjet : x_minus_rec; 
+      x_rec_left = (Jet3_pt_rec>20) ? x_plus_rec_thirdjet : x_plus_rec; 
+      x_gen_right = (thirdJet_pt_gen>20) ? x_minus_gen_thirdjet : x_minus_gen; 
+      x_gen_left = (thirdJet_pt_gen>20) ? x_plus_gen_thirdjet : x_plus_gen;
       px_proton_right = proton_px_minus;
       px_proton_left = proton_px_plus;
       py_proton_right = proton_py_minus;
@@ -1294,6 +1411,12 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
       jet2_gen_pz = Jet2_pz_gen;      
  */ //    jet2_rec_mass = Jet2_mass_rec;      
   //    jet2_gen_mass = Jet2_mass_gen;      
+      jet3_rec_pt = Jet3_pt_rec;      
+      jet3_gen_pt = thirdJet_pt_gen;      
+      jet3_rec_eta = Jet3_eta_rec;      
+      jet3_gen_eta = Jet3_eta_gen;      
+      jet3_rec_phi = Jet3_phi_rec;      
+      jet3_gen_phi = Jet3_phi_gen;    
       weight_mc = event_weight;
       theta_x_minus_smear = -thx_minus_proton_smear; 
       theta_y_minus_smear = thy_minus_proton_smear; 
@@ -1316,7 +1439,7 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
 
    
   //output file
-  TFile* output = new TFile(outputFileName,"RECREATE");
+ // TFile* output = new TFile(outputFileName,"RECREATE");
   output->cd();
   float cross_section;
   if (mc == "pomwig" && !reggeon && side_minus && side_plus) cross_section = 2*2.1189e7; //pb cross section for pomwig-pomeron
@@ -1338,6 +1461,7 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
   Double_t scale = n_events/f1;
   cout<<"eventos  "<<nevents_total<<"   pesos "<<nweight_total<<"   cross section: "<<cross_section<< "  scale "<< scale<< endl; 
 
+  small_tree->SetDirectory(0);
   //vtx_zpos->Write();
   small_tree->Write();
   //for(map<string,TH2F*>::iterator it_histo = histosTH2F.begin(); it_histo != histosTH2F.end(); ++it_histo)
