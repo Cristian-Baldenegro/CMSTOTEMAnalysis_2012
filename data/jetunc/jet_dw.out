@@ -1,0 +1,4877 @@
+  *******************************************
+  *                                         *
+  *        W E L C O M E  to  R O O T       *
+  *                                         *
+  *   Version   5.32/00   2 December 2011   *
+  *                                         *
+  *  You are welcome to visit our Web site  *
+  *          http://root.cern.ch            *
+  *                                         *
+  *******************************************
+
+ROOT 5.32/00 (branches/v5-32-00-patches@42372, Sep 22 2012, 10:24:00 on linuxx8664gcc)
+
+CINT/ROOT C/C++ Interpreter version 5.18.00, July 2, 2010
+Type ? for help. Commands must be C++ statements.
+Enclose multiple statements between { }.
+Loading rootlogon.C
+
+Processing data_SDdijet_jets_systematics_CMSTOTEM_ntuple.cc+...
+/storage/lhuertas/uerj-1/CMSTOTEM/data/root_files/data_SDdijet_CMSTOTEM_jet_dw.root
+Using the following PF thresholds:
+  0: (-1,-1)  (-1,-1)  (-1,-1)  (-1,-1)
+  1: (-1,-1)  (-1,-1)  (-1,-1)  (-1,-1)
+  2: (-1,-1)  (-1,-1)  (-1,-1)  (-1,-1)
+  3: (-1,-1)  (-1,-1)  (-1,-1)  (-1,-1)
+  4: (-1,0.9)  (-1,2.5)  (-1,2.5)  (-1,-1)
+  5: (-1,1.4)  (-1,2.7)  (-1,3.8)  (-1,-1)
+  6: (-1,-1)  (-1,-1)  (-1,4)  (-1,4)
+  7: (-1,-1)  (-1,-1)  (-1,3.5)  (-1,3.5)
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_10_1_QXB-8369bd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_10_1_QXB-8369ca.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_10_1_QXB-8369cb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_11_1_0lE-8369da.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_12_1_VPC-8369db.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_12_1_VPC-8369dc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_12_1_VPC-8369dd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_13_1_gNF-8369dc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_13_1_gNF-8371db.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_13_1_gNF-8371dd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_14_1_K7g-8369dd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_14_1_K7g-8369ea.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_14_1_K7g-8369eb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_15_1_wrK-8369eb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_15_1_wrK-8371ab.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_15_1_wrK-8371ac.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_15_1_wrK-8371ad.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_16_1_LHg-8369ec.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_16_1_LHg-8371aa.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_17_1_NSS-8371aa.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_17_1_NSS-8371ab.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_17_1_NSS-8371ac.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_18_1_NKS-8371ac.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_18_1_NKS-8371ad.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_18_1_NKS-8371ba.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_18_1_NKS-8371bb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_19_1_7in-8371ac.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_19_1_7in-8371ad.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_19_1_7in-8371ba.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_1_1_Al3-8369aa.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_1_1_Al3-8369ab.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_20_1_2Ex-8371bb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_20_1_2Ex-8371bc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_20_1_2Ex-8371bd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_21_1_Yku-8371bd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_21_1_Yku-8371ca.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_22_1_hJZ-8371ca.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_22_1_hJZ-8371db.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_22_1_hJZ-8371dc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_22_1_hJZ-8371dd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_23_1_2t6-8371ca.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_23_1_2t6-8371cb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_23_1_2t6-8371cc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_24_1_o9F-8371cc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_24_1_o9F-8371cd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_24_1_o9F-8371da.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_24_1_o9F-8371db.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_25_1_9Ff-8371cc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_25_1_9Ff-8371cd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_25_1_9Ff-8371da.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_2_1_KRI-8369aa.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_2_1_KRI-8369ab.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_2_1_KRI-8369ac.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_3_1_hD2-8369aa.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_3_1_hD2-8369ac.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_3_1_hD2-8369ad.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_3_1_hD2-8369ba.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_4_1_a85-8369aa.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_4_1_a85-8369db.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_4_1_a85-8369dc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_4_1_a85-8369dd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_4_1_a85-8369ea.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_4_1_a85-8369eb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_4_1_a85-8369ec.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_5_1_VlO-8369ab.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_5_1_VlO-8369ac.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_5_1_VlO-8369ad.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_5_1_VlO-8369ba.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_5_1_VlO-8369bb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_6_1_zM9-8369ca.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_6_1_zM9-8369cc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_6_1_zM9-8369cd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_6_1_zM9-8369da.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_7_1_Quu-8369ba.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_7_1_Quu-8369bb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_7_1_Quu-8369bc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_8_1_ZQn-8369bb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_8_1_ZQn-8369bc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_8_1_ZQn-8369bd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_8_1_ZQn-8369ca.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_9_1_GMc-8369bd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_9_1_GMc-8369cb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_9_1_GMc-8369cc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_10_1_Cxz-8369cc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_10_1_Cxz-8369cd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_10_1_Cxz-8369db.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_10_1_Cxz-8369dc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_10_1_Cxz-8369dd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_11_1_MRK-8369cd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_11_1_MRK-8369da.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_12_1_zDS-8369db.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_12_1_zDS-8369dc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_12_1_zDS-8369dd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_12_1_zDS-8369ea.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_12_1_zDS-8369eb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_12_1_zDS-8369ec.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_13_1_fsY-8369dc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_13_1_fsY-8371dc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_13_1_fsY-8371dd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_14_1_Cjm-8369dd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_14_1_Cjm-8369ea.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_14_1_Cjm-8369eb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_15_1_iJ5-8369ec.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_15_1_iJ5-8371aa.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_16_1_193-8371aa.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_16_1_193-8371ab.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_16_1_193-8371ac.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_17_1_XnM-8371ab.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_17_1_XnM-8371ba.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_17_1_XnM-8371bb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_17_1_XnM-8371bc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_18_1_DTR-8371ab.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_18_1_DTR-8371ac.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_18_1_DTR-8371ad.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_19_1_b3d-8371ac.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_19_1_b3d-8371bc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_19_1_b3d-8371bd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_1_1_rxR-8369aa.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_1_1_rxR-8369ab.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_20_1_zMV-8371ad.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_20_1_zMV-8371ba.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_21_1_toy-8371bb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_21_1_toy-8371bc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_21_1_toy-8371bd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_21_1_toy-8371ca.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_22_1_m5e-8371ca.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_22_1_m5e-8371cb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_22_1_m5e-8371cc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_23_1_sN1-8371cc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_23_1_sN1-8371cd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_23_1_sN1-8371da.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_24_1_uUX-8371cc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_24_1_uUX-8371cd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_24_1_uUX-8371da.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_24_1_uUX-8371db.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_25_1_vad-8371db.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_25_1_vad-8371dc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_25_1_vad-8371dd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_2_1_Gms-8369aa.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_2_1_Gms-8369ab.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_2_1_Gms-8369ac.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_3_1_wpM-8369aa.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_3_1_wpM-8369ab.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_3_1_wpM-8369ac.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_3_1_wpM-8369ad.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_3_1_wpM-8369ba.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_3_1_wpM-8369bb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_4_1_W16-8369aa.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_4_1_W16-8369cb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_4_1_W16-8369cc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_4_1_W16-8369da.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_4_1_W16-8369db.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_5_1_56a-8369ac.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_5_1_56a-8369ad.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_5_1_56a-8369ba.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_6_1_TXs-8369ba.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_6_1_TXs-8369bb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_6_1_TXs-8369bc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_7_1_aP3-8369bc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_7_1_aP3-8369bd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_7_1_aP3-8369ca.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_8_1_tHK-8369bd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_8_1_tHK-8369ca.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_8_1_tHK-8369cb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_8_1_tHK-8369cc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_9_1_XJ5-8369bd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_9_1_XJ5-8369ca.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_9_1_XJ5-8369cb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_10_1_HDU-8372dd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_10_1_HDU-8372ea.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_10_1_HDU-8372eb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_10_1_HDU-8372ec.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_10_1_HDU-8372ed.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_11_1_ttj-8372ea.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_11_1_ttj-8372eb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_11_1_ttj-8372ed.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_11_1_ttj-8372fc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_12_1_wm5-8372ec.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_12_1_wm5-8372fb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_12_1_wm5-8372fc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_12_1_wm5-8372fd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_13_1_rmi-8372ed.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_13_1_rmi-8372fd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_13_1_rmi-8372ga.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_13_1_rmi-8372gb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_13_1_rmi-8372gc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_14_1_Nrm-8372ed.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_14_1_Nrm-8372fa.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_14_1_Nrm-8372fb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_14_1_Nrm-8372fc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_1_1_752-8372aa.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_1_1_752-8372ab.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_1_1_752-8372ac.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_2_1_85R-8372aa.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_2_1_85R-8372ab.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_2_1_85R-8372ac.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_2_1_85R-8372ad.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_2_1_85R-8372bb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_2_1_85R-8372cb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_2_1_85R-8372cd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_2_1_85R-8372dc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_2_1_85R-8372dd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_2_1_85R-8372ed.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_2_1_85R-8372ga.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_2_1_85R-8372gc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_2_1_85R-8372gd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_3_1_fCY-8372aa.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_3_1_fCY-8372ab.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_3_1_fCY-8372ac.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_3_1_fCY-8372ad.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_3_1_fCY-8372ba.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_4_1_Jey-8372ac.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_4_1_Jey-8372ad.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_4_1_Jey-8372ba.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_4_1_Jey-8372bb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_4_1_Jey-8372bc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_5_1_QY0-8372bb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_5_1_QY0-8372bc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_5_1_QY0-8372bd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_5_1_QY0-8372ca.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_6_1_RuR-8372ca.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_6_1_RuR-8372cb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_6_1_RuR-8372cc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_7_1_Ndp-8372ca.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_7_1_Ndp-8372cd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_7_1_Ndp-8372da.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_7_1_Ndp-8372db.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_7_1_Ndp-8372dc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_7_1_Ndp-8372dd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_8_1_bVg-8372cb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_8_1_bVg-8372cc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_8_1_bVg-8372cd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_8_1_bVg-8372da.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_8_1_bVg-8372db.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_9_1_ydd-8372dc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_9_1_ydd-8372dd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_9_1_ydd-8372ea.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_9_1_ydd-8372eb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_10_1_QkJ-8372dd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_10_1_QkJ-8372eb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_10_1_QkJ-8372ec.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_10_1_QkJ-8372ed.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_11_1_JwK-8372ea.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_11_1_JwK-8372eb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_11_1_JwK-8372fc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_11_1_JwK-8372gd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_12_1_22J-8372ec.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_12_1_22J-8372fb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_12_1_22J-8372fc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_12_1_22J-8372fd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_13_1_kmW-8372ed.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_13_1_kmW-8372fd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_13_1_kmW-8372ga.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_13_1_kmW-8372gb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_13_1_kmW-8372gc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_14_1_V8V-8372ed.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_14_1_V8V-8372fa.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_14_1_V8V-8372fb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_14_1_V8V-8372fc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_1_1_tU0-8372aa.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_1_1_tU0-8372ab.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_1_1_tU0-8372ac.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_2_1_sSA-8372aa.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_2_1_sSA-8372ab.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_2_1_sSA-8372ac.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_2_1_sSA-8372ad.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_2_1_sSA-8372bb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_2_1_sSA-8372cb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_2_1_sSA-8372cd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_2_1_sSA-8372dc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_2_1_sSA-8372dd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_2_1_sSA-8372ed.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_2_1_sSA-8372ga.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_2_1_sSA-8372gc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_2_1_sSA-8372gd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_3_1_jY7-8372aa.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_3_1_jY7-8372ab.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_3_1_jY7-8372ac.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_3_1_jY7-8372ad.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_3_1_jY7-8372ba.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_4_1_P44-8372ac.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_4_1_P44-8372bc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_4_1_P44-8372bd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_4_1_P44-8372ca.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_5_1_JNK-8372ad.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_5_1_JNK-8372ba.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_5_1_JNK-8372bb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_5_1_JNK-8372bc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_6_1_gSj-8372bd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_6_1_gSj-8372cc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_6_1_gSj-8372cd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_6_1_gSj-8372da.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_6_1_gSj-8372db.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_7_1_I81-8372ca.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_7_1_I81-8372cd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_7_1_I81-8372da.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_7_1_I81-8372db.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_7_1_I81-8372dc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_7_1_I81-8372dd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_8_1_fwy-8372ca.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_8_1_fwy-8372cb.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_8_1_fwy-8372cc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_9_1_rFW-8372dc.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_9_1_rFW-8372dd.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_9_1_rFW-8372ea.root
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_9_1_rFW-8372eb.root
+The current file has 2701 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_10_1_QXB-8369bd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 19061 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_10_1_QXB-8369ca.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+10k done
+20k done
+The current file has 13408 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_10_1_QXB-8369cb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+30k done
+The current file has 22097 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_11_1_0lE-8369da.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+40k done
+50k done
+The current file has 8341 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_12_1_VPC-8369db.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+60k done
+The current file has 20021 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_12_1_VPC-8369dc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+70k done
+80k done
+The current file has 7200 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_12_1_VPC-8369dd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+90k done
+The current file has 2601 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_13_1_gNF-8369dc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 2884 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_13_1_gNF-8371db.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 17129 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_13_1_gNF-8371dd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+100k done
+110k done
+The current file has 16661 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_14_1_K7g-8369dd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+120k done
+130k done
+The current file has 16975 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_14_1_K7g-8369ea.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+140k done
+The current file has 906 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_14_1_K7g-8369eb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 3226 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_15_1_wrK-8369eb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+150k done
+The current file has 9497 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_15_1_wrK-8371ab.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+160k done
+The current file has 18962 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_15_1_wrK-8371ac.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+170k done
+180k done
+The current file has 3181 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_15_1_wrK-8371ad.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 9805 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_16_1_LHg-8369ec.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+190k done
+The current file has 5991 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_16_1_LHg-8371aa.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+200k done
+The current file has 18410 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_17_1_NSS-8371aa.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+210k done
+The current file has 15127 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_17_1_NSS-8371ab.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+220k done
+230k done
+The current file has 145 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_17_1_NSS-8371ac.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 3120 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_18_1_NKS-8371ac.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 3150 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_18_1_NKS-8371ad.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+240k done
+The current file has 10773 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_18_1_NKS-8371ba.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+250k done
+The current file has 20356 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_18_1_NKS-8371bb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+260k done
+270k done
+The current file has 2402 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_19_1_7in-8371ac.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 18376 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_19_1_7in-8371ad.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+280k done
+290k done
+The current file has 13838 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_19_1_7in-8371ba.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+300k done
+The current file has 11847 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_1_1_Al3-8369aa.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+310k done
+The current file has 8304 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_1_1_Al3-8369ab.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+320k done
+The current file has 3953 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_20_1_2Ex-8371bb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+330k done
+The current file has 24563 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_20_1_2Ex-8371bc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+340k done
+350k done
+The current file has 7987 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_20_1_2Ex-8371bd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+360k done
+The current file has 16215 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_21_1_Yku-8371bd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+370k done
+The current file has 19745 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_21_1_Yku-8371ca.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+380k done
+390k done
+The current file has 3028 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_22_1_hJZ-8371ca.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+400k done
+The current file has 7537 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_22_1_hJZ-8371db.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 21319 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_22_1_hJZ-8371dc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+410k done
+420k done
+430k done
+The current file has 3109 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_22_1_hJZ-8371dd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 1465 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_23_1_2t6-8371ca.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 24161 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_23_1_2t6-8371cb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+440k done
+450k done
+The current file has 9922 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_23_1_2t6-8371cc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+460k done
+The current file has 3049 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_24_1_o9F-8371cc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+470k done
+The current file has 3041 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_24_1_o9F-8371cd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 18513 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_24_1_o9F-8371da.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+480k done
+490k done
+The current file has 10733 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_24_1_o9F-8371db.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+500k done
+The current file has 11411 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_25_1_9Ff-8371cc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+510k done
+The current file has 21158 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_25_1_9Ff-8371cd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+520k done
+530k done
+The current file has 2824 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_25_1_9Ff-8371da.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+540k done
+The current file has 9234 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_2_1_KRI-8369aa.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 15625 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_2_1_KRI-8369ab.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+550k done
+560k done
+The current file has 10634 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_2_1_KRI-8369ac.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+570k done
+The current file has 3187 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_3_1_hD2-8369aa.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 7932 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_3_1_hD2-8369ac.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+580k done
+The current file has 19256 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_3_1_hD2-8369ad.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+590k done
+600k done
+The current file has 2845 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_3_1_hD2-8369ba.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 2993 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_4_1_a85-8369aa.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+610k done
+The current file has 2596 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_4_1_a85-8369db.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 2589 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_4_1_a85-8369dc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 2500 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_4_1_a85-8369dd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 2561 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_4_1_a85-8369ea.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+620k done
+The current file has 15914 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_4_1_a85-8369eb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+630k done
+The current file has 7692 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_4_1_a85-8369ec.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+640k done
+The current file has 2856 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_5_1_VlO-8369ab.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 2740 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_5_1_VlO-8369ac.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+650k done
+The current file has 6391 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_5_1_VlO-8369ad.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 16303 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_5_1_VlO-8369ba.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+660k done
+670k done
+The current file has 4820 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_5_1_VlO-8369bb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 2627 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_6_1_zM9-8369ca.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+680k done
+The current file has 2826 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_6_1_zM9-8369cc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 25605 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_6_1_zM9-8369cd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+690k done
+700k done
+The current file has 2282 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_6_1_zM9-8369da.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+710k done
+The current file has 2299 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_7_1_Quu-8369ba.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 17835 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_7_1_Quu-8369bb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+720k done
+730k done
+The current file has 15241 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_7_1_Quu-8369bc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+740k done
+The current file has 2832 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_8_1_ZQn-8369bb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+750k done
+The current file has 10298 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_8_1_ZQn-8369bc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+760k done
+The current file has 19977 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_8_1_ZQn-8369bd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+770k done
+780k done
+The current file has 2740 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_8_1_ZQn-8369ca.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 2723 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_9_1_GMc-8369bd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 12021 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_9_1_GMc-8369cb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+790k done
+The current file has 22386 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198902_9_1_GMc-8369cc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+800k done
+810k done
+820k done
+The current file has 249 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_10_1_Cxz-8369cc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 2383 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_10_1_Cxz-8369cd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 5810 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_10_1_Cxz-8369db.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 20347 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_10_1_Cxz-8369dc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+830k done
+840k done
+The current file has 6983 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_10_1_Cxz-8369dd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+850k done
+The current file has 23340 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_11_1_MRK-8369cd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+860k done
+870k done
+The current file has 12868 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_11_1_MRK-8369da.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+880k done
+890k done
+The current file has 2577 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_12_1_zDS-8369db.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 2539 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_12_1_zDS-8369dc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 2587 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_12_1_zDS-8369dd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+900k done
+The current file has 2423 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_12_1_zDS-8369ea.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 19053 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_12_1_zDS-8369eb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+910k done
+920k done
+The current file has 7615 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_12_1_zDS-8369ec.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 2535 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_13_1_fsY-8369dc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+930k done
+The current file has 3002 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_13_1_fsY-8371dc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 14104 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_13_1_fsY-8371dd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+940k done
+The current file has 16664 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_14_1_Cjm-8369dd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+950k done
+960k done
+The current file has 17151 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_14_1_Cjm-8369ea.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+970k done
+980k done
+The current file has 963 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_14_1_Cjm-8369eb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 9828 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_15_1_iJ5-8369ec.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+990k done
+The current file has 9336 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_15_1_iJ5-8371aa.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1000k done
+The current file has 15366 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_16_1_193-8371aa.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1010k done
+The current file has 15041 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_16_1_193-8371ab.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1020k done
+1030k done
+The current file has 156 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_16_1_193-8371ac.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 3157 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_17_1_XnM-8371ab.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 7607 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_17_1_XnM-8371ba.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1040k done
+The current file has 18158 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_17_1_XnM-8371bb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1050k done
+1060k done
+The current file has 7941 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_17_1_XnM-8371bc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1070k done
+The current file has 6375 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_18_1_DTR-8371ab.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 21381 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_18_1_DTR-8371ac.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1080k done
+1090k done
+The current file has 7229 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_18_1_DTR-8371ad.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1100k done
+The current file has 3206 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_19_1_b3d-8371ac.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 13324 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_19_1_b3d-8371bc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1110k done
+1120k done
+The current file has 20158 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_19_1_b3d-8371bd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1130k done
+1140k done
+The current file has 11868 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_1_1_rxR-8369aa.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1150k done
+The current file has 8423 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_1_1_rxR-8369ab.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1160k done
+The current file has 17481 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_20_1_zMV-8371ad.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1170k done
+The current file has 17116 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_20_1_zMV-8371ba.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1180k done
+1190k done
+The current file has 6244 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_21_1_toy-8371bb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1200k done
+The current file has 3085 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_21_1_toy-8371bc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 4177 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_21_1_toy-8371bd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1210k done
+The current file has 22660 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_21_1_toy-8371ca.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1220k done
+1230k done
+The current file has 1477 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_22_1_m5e-8371ca.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 24118 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_22_1_m5e-8371cb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1240k done
+1250k done
+The current file has 9996 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_22_1_m5e-8371cc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1260k done
+The current file has 11333 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_23_1_sN1-8371cc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1270k done
+1280k done
+The current file has 21358 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_23_1_sN1-8371cd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1290k done
+1300k done
+The current file has 2816 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_23_1_sN1-8371da.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 2938 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_24_1_uUX-8371cc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 2942 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_24_1_uUX-8371cd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1310k done
+The current file has 18556 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_24_1_uUX-8371da.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1320k done
+The current file has 10762 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_24_1_uUX-8371db.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1330k done
+The current file has 10398 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_25_1_vad-8371db.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1340k done
+The current file has 18441 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_25_1_vad-8371dc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1350k done
+1360k done
+The current file has 5912 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_25_1_vad-8371dd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1370k done
+The current file has 9200 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_2_1_Gms-8369aa.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1380k done
+The current file has 15610 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_2_1_Gms-8369ab.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1390k done
+The current file has 10666 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_2_1_Gms-8369ac.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1400k done
+The current file has 3058 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_3_1_wpM-8369aa.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1410k done
+The current file has 2861 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_3_1_wpM-8369ab.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 4960 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_3_1_wpM-8369ac.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1420k done
+The current file has 2760 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_3_1_wpM-8369ad.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 11270 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_3_1_wpM-8369ba.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1430k done
+The current file has 7679 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_3_1_wpM-8369bb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1440k done
+The current file has 3079 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_4_1_W16-8369aa.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 2679 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_4_1_W16-8369cb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 2646 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_4_1_W16-8369cc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1450k done
+The current file has 11362 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_4_1_W16-8369da.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1460k done
+The current file has 16817 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_4_1_W16-8369db.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1470k done
+The current file has 5818 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_5_1_56a-8369ac.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1480k done
+The current file has 22927 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_5_1_56a-8369ad.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1490k done
+1500k done
+The current file has 7909 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_5_1_56a-8369ba.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1510k done
+The current file has 2296 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_6_1_TXs-8369ba.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 18001 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_6_1_TXs-8369bb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1520k done
+1530k done
+The current file has 12552 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_6_1_TXs-8369bc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1540k done
+The current file has 12874 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_7_1_aP3-8369bc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1550k done
+1560k done
+The current file has 20104 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_7_1_aP3-8369bd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1570k done
+1580k done
+The current file has 2776 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_7_1_aP3-8369ca.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 2684 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_8_1_tHK-8369bd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 2764 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_8_1_tHK-8369ca.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 9386 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_8_1_tHK-8369cb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1590k done
+The current file has 22264 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_8_1_tHK-8369cc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1600k done
+1610k done
+1620k done
+The current file has 2698 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_9_1_XJ5-8369bd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 18908 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_9_1_XJ5-8369ca.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1630k done
+1640k done
+The current file has 13352 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198902_9_1_XJ5-8369cb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1650k done
+The current file has 2974 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_10_1_HDU-8372dd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 1030 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_10_1_HDU-8372ea.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1660k done
+The current file has 12632 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_10_1_HDU-8372eb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1670k done
+The current file has 15322 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_10_1_HDU-8372ec.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1680k done
+The current file has 5089 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_10_1_HDU-8372ed.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1690k done
+The current file has 660 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_11_1_ttj-8372ea.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 671 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_11_1_ttj-8372eb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 1917 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_11_1_ttj-8372ed.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 602 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_11_1_ttj-8372fc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 1943 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_12_1_wm5-8372ec.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 5910 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_12_1_wm5-8372fb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1700k done
+The current file has 14569 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_12_1_wm5-8372fc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1710k done
+The current file has 14429 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_12_1_wm5-8372fd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1720k done
+1730k done
+The current file has 1981 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_13_1_rmi-8372ed.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 2732 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_13_1_rmi-8372fd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 10685 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_13_1_rmi-8372ga.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1740k done
+The current file has 13833 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_13_1_rmi-8372gb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1750k done
+1760k done
+The current file has 7219 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_13_1_rmi-8372gc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1770k done
+The current file has 6389 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_14_1_Nrm-8372ed.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 16631 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_14_1_Nrm-8372fa.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1780k done
+1790k done
+The current file has 11503 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_14_1_Nrm-8372fb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1800k done
+The current file has 2254 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_14_1_Nrm-8372fc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 15118 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_1_1_752-8372aa.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1810k done
+1820k done
+The current file has 15335 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_1_1_752-8372ab.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1830k done
+The current file has 3601 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_1_1_752-8372ac.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1840k done
+The current file has 692 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_2_1_85R-8372aa.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 743 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_2_1_85R-8372ab.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 1395 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_2_1_85R-8372ac.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 1366 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_2_1_85R-8372ad.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 675 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_2_1_85R-8372bb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 2046 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_2_1_85R-8372cb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 669 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_2_1_85R-8372cd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 650 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_2_1_85R-8372dc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 1363 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_2_1_85R-8372dd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1850k done
+The current file has 1937 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_2_1_85R-8372ed.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 3173 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_2_1_85R-8372ga.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 6515 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_2_1_85R-8372gc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1860k done
+The current file has 14265 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_2_1_85R-8372gd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1870k done
+The current file has 1898 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_3_1_fCY-8372aa.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 2281 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_3_1_fCY-8372ab.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1880k done
+The current file has 10543 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_3_1_fCY-8372ac.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1890k done
+The current file has 14146 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_3_1_fCY-8372ad.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1900k done
+The current file has 6656 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_3_1_fCY-8372ba.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1910k done
+The current file has 2117 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_4_1_Jey-8372ac.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 2051 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_4_1_Jey-8372ad.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 10895 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_4_1_Jey-8372ba.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1920k done
+The current file has 14833 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_4_1_Jey-8372bb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1930k done
+1940k done
+The current file has 7276 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_4_1_Jey-8372bc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 2130 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_5_1_QY0-8372bb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1950k done
+The current file has 10316 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_5_1_QY0-8372bc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1960k done
+The current file has 17439 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_5_1_QY0-8372bd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1970k done
+The current file has 7068 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_5_1_QY0-8372ca.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1980k done
+The current file has 3053 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_6_1_RuR-8372ca.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 14175 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_6_1_RuR-8372cb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+1990k done
+2000k done
+The current file has 14197 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_6_1_RuR-8372cc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2010k done
+The current file has 1997 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_7_1_Ndp-8372ca.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 2048 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_7_1_Ndp-8372cd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2020k done
+The current file has 4555 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_7_1_Ndp-8372da.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 11130 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_7_1_Ndp-8372db.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2030k done
+The current file has 8846 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_7_1_Ndp-8372dc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2040k done
+The current file has 5170 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_7_1_Ndp-8372dd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2050k done
+The current file has 1418 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_8_1_bVg-8372cb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 3211 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_8_1_bVg-8372cc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 14611 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_8_1_bVg-8372cd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2060k done
+2070k done
+The current file has 12853 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_8_1_bVg-8372da.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2080k done
+The current file has 4018 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_8_1_bVg-8372db.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 7875 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_9_1_ydd-8372dc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2090k done
+The current file has 7961 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_9_1_ydd-8372dd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2100k done
+The current file has 14958 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_9_1_ydd-8372ea.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2110k done
+The current file has 4689 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/CMS_Totem-LP_Jets1-198903_9_1_ydd-8372eb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2120k done
+The current file has 2078 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_10_1_QkJ-8372dd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 14613 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_10_1_QkJ-8372eb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2130k done
+The current file has 15259 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_10_1_QkJ-8372ec.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2140k done
+2150k done
+The current file has 5078 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_10_1_QkJ-8372ed.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2160k done
+The current file has 635 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_11_1_JwK-8372ea.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 635 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_11_1_JwK-8372eb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 661 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_11_1_JwK-8372fc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 1900 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_11_1_JwK-8372gd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 1949 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_12_1_22J-8372ec.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 5855 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_12_1_22J-8372fb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2170k done
+The current file has 14604 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_12_1_22J-8372fc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2180k done
+The current file has 14473 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_12_1_22J-8372fd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2190k done
+2200k done
+The current file has 2004 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_13_1_kmW-8372ed.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 2663 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_13_1_kmW-8372fd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 10674 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_13_1_kmW-8372ga.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2210k done
+The current file has 13798 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_13_1_kmW-8372gb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2220k done
+The current file has 7306 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_13_1_kmW-8372gc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2230k done
+The current file has 6355 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_14_1_V8V-8372ed.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2240k done
+The current file has 16674 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_14_1_V8V-8372fa.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2250k done
+2260k done
+The current file has 11580 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_14_1_V8V-8372fb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2270k done
+The current file has 2191 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_14_1_V8V-8372fc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 15006 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_1_1_tU0-8372aa.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2280k done
+The current file has 15394 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_1_1_tU0-8372ab.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2290k done
+2300k done
+The current file has 3608 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_1_1_tU0-8372ac.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 675 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_2_1_sSA-8372aa.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 701 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_2_1_sSA-8372ab.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 1373 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_2_1_sSA-8372ac.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2310k done
+The current file has 1336 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_2_1_sSA-8372ad.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 651 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_2_1_sSA-8372bb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 2026 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_2_1_sSA-8372cb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 640 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_2_1_sSA-8372cd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 664 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_2_1_sSA-8372dc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 1308 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_2_1_sSA-8372dd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 3863 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_2_1_sSA-8372ed.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2320k done
+The current file has 3191 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_2_1_sSA-8372ga.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 6488 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_2_1_sSA-8372gc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2330k done
+The current file has 12326 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_2_1_sSA-8372gd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2340k done
+The current file has 1928 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_3_1_jY7-8372aa.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 2245 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_3_1_jY7-8372ab.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 10578 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_3_1_jY7-8372ac.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2350k done
+The current file has 14127 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_3_1_jY7-8372ad.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2360k done
+2370k done
+The current file has 6635 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_3_1_jY7-8372ba.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 2044 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_4_1_P44-8372ac.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2380k done
+The current file has 10368 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_4_1_P44-8372bc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2390k done
+The current file has 15290 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_4_1_P44-8372bd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2400k done
+The current file has 9169 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_4_1_P44-8372ca.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2410k done
+The current file has 2079 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_5_1_JNK-8372ad.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 10913 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_5_1_JNK-8372ba.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2420k done
+The current file has 16995 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_5_1_JNK-8372bb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2430k done
+2440k done
+The current file has 7202 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_5_1_JNK-8372bc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2450k done
+The current file has 2107 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_6_1_gSj-8372bd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 2491 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_6_1_gSj-8372cc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 14731 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_6_1_gSj-8372cd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2460k done
+2470k done
+The current file has 12977 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_6_1_gSj-8372da.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2480k done
+The current file has 4048 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_6_1_gSj-8372db.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 2024 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_7_1_I81-8372ca.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2490k done
+The current file has 2023 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_7_1_I81-8372cd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 4508 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_7_1_I81-8372da.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 11066 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_7_1_I81-8372db.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2500k done
+The current file has 8821 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_7_1_I81-8372dc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2510k done
+The current file has 5079 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_7_1_I81-8372dd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2520k done
+The current file has 1014 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_8_1_fwy-8372ca.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+The current file has 15599 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_8_1_fwy-8372cb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2530k done
+The current file has 14917 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_8_1_fwy-8372cc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2540k done
+2550k done
+The current file has 7901 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_9_1_rFW-8372dc.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2560k done
+The current file has 9069 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_9_1_rFW-8372dd.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2570k done
+The current file has 15990 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_9_1_rFW-8372ea.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
+2580k done
+The current file has 2757 entries : 
+/storage/lhuertas/uerj-1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/CMS_Totem-LP_Jets2-198903_9_1_rFW-8372eb.root
+track_rp_20.
+track_rp_21.
+track_rp_22.
+track_rp_23.
+track_rp_24.
+track_rp_25.
+track_rp_120.
+track_rp_121.
+track_rp_122.
+track_rp_123.
+track_rp_124.
+track_rp_125.
