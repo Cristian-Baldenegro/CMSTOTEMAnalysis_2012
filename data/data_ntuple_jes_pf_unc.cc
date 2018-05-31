@@ -58,10 +58,10 @@
 #include "RPRootDumpDigiInfo.h"
 #include "RPRootDumpPatternInfo.h"
 
-#include "analysis_tools.h"
-#include "CondFormats/JetMETObjects/interface/JetCorrectorParameters.h"
-#include "CondFormats/JetMETObjects/interface/JetCorrectionUncertainty.h"
-#include "CondFormats/JetMETObjects/interface/FactorizedJetCorrector.h"
+#include "/storage1/lhuertas/CMSTOTEM/data/analysis_tools.h"
+#include "/afs/cern.ch/user/l/lhuertas/work/CMSTOTEM_analysis/git/data/JetCorrectorParameters.h"
+#include "/afs/cern.ch/user/l/lhuertas/work/CMSTOTEM_analysis/git/data/JetCorrectionUncertainty.h"
+#include "/afs/cern.ch/user/l/lhuertas/work/CMSTOTEM_analysis/git/data/FactorizedJetCorrector.h"
 
 //STANDARD C++ INCLUDES
 #include <iostream>
@@ -111,10 +111,10 @@ void data_ntuple_jes_pf_unc(bool jet = false, bool sys_up = false,  const Int_t 
   bool selectEtaMin = false;
   bool selectZeroHitsT2Plus = false;
   bool selectZeroHitsT2Minus = false;
-  bool selectSingleArmRecProton = true;
+  bool selectSingleArmRecProton = false;
   bool selectDoubleArmRecProton = false;
   bool selectElastic = false;
-  bool selectNonElastic = false;
+  bool selectNonElastic = true;
 
   ThresholdsPerRegion thresholdsPFlow;
   thresholdsPFlow[Barrel] = ThresholdsPerType(); 
@@ -273,6 +273,7 @@ TH1F* test = new TH1F("test","",50,0,0.2);
 
   //===================
   // Jet Uncertainties
+  //const int n_jec_unc_src = 12;
   const int n_jec_unc_src = 20;
   //const char* jec_unc_srcnames[n_jec_unc_src] = {"Absolute", "HighPtExtra", "Flavor", "Time",
   //                                       "RelativeJEREC1", "RelativeJEREC2", "RelativeJERHF",
@@ -287,21 +288,22 @@ TH1F* test = new TH1F("test","",50,0,0.2);
   for (int isrc = 0; isrc < n_jec_unc_src; isrc++) {
 
      const char *name = jec_unc_srcnames[isrc];
-     //JetCorrectorParameters *p = new JetCorrectorParameters("jes_uncertainty/txt/Fall12_V7_DATA_UncertaintySources_AK5PF.txt", name);
-     JetCorrectorParameters *p = new JetCorrectorParameters("Winter14_V8/Winter14_V8_DATA_UncertaintySources_AK5PF.txt", name);
+     //JetCorrectorParameters *p = new JetCorrectorParameters("/afs/cern.ch/user/l/lhuertas/jes_uncertainty/txt/Fall12_V7_DATA_UncertaintySources_AK5PF.txt", name);
+     JetCorrectorParameters *p = new JetCorrectorParameters("../mc/Workspace/Winter14_V8/Winter14_V8_DATA_UncertaintySources_AK5PF.txt", name);
      JetCorrectionUncertainty *unc = new JetCorrectionUncertainty(*p);
      jec_unc_src[isrc] = unc;
   } // for isrc
 
   // Total uncertainty for reference
-   JetCorrectionUncertainty *jec_unc_total = new JetCorrectionUncertainty(*(new JetCorrectorParameters("Winter14_V8/Winter14_V8_DATA_UncertaintySources_AK5PF.txt", "Total")));
+   //JetCorrectionUncertainty *jec_unc_total = new JetCorrectionUncertainty(*(new JetCorrectorParameters("/afs/cern.ch/user/l/lhuertas/jes_uncertainty/txt/Fall12_V7_DATA_UncertaintySources_AK5PF.txt", "Total")));
+   JetCorrectionUncertainty *jec_unc_total = new JetCorrectionUncertainty(*(new JetCorrectorParameters("../mc/Workspace/Winter14_V8/Winter14_V8_DATA_UncertaintySources_AK5PF.txt", "Total")));
 
 
 
   ///Jet Energy Corrections
-  L2Relative = new JetCorrectorParameters("Winter14_V8/Winter14_V8_DATA_L2Relative_AK5PF.txt");
-  L3Absolute = new JetCorrectorParameters("Winter14_V8/Winter14_V8_DATA_L3Absolute_AK5PF.txt");
-  L2L3Residual = new JetCorrectorParameters("Winter14_V8/Winter14_V8_DATA_L2L3Residual_AK5PF.txt");
+  L2Relative = new JetCorrectorParameters("../mc/Workspace/Winter14_V8/Winter14_V8_DATA_L2Relative_AK5PF.txt");
+  L3Absolute = new JetCorrectorParameters("../mc/Workspace/Winter14_V8/Winter14_V8_DATA_L3Absolute_AK5PF.txt");
+  L2L3Residual = new JetCorrectorParameters("../mc/Workspace/Winter14_V8/Winter14_V8_DATA_L2L3Residual_AK5PF.txt");
   vecL2Relative.push_back(*L2Relative);
   vecL3Absolute.push_back(*L3Absolute);
   vecL2L3Residual.push_back(*L2L3Residual);
@@ -316,10 +318,10 @@ TH1F* test = new TH1F("test","",50,0,0.2);
    const char *ext=".root";
  
    vector<TString>* vdirs = new vector<TString>; 
-     vdirs->push_back("/afs/cern.ch/user/l/lhuertas/work/uerj1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/");
-     vdirs->push_back("/afs/cern.ch/user/l/lhuertas/work/uerj1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/");
-     vdirs->push_back("/afs/cern.ch/user/l/lhuertas/work/uerj1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/");
-     vdirs->push_back("/afs/cern.ch/user/l/lhuertas/work/uerj1/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/");
+     vdirs->push_back("/storage1/lhuertas/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/");
+     vdirs->push_back("/storage1/lhuertas/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/");
+     vdirs->push_back("/storage1/lhuertas/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/");
+     vdirs->push_back("/storage1/lhuertas/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/");
      //vdirs->push_back("root://eoscms.cern.ch//store/group/phys_diffraction/CMSTOTEM_2012/MergedNtuples/HighBeta/reReco/198902-8369_8371-V00-02-00_new/Jets1/");
    //vdirs->push_back("root://eoscms.cern.ch//store/group/phys_diffraction/CMSTOTEM_2012/MergedNtuples/HighBeta/reReco/198902-8369_8371-V00-02-00_new/Jets2/");
    //vdirs->push_back("root://eoscms.cern.ch//store/group/phys_diffraction/CMSTOTEM_2012/MergedNtuples/HighBeta/reReco/198903-8372-V00-02-00_new/Jets1/");
@@ -531,7 +533,7 @@ TH1F* test = new TH1F("test","",50,0,0.2);
       MyVertex& primaryVertex = vertex_coll->at(0); 
       double prim_vtx_r = sqrt( primaryVertex.x*primaryVertex.x + primaryVertex.y*primaryVertex.y );
       select_Vertex = ( !primaryVertex.fake && primaryVertex.validity && primaryVertex.ndof > 4);// && fabs( primaryVertex.z ) < 15.0 && prim_vtx_r < 2.0);
-  //    if (!select_Vertex) continue;
+    // if (!select_Vertex) continue;
       ++n_evt_vtx;
       
       // Tracks
@@ -560,6 +562,7 @@ TH1F* test = new TH1F("test","",50,0,0.2);
       Double_t Jet2_eta; 
       Double_t Jet1_phi; 
       Double_t Jet2_phi;
+      Double_t Jet3_pt, Jet3_pz, Jet3_E, Jet3_eta; 
       //Double_t eff; 
       //Double_t averagept_eff; 
       double CoorFactor;
@@ -576,6 +579,8 @@ TH1F* test = new TH1F("test","",50,0,0.2);
          map<string,MyBaseJet>::iterator it_map = it_jet->mapjet.begin();
          for(; it_map != it_jet->mapjet.end(); ++it_map)
             if(verbose) cout << it_map->first << endl;
+  
+         if( !loosePFJetID(*it_jet,jetCorrName) ) continue;
 
          MyBaseJet const& basejet = it_jet->mapjet[jetCorrName];
 
@@ -621,7 +626,7 @@ TH1F* test = new TH1F("test","",50,0,0.2);
       }
       std::stable_sort(JetVectorCorrected.begin(),JetVectorCorrected.end(),sortByPt);
        
-      if( pfJet_coll->size() > 0 ){
+      if( JetVectorCorrected.size() > 0 ){
 	 //MyBaseJet const& leadingJet = ( pfJet_coll->at(0) ).mapjet[jetCorrName];
 	 MyBaseJet const& leadingJet = JetVectorCorrected.at(0);
 	 Jet1_E = leadingJet.E(); 
@@ -629,12 +634,12 @@ TH1F* test = new TH1F("test","",50,0,0.2);
 	 Jet1_py = leadingJet.Py(); 
 	 Jet1_pz = leadingJet.Pz(); 
 	 Jet1_pt = leadingJet.Pt(); 
-	 Jet1_eta = leadingJet.Eta(); 
+	 Jet1_eta = (Jet1_pt==0 && Jet1_pz==0) ? 0 : leadingJet.Eta(); 
 	 Jet1_phi = leadingJet.Phi(); 
 
          double sum2_up(0), sum2_dw(0);
          for (int isrc = 0; isrc < n_jec_unc_src; isrc++) {
-            //cout << isrc << endl; 
+             //cout << isrc << endl; 
              JetCorrectionUncertainty *unc = jec_unc_src[isrc];
              unc->setJetPt(Jet1_pt);
              unc->setJetEta(Jet1_eta);
@@ -670,7 +675,7 @@ TH1F* test = new TH1F("test","",50,0,0.2);
          Jet2_py = secondJet.Py(); 
          Jet2_pz = secondJet.Pz(); 
          Jet2_pt = secondJet.Pt(); 
-	 Jet2_eta = secondJet.Eta(); 
+	 Jet2_eta = (Jet2_pt==0 && Jet2_pz==0) ? 0 : secondJet.Eta(); 
 	 Jet2_phi = secondJet.Phi(); 
 
          double sum2_up(0), sum2_dw(0);
@@ -703,9 +708,46 @@ TH1F* test = new TH1F("test","",50,0,0.2);
       }
       //if(!jet2_selected) continue;
       
+      if( pfJet_coll->size() > 2 ){
+	 //MyBaseJet const& secondJet = ( pfJet_coll->at(1) ).mapjet[jetCorrName];
+	 MyBaseJet const& thirdJet = JetVectorCorrected.at(2);
+         Jet3_E = thirdJet.E(); 
+         Jet3_pz = thirdJet.Pz(); 
+         Jet3_pt = thirdJet.Pt(); 
+	 Jet3_eta = (Jet3_pt==0 && Jet3_pz==0) ? 0 : thirdJet.Eta(); 
+
+         double sum2_up(0), sum2_dw(0);
+         for (int isrc = 0; isrc < n_jec_unc_src; isrc++) {
+            //cout << isrc << endl; 
+             JetCorrectionUncertainty *unc = jec_unc_src[isrc];
+             unc->setJetPt(Jet3_pt);
+             unc->setJetEta(Jet3_eta);
+             double sup = unc->getUncertainty(true); // up variation
+             //cout << sup << endl;
+             unc->setJetPt(Jet3_pt);
+             unc->setJetEta(Jet3_eta);
+             double sdw = unc->getUncertainty(false); // down variation
+             //cout << sdw << endl;
+             sum2_up += pow(max(sup,sdw),2);
+             sum2_dw += pow(min(sup,sdw),2);
+         } // for isrc
+           
+         jec_unc_total->setJetPt(Jet3_pt);
+         jec_unc_total->setJetEta(Jet3_eta);
+         double uncert_total = jec_unc_total->getUncertainty(true);
+         //cout << uncert_total << endl;
+         if(verbose) std::cout << "third jet pT, uncertainties total, individual sources up/dw: "
+                      << Jet3_pt << ", " << uncert_total
+                      << ", " << sqrt(sum2_up) << ", " << sqrt(sum2_dw) << std::endl;
+         if(jet==true) Jet3_pt = (sys_up == true) ? Jet3_pt*(1. + sqrt(sum2_up)) : Jet3_pt*(1. - sqrt(sum2_dw));
+         else Jet3_pt = Jet3_pt;
+	 
+      }
       if(jet1_selected && jet2_selected) ++n_evt_jets;
       double x_plus = ((Jet1_E+Jet1_pz)+(Jet2_E+Jet2_pz))/8000;
       double x_minus = ((Jet1_E-Jet1_pz)+(Jet2_E-Jet2_pz))/8000;
+      double x_plus_3j = ((Jet1_E+Jet1_pz)+(Jet2_E+Jet2_pz)+(Jet3_E+Jet3_pz))/8000;
+      double x_minus_3j = ((Jet1_E-Jet1_pz)+(Jet2_E-Jet2_pz)+(Jet3_E-Jet3_pz))/8000;
       double x_minus_sel = (x_minus<x_plus) ? x_minus : x_plus;
       double x_plus_sel = (x_minus>x_plus) ? x_plus : x_minus;
       double mass_jets= sqrt(pow(Jet1_E+Jet2_E,2)-pow(Jet1_px+Jet2_px,2)-pow(Jet1_py+Jet2_py,2)-pow(Jet1_pz+Jet2_pz,2));
@@ -727,7 +769,7 @@ TH1F* test = new TH1F("test","",50,0,0.2);
          if (jet==true) energy = energy;
          else energy = (sys_up==true) ? energy+0.10 : energy-0.10;
 	 
-         // Apply thresholds
+        // Apply thresholds
          if( !pflowThreshold(*it_pfcand,thresholdsPFlow) ) continue;
          if (pflowThreshold(*it_pfcand,thresholdsPFlow)) pf_thresholds = true;
 
@@ -771,7 +813,7 @@ TH1F* test = new TH1F("test","",50,0,0.2);
 
 	 if(jet1_selected && jet2_selected && PF_eta_max && PF_eta_min && passed_threshold ) ++n_evt_pass_threshold;//continue;
 	 if(!passed_threshold ) continue;
-*/	 
+	*/ 
 	     soma1 += (energy + pz);
 	     soma2 += (energy - pz);
 
@@ -825,16 +867,22 @@ TH1F* test = new TH1F("test","",50,0,0.2);
       //if( tag_elastic_top45_bot56 || tag_elastic_bot45_top56  )  ++n_events_Elastic;
 
       // Select single-arm events (inclusive)
-      //if( selectSingleArmRecProton && !(proton_right_valid || proton_left_valid) ) continue;
+      if( selectSingleArmRecProton && !(proton_right_valid || proton_left_valid) ) continue;
       // Counter single-arm
-
       if( selectDoubleArmRecProton && !(proton_right_valid && proton_left_valid) ) continue;
       if( selectElastic && !(tag_elastic_top45_bot56 || tag_elastic_bot45_top56) ) continue;
       // Veto elastic-tagged events
       if( selectNonElastic && (tag_elastic_top45_bot56 || tag_elastic_bot45_top56) ) continue;
       // Counter elastic veto
- 
+/* 
+      if( selectSingleArmRecProton && (proton_right_valid && proton_left_valid) ) continue;
 
+      if( selectDoubleArmRecProton && !(proton_right_valid && proton_left_valid) ) continue;
+
+      if( selectElastic && !(tag_elastic_top45_bot56 || tag_elastic_bot45_top56) ) continue;
+
+      if( selectNonElastic && (tag_elastic_top45_bot56 || tag_elastic_bot45_top56) ) continue;
+*/
       //fiducial cuts
       bool rp_track_valid_120 = rp_track_info[120]->valid; 
       bool rp_track_valid_121 = rp_track_info[121]->valid;
@@ -934,16 +982,16 @@ TH1F* test = new TH1F("test","",50,0,0.2);
       xi_totem_left = -xi_proton_left;
       t_totem_left = -t_proton_left;
       xi_cms_plus_totem = xi_plus_Reco+xi_proton_left;
-      beta_proton_right = x_minus/-xi_proton_right;
-      beta_proton_left = x_plus/-xi_proton_left;
+      beta_proton_right = (Jet3_pt>20) ? x_minus_3j/-xi_proton_right : x_minus/-xi_proton_right;
+      beta_proton_left = (Jet3_pt>20) ? x_plus_3j/-xi_proton_left : x_plus/-xi_proton_left;
       thetax_proton_right = rec_proton_right->thx;
       thetay_proton_right = rec_proton_right->thy;
       phi_proton_right = rec_proton_right->phi;
       thetax_proton_left = rec_proton_left->thx;
       thetay_proton_left = rec_proton_left->thy;
       phi_proton_left = rec_proton_left->phi;
-      x_right = x_minus;
-      x_left = x_plus;
+      x_right = (Jet3_pt>20) ? x_minus_3j : x_minus;
+      x_left = (Jet3_pt>20) ? x_plus_3j : x_plus;
       vtx_x = primaryVertex.x;
       vtx_y = primaryVertex.y;
       vtx_z = primaryVertex.z;
@@ -998,5 +1046,5 @@ test->Write();
 
  
   output->Close();
-
+cout<<"done"<<endl;
 }

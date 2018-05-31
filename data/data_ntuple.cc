@@ -60,9 +60,13 @@
 
 #include "analysis_tools.h"
 
-#include "../../CMSSW_5_3_32/src/CondFormats/JetMETObjects/interface/JetCorrectorParameters.h"
-#include "../../CMSSW_5_3_32/src/CondFormats/JetMETObjects/interface/JetCorrectionUncertainty.h"
-#include "../../CMSSW_5_3_32/src/CondFormats/JetMETObjects/interface/FactorizedJetCorrector.h"
+//#include "../../CMSSW_5_3_32/src/CondFormats/JetMETObjects/interface/JetCorrectorParameters.h"
+//#include "../../CMSSW_5_3_32/src/CondFormats/JetMETObjects/interface/JetCorrectionUncertainty.h"
+//#include "../../CMSSW_5_37_32/src/CondFormats/JetMETObjects/interface/FactorizedJetCorrector.h"
+#include "../mc/Workspace/JetCorrectorParameters.h"
+//#include "/afs/cern.ch/user/l/lhuertas/work/CMSTOTEM_analysis/git/data/JetCorrectorParameters.h"
+#include "/afs/cern.ch/user/l/lhuertas/work/CMSTOTEM_analysis/git/data/JetCorrectionUncertainty.h"
+#include "/afs/cern.ch/user/l/lhuertas/work/CMSTOTEM_analysis/git/data/FactorizedJetCorrector.h"
 
 //STANDARD C++ INCLUDES
 #include <iostream>
@@ -106,10 +110,10 @@ void data_ntuple(string const& outputFileName = "/afs/cern.ch/user/l/lhuertas/da
   bool selectEtaMin = false;
   bool selectZeroHitsT2Plus = false;
   bool selectZeroHitsT2Minus = false;
-  bool selectSingleArmRecProton = true;
+  bool selectSingleArmRecProton = false;
   bool selectDoubleArmRecProton = false;
   bool selectElastic = false;
-  bool selectNonElastic = false;
+  bool selectNonElastic = true;
 
   ThresholdsPerRegion thresholdsPFlow;
   thresholdsPFlow[Barrel] = ThresholdsPerType(); 
@@ -190,13 +194,14 @@ void data_ntuple(string const& outputFileName = "/afs/cern.ch/user/l/lhuertas/da
   selections.push_back("NonElastic");
 
 
-  double xi_cms_minus, xi_cms_plus, x_right, x_left;
+  double xi_cms_minus, xi_cms_plus, x_right, x_left, x_right_3j, x_left_3j;
   double xi_totem_right, xi_totem_left, t_totem_right, t_totem_left, xi_cms_minus_totem, xi_cms_plus_totem, xi_totem_xicmscut_right, xi_totem_xicmscut_left;
-  double beta_proton_right, beta_proton_left, phi_proton_right, phi_proton_left, thetax_proton_right, thetax_proton_left, thetay_proton_right, thetay_proton_left;
-  double eff_trigger, jet1_pt, jet1_eta, jet1_phi, jet2_pt, jet2_eta, jet2_phi;
+  double beta_proton_right, beta_proton_left, beta_proton_right_3j, beta_proton_left_3j, phi_proton_right, phi_proton_left, thetax_proton_right, thetax_proton_left, thetay_proton_right, thetay_proton_left;
+  double eff_trigger, jet1_pt, jet1_eta, jet1_phi, jet2_pt, jet2_eta, jet2_phi, jet3_pt, jet3_eta;
   bool  valid_proton_right, valid_proton_left, rp_right_top, rp_right_bottom, rp_left_top, rp_left_bottom;
   double vtx_x, vtx_y, vtx_z, x_pos_024, x_pos_124, x_pos_025, x_pos_125, y_pos_025, y_pos_125, y_pos_024, y_pos_124, x_pos_020, x_pos_021, y_pos_020, y_pos_021, x_pos_120, y_pos_120, x_pos_121, y_pos_121;
   double mjj2;
+  int n_evt_jets, n_evt_3jets;
   TTree* small_tree = new TTree("small_tree","");
   small_tree->Branch("xi_cms_minus",&xi_cms_minus,"xi_cms_minus/D");
   small_tree->Branch("xi_cms_plus",&xi_cms_plus,"xi_cms_plus/D");
@@ -227,8 +232,10 @@ void data_ntuple(string const& outputFileName = "/afs/cern.ch/user/l/lhuertas/da
   small_tree->Branch("eff_trigger",&eff_trigger,"eff_trigger/D");
   small_tree->Branch("jet1_pt",&jet1_pt,"jet1_pt/D");
   small_tree->Branch("jet2_pt",&jet2_pt,"jet2_pt/D");
+  small_tree->Branch("jet3_pt",&jet3_pt,"jet3_pt/D");
   small_tree->Branch("jet1_eta",&jet1_eta,"jet1_eta/D");
   small_tree->Branch("jet2_eta",&jet2_eta,"jet2_eta/D");
+  small_tree->Branch("jet3_eta",&jet3_eta,"jet3_eta/D");
   small_tree->Branch("jet1_phi",&jet1_phi,"jet1_phi/D");
   small_tree->Branch("jet2_phi",&jet2_phi,"jet2_phi/D");
   small_tree->Branch("vtx_x",&vtx_x,"vtx_x/D");
@@ -251,6 +258,8 @@ void data_ntuple(string const& outputFileName = "/afs/cern.ch/user/l/lhuertas/da
   small_tree->Branch("y_pos_025",&y_pos_025,"y_pos_025/D");
   small_tree->Branch("y_pos_125",&y_pos_125,"y_pos_125/D");
   small_tree->Branch("mjj2",&mjj2,"mjj2/D");
+  small_tree->Branch("n_evt_jets",&n_evt_jets,"n_evt_jets/I");
+  small_tree->Branch("n_evt_3jets",&n_evt_3jets,"n_evt_3jets/I");
 
   small_tree->SetDirectory(0);
 
@@ -270,10 +279,14 @@ TH1F* test = new TH1F("test","",50,0,0.2);
    const char *ext=".root";
  
    vector<TString>* vdirs = new vector<TString>; 
-   vdirs->push_back("root://eoscms.cern.ch//store/group/phys_diffraction/CMSTOTEM_2012/MergedNtuples/HighBeta/reReco/198902-8369_8371-V00-02-00_new/Jets1/");
+   /*vdirs->push_back("root://eoscms.cern.ch//store/group/phys_diffraction/CMSTOTEM_2012/MergedNtuples/HighBeta/reReco/198902-8369_8371-V00-02-00_new/Jets1/");
    vdirs->push_back("root://eoscms.cern.ch//store/group/phys_diffraction/CMSTOTEM_2012/MergedNtuples/HighBeta/reReco/198902-8369_8371-V00-02-00_new/Jets2/");
    vdirs->push_back("root://eoscms.cern.ch//store/group/phys_diffraction/CMSTOTEM_2012/MergedNtuples/HighBeta/reReco/198903-8372-V00-02-00_new/Jets1/");
-   vdirs->push_back("root://eoscms.cern.ch//store/group/phys_diffraction/CMSTOTEM_2012/MergedNtuples/HighBeta/reReco/198903-8372-V00-02-00_new/Jets2/");
+   vdirs->push_back("root://eoscms.cern.ch//store/group/phys_diffraction/CMSTOTEM_2012/MergedNtuples/HighBeta/reReco/198903-8372-V00-02-00_new/Jets2/");*/
+   vdirs->push_back("/storage1/lhuertas/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets1/");
+   vdirs->push_back("/storage1/lhuertas/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198902-8369_8371-V00-02-00/Jets2/");
+   vdirs->push_back("/storage1/lhuertas/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets1/");
+   vdirs->push_back("/storage1/lhuertas/CMSTOTEM/samples/data/MergedNtuples/HighBeta/198903-8372-V00-02-00/Jets2/");
    
    vector<TString>* vfiles = new vector<TString>;
    for(vector<TString>::iterator itdirs = vdirs->begin(); itdirs != vdirs->end(); ++itdirs){
@@ -325,7 +338,7 @@ TH1F* test = new TH1F("test","",50,0,0.2);
   int n_evt_total = 0; 
   int n_evt_trigger = 0; 
   int n_evt_vtx = 0; 
-  int n_evt_jets = 0; 
+ // int n_evt_jets = 0; 
   int n_evt_PF = 0; 
   int n_evt_etapf = 0; 
   int n_evt_pass_threshold = 0; 
@@ -337,11 +350,12 @@ TH1F* test = new TH1F("test","",50,0,0.2);
   int n_events_DoubleArm = 0; 
   int n_events_Elastic = 0; 
   int n_events_Elastic_tag = 0; 
+  //int n_evt_3jets = 0;
 
  // Jet energy corrections
-  L2Relative = new JetCorrectorParameters("Winter14_V8/Winter14_V8_DATA_L2Relative_AK5PF.txt");
-  L3Absolute = new JetCorrectorParameters("Winter14_V8/Winter14_V8_DATA_L3Absolute_AK5PF.txt");
-  L2L3Residual = new JetCorrectorParameters("Winter14_V8/Winter14_V8_DATA_L2L3Residual_AK5PF.txt");
+  L2Relative = new JetCorrectorParameters("/afs/cern.ch/user/l/lhuertas/work/CMSTOTEM_analysis/git/data/Winter14_V8/Winter14_V8_DATA_L2Relative_AK5PF.txt");
+  L3Absolute = new JetCorrectorParameters("/afs/cern.ch/user/l/lhuertas/work/CMSTOTEM_analysis/git/data/Winter14_V8/Winter14_V8_DATA_L3Absolute_AK5PF.txt");
+  L2L3Residual = new JetCorrectorParameters("/afs/cern.ch/user/l/lhuertas/work/CMSTOTEM_analysis/git/data/Winter14_V8/Winter14_V8_DATA_L2L3Residual_AK5PF.txt");
   vecL2Relative.push_back(*L2Relative);
   vecL3Absolute.push_back(*L3Absolute);
   vecL2L3Residual.push_back(*L2L3Residual);
@@ -435,6 +449,7 @@ TH1F* test = new TH1F("test","",50,0,0.2);
       bool passedvtx = false;
       bool jet1_selected = false;
       bool jet2_selected = false;
+      bool jet3_selected = false;
       bool PF_eta_max = false;
       bool PF_eta_min = false;
       bool passed_threshold = false;
@@ -489,7 +504,7 @@ TH1F* test = new TH1F("test","",50,0,0.2);
       MyVertex& primaryVertex = vertex_coll->at(0); 
       double prim_vtx_r = sqrt( primaryVertex.x*primaryVertex.x + primaryVertex.y*primaryVertex.y );
       bool select_Vertex = ( !primaryVertex.fake && primaryVertex.validity && primaryVertex.ndof > 4);// && fabs( primaryVertex.z ) < 15.0 && prim_vtx_r < 2.0);
-      if (!select_Vertex) continue;
+      //if (!select_Vertex) continue;
       ++n_evt_vtx;
       
       // Tracks
@@ -519,6 +534,7 @@ TH1F* test = new TH1F("test","",50,0,0.2);
       Double_t Jet2_eta; 
       Double_t Jet1_phi; 
       Double_t Jet2_phi, Jet1_mass, Jet2_mass;
+      Double_t Jet3_pt, Jet3_eta, Jet3_pz, Jet3_E;
       //Double_t eff; 
       //Double_t averagept_eff; 
 
@@ -535,6 +551,9 @@ TH1F* test = new TH1F("test","",50,0,0.2);
          map<string,MyBaseJet>::iterator it_map = it_jet->mapjet.begin();
          for(; it_map != it_jet->mapjet.end(); ++it_map)
             if(verbose) cout << it_map->first << endl;
+
+         if( !loosePFJetID(*it_jet,jetCorrName) ) continue;
+         //if( !tightPFJetID(*it_jet,jetCorrName) ) continue;
 
          MyBaseJet const& basejet = it_jet->mapjet[jetCorrName];
        
@@ -580,11 +599,11 @@ TH1F* test = new TH1F("test","",50,0,0.2);
 	 Jet1_py = leadingJet.Py(); 
 	 Jet1_pz = leadingJet.Pz(); 
 	 Jet1_pt = leadingJet.Pt(); 
-	 Jet1_eta = leadingJet.Eta(); 
+	 Jet1_eta = (Jet1_pt==0 && Jet1_pz==0) ? 0 : leadingJet.Eta(); 
 	 Jet1_phi = leadingJet.Phi(); 
          Jet1_mass = leadingJet.M();
 	 
-	 if(Jet1_pt > 30. && Jet1_eta<4.4 ) jet1_selected = true;
+	 if(Jet1_pt > 40. && Jet1_eta<4.4 ) jet1_selected = true;
 	 
       }
       //if(!jet1_selected) continue;
@@ -597,19 +616,32 @@ TH1F* test = new TH1F("test","",50,0,0.2);
          Jet2_py = secondJet.Py(); 
          Jet2_pz = secondJet.Pz(); 
          Jet2_pt = secondJet.Pt(); 
-	 Jet2_eta = secondJet.Eta(); 
+	 Jet2_eta = (Jet2_pt==0 && Jet2_pz==0) ? 0 : secondJet.Eta(); 
 	 Jet2_phi = secondJet.Phi(); 
          Jet2_mass = secondJet.M();
 
-	 if(Jet2_pt > 30. && Jet2_eta<4.4 )  jet2_selected = true;
+	 if(Jet2_pt > 40. && Jet2_eta<4.4 )  jet2_selected = true;
 	 
       }
       //if(!jet2_selected) continue;
+      if( pfJet_coll->size() > 2 ){
+         MyBaseJet const& thirdJet = ( JetVectorCorrected.at(2) );
+         Jet3_pt = thirdJet.Pt(); 
+         Jet3_pz = thirdJet.Pz(); 
+	 Jet3_eta = (Jet3_pt==0 && Jet3_pz==0) ? 0 : thirdJet.Eta(); 
+	 Jet3_E = thirdJet.E(); 
+
+	 if(Jet3_pt > 20. && Jet3_eta<4.4 )  jet3_selected = true;
+	 
+      }
       
       if(jet1_selected && jet2_selected) ++n_evt_jets;
+      if(jet1_selected && jet2_selected && jet3_selected) ++n_evt_3jets;
 
       double x_plus = ((Jet1_E+Jet1_pz)+(Jet2_E+Jet2_pz))/8000;
       double x_minus = ((Jet1_E-Jet1_pz)+(Jet2_E-Jet2_pz))/8000;
+      double x_plus_3j = ((Jet1_E+Jet1_pz)+(Jet2_E+Jet2_pz)+(Jet3_E+Jet3_pz))/8000;
+      double x_minus_3j = ((Jet1_E-Jet1_pz)+(Jet2_E-Jet2_pz)+(Jet3_E-Jet3_pz))/8000;
       double x_minus_sel = (x_minus<x_plus) ? x_minus : x_plus;
       double x_plus_sel = (x_minus>x_plus) ? x_plus : x_minus;
       double mass_jets= sqrt(pow(Jet1_E+Jet2_E,2)-pow(Jet1_px+Jet2_px,2)-pow(Jet1_py+Jet2_py,2)-pow(Jet1_pz+Jet2_pz,2));
@@ -720,7 +752,6 @@ TH1F* test = new TH1F("test","",50,0,0.2);
 
       if( selectZeroHitsT2Minus && (n_t2_tracks_selected_zminus > 0) ) continue;
 
-      ++n_events_bef;
 
       bool proton_right_valid = rec_proton_right->valid;
       bool proton_left_valid = rec_proton_left->valid;
@@ -824,8 +855,10 @@ TH1F* test = new TH1F("test","",50,0,0.2);
       xi_cms_plus = xi_plus_Reco;
       jet1_pt = Jet1_pt;
       jet2_pt = Jet2_pt;
+      jet3_pt = Jet3_pt;
       jet1_eta = Jet1_eta;
       jet2_eta = Jet2_eta;
+      jet3_eta = Jet3_eta;
       jet1_phi = Jet1_phi;
       jet2_phi = Jet2_phi;
 
@@ -841,16 +874,18 @@ TH1F* test = new TH1F("test","",50,0,0.2);
       xi_totem_left = -xi_proton_left;
       t_totem_left = -t_proton_left;
       xi_cms_plus_totem = xi_plus_Reco+xi_proton_left;
-      beta_proton_right = x_minus/-xi_proton_right;
-      beta_proton_left = x_plus/-xi_proton_left;
+      beta_proton_right = (Jet3_pt>20) ? x_minus_3j/-xi_proton_right : x_minus/-xi_proton_right;
+      beta_proton_left = (Jet3_pt>20) ? x_plus_3j/-xi_proton_left : x_plus/-xi_proton_left;
       thetax_proton_right = rec_proton_right->thx;
       thetay_proton_right = rec_proton_right->thy;
       phi_proton_right = rec_proton_right->phi;
       thetax_proton_left = rec_proton_left->thx;
       thetay_proton_left = rec_proton_left->thy;
       phi_proton_left = rec_proton_left->phi;
-      x_right = x_minus;
-      x_left = x_plus;
+      x_right = (Jet3_pt>20) ? x_minus_3j : x_minus;
+      x_left = (Jet3_pt>20) ? x_plus_3j : x_plus;
+      //x_right_3j = x_minus_3j;
+      //x_left_3j = x_plus_3j;
       vtx_x = primaryVertex.x;
       vtx_y = primaryVertex.y;
       vtx_z = primaryVertex.z;
@@ -886,6 +921,7 @@ TH1F* test = new TH1F("test","",50,0,0.2);
   
   }//end of loop over files
 
+  cout<<"Nevents Total: "<<n_evt_total<<endl;
   cout<<"SingleArm: "<<n_events_SingleArm<<endl;
   cout<<"DoubleArm: "<<n_events_DoubleArm<<endl;
   cout<<"Elastic: "<<n_events_Elastic<<endl;
