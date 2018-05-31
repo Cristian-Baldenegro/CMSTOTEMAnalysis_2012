@@ -84,7 +84,7 @@ vector<JetCorrectorParameters> vecL2Relative, vecL3Absolute;
 
 
 
-void non_diffractive_ntuple(string const& mc = "pythia6", string const& pt_range = "QCD_pt_15_30", const Int_t nevt_max = -1){
+void non_diffractive_ntuple(string const& mc = "herwig", string const& pt_range = "QCD_pt_15_30", const Int_t nevt_max = -1){
 
   //mc = "pythia6" || "pythia8_nondiff" || "herwig"
   
@@ -541,7 +541,7 @@ void non_diffractive_ntuple(string const& mc = "pythia6", string const& pt_range
       std::stable_sort(smearedJets.begin(),smearedJets.end(),sortByPt);
 
 
-/*      if( pfJet_coll->size() > 0 ){
+      if( pfJet_coll->size() > 0 ){
 	 //MyBaseJet const& leadingJet = ( pfJet_coll->at(0) ).mapjet["ak5PFJets"];
 	 MyBaseJet const& leadingJet = ( smearedJets.at(0) );
 	 Jet1_pt = leadingJet.Pt(); 
@@ -884,7 +884,7 @@ void non_diffractive_ntuple(string const& mc = "pythia6", string const& pt_range
       jet2_gen_phi = Jet2_phi_gen;
       x_gen_right = (thirdJet_pt_gen > 20) ? x_minus_gen_3j : x_minus_gen;
       x_gen_left = (thirdJet_pt_gen>20) ? x_plus_gen_3j : x_plus_gen;
-*/
+
       small_tree->Fill();    
     }//end loop for events
 
