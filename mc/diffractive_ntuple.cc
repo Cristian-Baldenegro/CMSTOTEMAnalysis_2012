@@ -88,14 +88,19 @@ bool sortByPt(MyBaseJet const& jet1, MyBaseJet const& jet2){
 JetCorrectorParameters *L2Relative, *L3Absolute;
 vector<JetCorrectorParameters> vecL2Relative, vecL3Absolute;
 
-void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool side_minus = false,  bool side_plus = true, bool unfold = false, const Int_t nevt_max = -1){
+void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=true, bool side_minus = false,  bool side_plus = true, bool unfold = false, const Int_t nevt_max = -1){
   
-  TString file_name, side;
+  int variation = -1;// scale factor variation -> 0=nominal; 1=up, -1=down
+
+  TString file_name, side, sf_var;
   if (side_minus && !side_plus) side = "minus";
   if (!side_minus && side_plus) side = "plus";
   if (side_minus && side_plus) side = "bothsides";
   TString regg = (reggeon) ? "_reggeon" : ""; 
-  file_name = mc + regg + "_" + side + "_ntuple.root";
+  if (variation == 1) sf_var = "up";
+  if (variation == -1) sf_var = "dw";
+  if (variation == 0) sf_var = "";
+  file_name = mc + regg + "_" + side + "_ntuple_jetid_jer" + sf_var + ".root";
   //TString outputFileName = "/storage/lhuertas/uerj-1/mc/Workspace/root_files/" + file_name; 
   TString outputFileName = "/afs/cern.ch/user/l/lhuertas/" + file_name; 
   cout<<outputFileName<<endl;
@@ -490,7 +495,7 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
          for(; it_map != it_jet->mapjet.end(); ++it_map)
             if(verbose) cout << it_map->first << endl;
 
-         if( loosePFJetID(*it_jet,jetCorrName) ) continue;
+         if( !loosePFJetID(*it_jet,jetCorrName) ) continue;
 
          MyBaseJet const& basejet = it_jet->mapjet[jetCorrName];
 
@@ -534,15 +539,18 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
       //vector<MyGenJet> genJetMatched;
       MyGenJet const* genJetMatched;
       TRandom rdm_number(12345);
+      vector<MyBaseJet> smearedJets;
+      smearedJets.resize( pfJet_coll->size() );
+      idx_jet = 0;
 
-      for(vector<MyBaseJet>::iterator it_jet = JetVectorCorrected.begin(); it_jet != JetVectorCorrected.end() ; ++it_jet){
+      for(vector<MyBaseJet>::iterator it_jet = JetVectorCorrected.begin(); it_jet != JetVectorCorrected.end() ; ++it_jet,++idx_jet){
 
           //cout << it_jet->Pt() << endl;
           fx.push_back(it_jet->Eta());  // Jet Eta
           fY.push_back(it_jet->Pt()); // Jet PT
           fY.push_back(0); // Number of truth pileup
           jetResolution = ak5PFResolution->resolution(fx,fY);
-          jetScaleFactor = getScaleFactor(it_jet->Eta());
+          jetScaleFactor = getScaleFactor(it_jet->Eta(),variation);
           genJetMatched = getMatch(*it_jet, *genJet_coll, jetResolution);      
 
           //for(vector<MyGenJet>::iterator it_genjet = genJetMatched.begin(); it_genjet != genJetMatched.end() ; ++it_genjet){
@@ -557,15 +565,23 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
           }
 
           fx.clear();	
-          fY.clear();	
-      }
-  
+          fY.clear();
+	
+          TLorentzVector JetCorrected;
+          JetCorrected.SetPxPyPzE( it_jet->Px(), it_jet->Py(), it_jet->Pz(), it_jet->E());
+          TLorentzVector JetSmeared = JetCorrected*smearFactor;
+          smearedJets[idx_jet].SetPxPyPzE( JetSmeared.Px(), JetSmeared.Py(), JetSmeared.Pz(), JetSmeared.E());
+     }
+
+      std::stable_sort(smearedJets.begin(),smearedJets.end(),sortByPt);
+
 
       // Dijet information
       
       if( pfJet_coll->size() > 0 ){
 	 //MyBaseJet const& leadingJet = ( pfJet_coll->at(0) ).mapjet[jetCorrName];
-	 MyBaseJet const& leadingJet = ( JetVectorCorrected.at(0) );
+	 //MyBaseJet const& leadingJet = ( JetVectorCorrected.at(0) );
+	 MyBaseJet const& leadingJet = ( smearedJets.at(0) );
 	 Jet1_pt_rec = leadingJet.Pt(); 
 	 Jet1_eta_rec = leadingJet.Eta(); 
 	 Jet1_phi_rec = leadingJet.Phi(); 
@@ -579,7 +595,8 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
       
       if( pfJet_coll->size() > 1 ){
 	 //MyBaseJet const& secondJet = ( pfJet_coll->at(1) ).mapjet[jetCorrName];
-	 MyBaseJet const& secondJet = ( JetVectorCorrected.at(1) );
+	 //MyBaseJet const& secondJet = ( JetVectorCorrected.at(1) );
+	 MyBaseJet const& secondJet = ( smearedJets.at(1) );
          Jet2_pt_rec = secondJet.Pt(); 
 	 Jet2_eta_rec = secondJet.Eta(); 
 	 Jet2_phi_rec = secondJet.Phi(); 
@@ -592,7 +609,8 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
 
       if( pfJet_coll->size() > 2 ){
          //MyBaseJet const& thirdJet = ( pfJet_coll->at(2) ).mapjet[jetCorrName];
-	 MyBaseJet const& thirdJet = ( JetVectorCorrected.at(2) );
+	 //MyBaseJet const& thirdJet = ( JetVectorCorrected.at(2) );
+	 MyBaseJet const& thirdJet = ( smearedJets.at(2) );
          Jet3_pt_rec = thirdJet.Pt();
          Jet3_eta_rec = thirdJet.Eta();
          Jet3_phi_rec = thirdJet.Phi();
