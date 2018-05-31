@@ -65,9 +65,12 @@
 //#include "CondFormats/JetMETObjects/interface/FactorizedJetCorrector.h"
 //#include "CondFormats/JetMETObjects/interface/JetCorrectorParameters.h"
 //#include "CondFormats/JetMETObjects/interface/JetCorrectionUncertainty.h"
-#include "JetCorrectorParameters.h"
+#include "CondFormats/JetMETObjects/interface/JetCorrectorParameters.h"
 #include "JetCorrectionUncertainty.h"
 #include "FactorizedJetCorrector.h"
+#include "CondFormats/JetMETObjects/interface/SimpleJetResolution.h"
+#include "CondFormats/JetMETObjects/src/SimpleJetResolution.cc"
+#include "smearedJet.h"
 
 //ROOUNFOLD CLASSES
 //#include "/storage/lhuertas/uerj-1/CMSTOTEM/mc/RooUnfold-1.1.1/src/RooUnfoldResponse.h"
@@ -85,7 +88,7 @@ bool sortByPt(MyBaseJet const& jet1, MyBaseJet const& jet2){
 JetCorrectorParameters *L2Relative, *L3Absolute;
 vector<JetCorrectorParameters> vecL2Relative, vecL3Absolute;
 
-void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool side_minus = true,  bool side_plus = false, bool unfold = false, const Int_t nevt_max = -1){
+void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool side_minus = false,  bool side_plus = true, bool unfold = false, const Int_t nevt_max = -1){
   
   TString file_name, side;
   if (side_minus && !side_plus) side = "minus";
@@ -96,6 +99,7 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
   //TString outputFileName = "/storage/lhuertas/uerj-1/mc/Workspace/root_files/" + file_name; 
   TString outputFileName = "/afs/cern.ch/user/l/lhuertas/" + file_name; 
   cout<<outputFileName<<endl;
+
 
   bool use_beam_smearing = false;
   bool use_beam_smearing_for_transport = true;
@@ -150,15 +154,20 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
   TH1F* theta = new TH1F("","",100,-0.001, 0.001);
   const Int_t nevt_max_corr = (nevt_max >= 0) ? nevt_max : 99999999;
 
+  TFile* output = new TFile(outputFileName,"RECREATE");
+  output->cd();
+
   bool rp_right, rp_left, rp_right_accep_top, rp_right_accep_bottom, rp_left_accep_top, rp_left_accep_bottom;
   double xi_rec_cms_right, xi_rec_cms_left, xi_gen_cms_right, xi_gen_cms_left, xi_rec_proton_right, xi_rec_proton_left, xi_gen_proton_right, xi_gen_proton_left;
   double t_rec_proton_right, t_rec_proton_left, t_gen_proton_right, t_gen_proton_right_old, t_gen_proton_left, x_rec_right, x_rec_left, x_gen_right, x_gen_left;
+  double x_rec_right_thirdjet, x_rec_left_thirdjet, x_gen_right_thirdjet, x_gen_left_thirdjet;
   double t_rec_proton_right_gauss, t_rec_proton_left_gauss, t_gen_proton_right_gauss, t_gen_proton_left_gauss, xi_rec_proton_right_gauss, xi_rec_proton_left_gauss, xi_gen_proton_right_gauss, xi_gen_proton_left_gauss;
   double beta_rec_right, beta_rec_left, beta_gen_right, beta_gen_left, weight_mc;
   double jet1_rec_pt, jet1_rec_eta, jet1_rec_phi, jet2_rec_pt, jet2_rec_eta, jet2_rec_phi;
   double jet1_gen_pt, jet1_gen_eta, jet1_gen_phi, jet2_gen_pt, jet2_gen_eta, jet2_gen_phi;
   double jet1_rec_px, jet1_rec_py, jet1_rec_pz, jet1_rec_mass, jet1_gen_px, jet1_gen_py, jet1_gen_pz, jet1_gen_mass;
   double jet2_rec_px, jet2_rec_py, jet2_rec_pz, jet2_rec_mass, jet2_gen_px, jet2_gen_py, jet2_gen_pz, jet2_gen_mass;
+  double jet3_gen_pt, jet3_gen_eta, jet3_gen_phi, jet3_rec_pt, jet3_rec_eta, jet3_rec_phi, jet3_rec_px, jet3_rec_py, jet3_rec_pz, jet3_rec_mass, jet3_gen_px, jet3_gen_py, jet3_gen_pz, jet3_gen_mass;
   double theta_x_plus, theta_y_plus, theta_x_minus, theta_y_minus, rp_xpos_24, rp_xpos_124, rp_ypos_24, rp_ypos_124, rp_xpos_25, rp_xpos_125, rp_ypos_25, rp_ypos_125;
   double theta_x_plus_smear, theta_y_plus_smear, theta_x_minus_smear, theta_y_minus_smear;
   double px_proton_right_smear, px_proton_left_smear, py_proton_right_smear, py_proton_left_smear, pz_proton_right_smear, pz_proton_left_smear, e_proton_right_smear,e_proton_left_smear;
@@ -248,6 +257,12 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
   small_tree->Branch("jet2_gen_phi",&jet2_gen_phi,"jet2_gen_phi/D");
   small_tree->Branch("mjj2_gen",&mjj2_gen,"mjj2_gen/D");
   small_tree->Branch("mjj2_rec",&mjj2_rec,"mjj2_rec/D");
+  small_tree->Branch("jet3_rec_pt",&jet3_rec_pt,"jet3_rec_pt/D");
+  small_tree->Branch("jet3_rec_eta",&jet3_rec_eta,"jet3_rec_eta/D");
+  small_tree->Branch("jet3_rec_phi",&jet3_rec_phi,"jet3_rec_phi/D");
+  small_tree->Branch("jet3_gen_pt",&jet3_gen_pt,"jet3_gen_pt/D");
+  small_tree->Branch("jet3_gen_eta",&jet3_gen_eta,"jet3_gen_eta/D");
+  small_tree->Branch("jet3_gen_phi",&jet3_gen_phi,"jet3_gen_phi/D");
 /*  small_tree->Branch("jet2_gen_px",&jet2_gen_px,"jet2_gen_px/D");
   small_tree->Branch("jet2_gen_py",&jet2_gen_py,"jet2_gen_py/D");
   small_tree->Branch("jet2_gen_pz",&jet2_gen_pz,"jet2_gen_pz/D");
@@ -268,20 +283,7 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
   small_tree->Branch("py_proton_left",&py_proton_left,"py_proton_left/D");
   small_tree->Branch("pz_proton_right",&pz_proton_right,"pz_proton_right/D");
   small_tree->Branch("pz_proton_left",&pz_proton_left,"pz_proton_left/D");
-  //small_tree->Branch("px_proton_right_smear",&px_proton_right_smear,"px_proton_right_smear/D");
-  //small_tree->Branch("px_proton_left_smear",&px_proton_left_smear,"px_proton_left_smear/D");
-  //small_tree->Branch("py_proton_right_smear",&py_proton_right_smear,"py_proton_right_smear/D");
-  //small_tree->Branch("py_proton_left_smear",&py_proton_left_smear,"py_proton_left_smear/D");
-  //small_tree->Branch("pz_proton_right_smear",&pz_proton_right_smear,"pz_proton_right_smear/D");
-  //small_tree->Branch("pz_proton_left_smear",&pz_proton_left_smear,"pz_proton_left_smear/D");
-  //small_tree->Branch("e_proton_right",&e_proton_right,"e_proton_right/D");
-  //small_tree->Branch("e_proton_left",&e_proton_left,"e_proton_left/D");
-  //small_tree->Branch("e_proton_right_smear",&e_proton_right_smear,"e_proton_right_smear/D");
-  //small_tree->Branch("e_proton_left_smear",&e_proton_left_smear,"e_proton_left_smear/D");
- // small_tree->Branch("mass_proton_left",&mass_proton_left,"mass_proton_left/D");
-  //small_tree->Branch("mass_proton_right",&mass_proton_right,"mass_proton_right/D");
 
-  small_tree->SetDirectory(0);
 
   TH1F* vtx_zpos = new TH1F("vtx_zpos", "z(vtx)" , 150 , -30. , 30.);
 
@@ -364,6 +366,13 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
   vecL3Absolute.push_back(*L3Absolute);
   FactorizedJetCorrector *jecL2Relative   = new FactorizedJetCorrector(vecL2Relative);
   FactorizedJetCorrector *jecL3Absolute   = new FactorizedJetCorrector(vecL3Absolute);
+
+  // Jet energy resolution
+  string ak5Tag = "/storage1/lhuertas/CMSTOTEM/mc/Workspace/JetResolutionInputAK5PF.txt";
+  JetCorrectorParameters *AK5PFPar    = new JetCorrectorParameters(ak5Tag);
+  SimpleJetResolution *ak5PFResolution =  new SimpleJetResolution(*AK5PFPar);
+  //cout<<"AK5PFPar isValid:"<<AK5PFPar->isValid()<<endl;
+  //cout<<"AK5PFPar size:"<<AK5PFPar->size()<<endl;
 
   rp_aperture_config();
   
@@ -471,6 +480,7 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
       Double_t Jet2_eta_rec; 
       Double_t Jet1_phi_rec, Jet1_px_rec, Jet1_py_rec, Jet1_pz_rec, Jet1_energy_rec; 
       Double_t Jet2_phi_rec, Jet2_px_rec, Jet2_py_rec, Jet2_pz_rec, Jet2_energy_rec;
+      Double_t Jet3_phi_rec, Jet3_px_rec, Jet3_py_rec, Jet3_pz_rec, Jet3_energy_rec, Jet3_mass_rec, Jet3_pt_rec, Jet3_eta_rec;
 
       vector<MyBaseJet> JetVectorCorrected;
       JetVectorCorrected.resize( pfJet_coll->size() );
@@ -479,6 +489,8 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
          map<string,MyBaseJet>::iterator it_map = it_jet->mapjet.begin();
          for(; it_map != it_jet->mapjet.end(); ++it_map)
             if(verbose) cout << it_map->first << endl;
+
+         if( loosePFJetID(*it_jet,jetCorrName) ) continue;
 
          MyBaseJet const& basejet = it_jet->mapjet[jetCorrName];
 
@@ -506,14 +518,54 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
                                                  JetL2RelativeL3Absolute.Pz(),
                                                  JetL2RelativeL3Absolute.E() );
          JetVectorCorrected[idx_jet].jec = CoorFactor;
+
+
       }
 
       std::stable_sort(JetVectorCorrected.begin(),JetVectorCorrected.end(),sortByPt);
 
+
+      //Jet energy resolution
+
+      std::vector<float> fx, fY;
+      double jetResolution;
+      double jetScaleFactor;
+      double smearFactor;
+      //vector<MyGenJet> genJetMatched;
+      MyGenJet const* genJetMatched;
+      TRandom rdm_number(12345);
+
+      for(vector<MyBaseJet>::iterator it_jet = JetVectorCorrected.begin(); it_jet != JetVectorCorrected.end() ; ++it_jet){
+
+          //cout << it_jet->Pt() << endl;
+          fx.push_back(it_jet->Eta());  // Jet Eta
+          fY.push_back(it_jet->Pt()); // Jet PT
+          fY.push_back(0); // Number of truth pileup
+          jetResolution = ak5PFResolution->resolution(fx,fY);
+          jetScaleFactor = getScaleFactor(it_jet->Eta());
+          genJetMatched = getMatch(*it_jet, *genJet_coll, jetResolution);      
+
+          //for(vector<MyGenJet>::iterator it_genjet = genJetMatched.begin(); it_genjet != genJetMatched.end() ; ++it_genjet){
+	  if (genJetMatched){
+             double dPt = it_jet->Pt() - genJetMatched->Pt();
+             //cout << dPt << endl;
+             smearFactor = 1 + (jetScaleFactor - 1.)*dPt/it_jet->Pt(); 
+	  }
+          else{
+             double sigma = jetResolution * std::sqrt(jetScaleFactor * jetScaleFactor - 1);
+             smearFactor = 1. + rdm_number.Gaus(0, sigma); 
+          }
+
+          fx.clear();	
+          fY.clear();	
+      }
+  
+
+      // Dijet information
       
       if( pfJet_coll->size() > 0 ){
-	 MyBaseJet const& leadingJet = ( pfJet_coll->at(0) ).mapjet[jetCorrName];
-	 //MyBaseJet const& leadingJet = ( JetVectorCorrected.at(0) );
+	 //MyBaseJet const& leadingJet = ( pfJet_coll->at(0) ).mapjet[jetCorrName];
+	 MyBaseJet const& leadingJet = ( JetVectorCorrected.at(0) );
 	 Jet1_pt_rec = leadingJet.Pt(); 
 	 Jet1_eta_rec = leadingJet.Eta(); 
 	 Jet1_phi_rec = leadingJet.Phi(); 
@@ -526,8 +578,8 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
       //if(!jet1_rec_selected) continue;
       
       if( pfJet_coll->size() > 1 ){
-	 MyBaseJet const& secondJet = ( pfJet_coll->at(1) ).mapjet[jetCorrName];
-	 //MyBaseJet const& secondJet = ( JetVectorCorrected.at(1) );
+	 //MyBaseJet const& secondJet = ( pfJet_coll->at(1) ).mapjet[jetCorrName];
+	 MyBaseJet const& secondJet = ( JetVectorCorrected.at(1) );
          Jet2_pt_rec = secondJet.Pt(); 
 	 Jet2_eta_rec = secondJet.Eta(); 
 	 Jet2_phi_rec = secondJet.Phi(); 
@@ -537,16 +589,36 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
          Jet2_energy_rec = secondJet.E();
          Jet2_mass_rec = secondJet.M();
       }
+
+      if( pfJet_coll->size() > 2 ){
+         //MyBaseJet const& thirdJet = ( pfJet_coll->at(2) ).mapjet[jetCorrName];
+	 MyBaseJet const& thirdJet = ( JetVectorCorrected.at(2) );
+         Jet3_pt_rec = thirdJet.Pt();
+         Jet3_eta_rec = thirdJet.Eta();
+         Jet3_phi_rec = thirdJet.Phi();
+         Jet3_px_rec = thirdJet.Px();
+         Jet3_py_rec = thirdJet.Py();
+         Jet3_pz_rec = thirdJet.Pz();
+         Jet3_energy_rec = thirdJet.E();
+         Jet3_mass_rec = thirdJet.M();
+      }
+
+
+
+
       //if(!jet2_rec_selected) continue;
       double mass_jets_rec= sqrt(pow(Jet1_energy_rec+Jet2_energy_rec,2)-pow(Jet1_px_rec+Jet2_px_rec,2)-pow(Jet1_py_rec+Jet2_py_rec,2)-pow(Jet1_pz_rec+Jet2_pz_rec,2));
       double x_minus_rec = ((Jet1_energy_rec-Jet1_pz_rec)+(Jet2_energy_rec-Jet2_pz_rec))/8000; 
       double x_plus_rec = ((Jet1_energy_rec+Jet1_pz_rec)+(Jet2_energy_rec+Jet2_pz_rec))/8000; 
+      double x_minus_rec_thirdjet = ((Jet1_energy_rec-Jet1_pz_rec)+(Jet2_energy_rec-Jet2_pz_rec)+(Jet3_energy_rec-Jet3_pz_rec))/8000; 
+      double x_plus_rec_thirdjet = ((Jet1_energy_rec+Jet1_pz_rec)+(Jet2_energy_rec+Jet2_pz_rec)+(Jet3_energy_rec+Jet3_pz_rec))/8000; 
       mjj2_rec = Jet1_mass_rec*Jet1_mass_rec + Jet2_mass_rec*Jet2_mass_rec + 2*(Jet1_energy_rec*Jet2_energy_rec - Jet1_px_rec* Jet2_px_rec - Jet1_py_rec*Jet2_py_rec - Jet1_pz_rec*Jet2_pz_rec);
 
 
       //Jet generated level         
       double leadingJet_pt_gen = -999;
       double secondJet_pt_gen = -999;
+      double thirdJet_pt_gen = -999;
       double Jet1_energy_gen;
       double Jet1_px_gen;
       double Jet1_py_gen;
@@ -561,6 +633,7 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
       double Jet2_phi_gen;
       double Jet1_mass_gen;
       double Jet2_mass_gen;
+      double Jet3_energy_gen, Jet3_px_gen, Jet3_py_gen, Jet3_pz_gen, Jet3_eta_gen, Jet3_phi_gen, Jet3_mass_gen;
 
 
       for(vector<MyGenJet>::iterator it_genjet = genJet_coll->begin(); it_genjet != genJet_coll->end(); ++it_genjet){
@@ -595,6 +668,16 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
              Jet2_phi_gen = jet_phi_gen;
              Jet2_mass_gen = jet_mass_gen;
          }
+	 if (jet_pt_gen>thirdJet_pt_gen && jet_pt_gen<secondJet_pt_gen){
+             thirdJet_pt_gen = jet_pt_gen;
+             Jet3_energy_gen = jet_ene_gen;
+             Jet3_px_gen = jet_px_gen;
+             Jet3_py_gen = jet_py_gen;
+             Jet3_pz_gen = jet_pz_gen;
+             Jet3_eta_gen = jet_eta_gen;
+             Jet3_phi_gen = jet_phi_gen;
+             Jet3_mass_gen = jet_mass_gen;
+         }
       }
       if(leadingJet_pt_gen>30. && fabs(Jet1_eta_gen)<4.4) jet1_gen_selected = true;
       if(secondJet_pt_gen>30. && fabs(Jet2_eta_gen)<4.4) jet2_gen_selected = true;
@@ -605,6 +688,8 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
       double mass_jets_gen= sqrt(pow(Jet1_energy_gen+Jet2_energy_gen,2)-pow(Jet1_px_gen+Jet2_px_gen,2)-pow(Jet1_py_gen+Jet2_py_gen,2)-pow(Jet1_pz_gen+Jet2_pz_gen,2));
       double x_minus_gen = ((Jet1_energy_gen-Jet1_pz_gen)+(Jet2_energy_gen-Jet2_pz_gen))/8000;
       double x_plus_gen = ((Jet1_energy_gen+Jet1_pz_gen)+(Jet2_energy_gen+Jet2_pz_gen))/8000;
+      double x_minus_gen_thirdjet = ((Jet1_energy_gen-Jet1_pz_gen)+(Jet2_energy_gen-Jet2_pz_gen)+(Jet3_energy_gen-Jet3_pz_gen))/8000;
+      double x_plus_gen_thirdjet = ((Jet1_energy_gen+Jet1_pz_gen)+(Jet2_energy_gen+Jet2_pz_gen)+(Jet3_energy_gen+Jet3_pz_gen))/8000;
 
 
       // Particle-flow
@@ -669,7 +754,8 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
       Double_t proton_pf;
       Double_t eta_gen;
       Double_t phi_gen;
-      
+      double mx_gen = 0;     
+ 
       for(vector<MyGenPart>::iterator it_genpart = genPart->begin(); it_genpart != genPart->end(); ++it_genpart){
  
 	 //double eta_gen = it_genpart->Eta();
@@ -689,6 +775,7 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
 	    if (id != 2212) {
    	       genEPlusPz += (energy_gen + pz_gen);
 	       genEMinusPz += (energy_gen - pz_gen);
+  	       mx_gen += mass_gen;
             }
 	    if (id == 2212) {
              double pz_cut = 0.7*proton_pi;
@@ -1218,11 +1305,11 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
 
       //theta smearing
       double xi_minus_proton_smear_rec = xi_minus_proton_smear;// + gRandom->Gaus(0,sigma_xi56);
-      double proton_beta_minus_rec = x_minus_rec/xi_minus_proton_smear_rec;
-      double proton_beta_minus_gen = x_minus_gen/xi_minus_proton_gen;
+      double proton_beta_minus_rec = (Jet3_pt_rec>20) ? x_minus_rec_thirdjet/xi_minus_proton_smear_rec : x_minus_rec/xi_minus_proton_smear_rec;
+      double proton_beta_minus_gen = (thirdJet_pt_gen>20) ? x_minus_gen_thirdjet/xi_minus_proton_gen : x_minus_gen/xi_minus_proton_gen;
       double xi_plus_proton_smear_rec = xi_plus_proton_smear;// + gRandom->Gaus(0,sigma_xi45_smear);
-      double proton_beta_plus_rec = x_plus_rec/xi_plus_proton_smear_rec;
-      double proton_beta_plus_gen = x_plus_gen/xi_plus_proton_gen;
+      double proton_beta_plus_rec = (Jet3_pt_rec>20) ? x_plus_rec_thirdjet/xi_plus_proton_smear_rec : x_plus_rec/xi_plus_proton_smear_rec;
+      double proton_beta_plus_gen = (thirdJet_pt_gen>20) ? x_plus_gen_thirdjet/xi_plus_proton_gen : x_plus_gen/xi_plus_proton_gen;
 
 
       //rp_accept
@@ -1272,10 +1359,10 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
       t_gen_proton_right = t_minus_proton_gen; 
       t_gen_proton_right_old = t_minus_proton_gen_old; 
       t_gen_proton_left = t_plus_proton_gen; 
-      x_rec_right = x_minus_rec; 
-      x_rec_left = x_plus_rec; 
-      x_gen_right = x_minus_gen; 
-      x_gen_left = x_plus_gen;
+      x_rec_right = (Jet3_pt_rec>20) ? x_minus_rec_thirdjet : x_minus_rec; 
+      x_rec_left = (Jet3_pt_rec>20) ? x_plus_rec_thirdjet : x_plus_rec; 
+      x_gen_right = (thirdJet_pt_gen>20) ? x_minus_gen_thirdjet : x_minus_gen; 
+      x_gen_left = (thirdJet_pt_gen>20) ? x_plus_gen_thirdjet : x_plus_gen;
       px_proton_right = proton_px_minus;
       px_proton_left = proton_px_plus;
       py_proton_right = proton_py_minus;
@@ -1324,6 +1411,12 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
       jet2_gen_pz = Jet2_pz_gen;      
  */ //    jet2_rec_mass = Jet2_mass_rec;      
   //    jet2_gen_mass = Jet2_mass_gen;      
+      jet3_rec_pt = Jet3_pt_rec;      
+      jet3_gen_pt = thirdJet_pt_gen;      
+      jet3_rec_eta = Jet3_eta_rec;      
+      jet3_gen_eta = Jet3_eta_gen;      
+      jet3_rec_phi = Jet3_phi_rec;      
+      jet3_gen_phi = Jet3_phi_gen;    
       weight_mc = event_weight;
       theta_x_minus_smear = -thx_minus_proton_smear; 
       theta_y_minus_smear = thy_minus_proton_smear; 
@@ -1346,7 +1439,7 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
 
    
   //output file
-  TFile* output = new TFile(outputFileName,"RECREATE");
+ // TFile* output = new TFile(outputFileName,"RECREATE");
   output->cd();
   float cross_section;
   if (mc == "pomwig" && !reggeon && side_minus && side_plus) cross_section = 2*2.1189e7; //pb cross section for pomwig-pomeron
@@ -1368,6 +1461,7 @@ void diffractive_ntuple(string const& mc = "pomwig", bool reggeon=false, bool si
   Double_t scale = n_events/f1;
   cout<<"eventos  "<<nevents_total<<"   pesos "<<nweight_total<<"   cross section: "<<cross_section<< "  scale "<< scale<< endl; 
 
+  small_tree->SetDirectory(0);
   //vtx_zpos->Write();
   small_tree->Write();
   //for(map<string,TH2F*>::iterator it_histo = histosTH2F.begin(); it_histo != histosTH2F.end(); ++it_histo)
